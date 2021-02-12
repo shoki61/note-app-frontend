@@ -11,7 +11,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Navigation/>
-        <Route path='/' exact>
+        <Route path='/users' exact>
           <Users/>
         </Route>
       </BrowserRouter>

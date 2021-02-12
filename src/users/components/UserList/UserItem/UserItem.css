@@ -1,0 +1,35 @@
+.user-item-card{
+    transition: all .2s ease-in-out;
+}
+
+.user-item-container a{
+    text-decoration: none;
+}
+
+.user-item-card:hover{
+    background-color: rgb(240, 240, 240);
+}
+
+.user-item-content{
+    width: 100%;
+    max-width: 300px;
+    min-width: 250px;
+    justify-content: flex-start !important;
+}
+
+.user-item-image{
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    margin-right: 15px;
+}
+
+.user-item-name{
+    font-size: 18px;
+    font-weight: 700;
+    color:#555555
+}
+
+.user-item-notes{
+    color:rgb(116, 116, 116)
+}
