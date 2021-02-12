@@ -1,0 +1,14 @@
+.nav-item{
+    margin-right: 25px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color:rgb(161, 161, 161)
+  }
+  
+  .nav-item a:hover,
+  .nav-item a:active,
+  .nav-item a.active {
+    color: #fff;
+  }

@@ -1,0 +1,18 @@
+.navigation{
+    height: 55px;
+    width: 100%;
+    color:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px
+}
+
+.app-name{
+    font-size: 20px;
+}
+
+ul{
+    list-style: none;
+    justify-content: space-between !important;
+}

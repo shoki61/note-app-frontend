@@ -1,0 +1,21 @@
+.text-center{
+    text-align: center;
+}
+
+.app-back-color{
+    background-color: rgb(0, 80, 94);
+}
+
+.app-color{
+    color: rgb(0, 80, 94);
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+    box-sizing: border-box;
+}
