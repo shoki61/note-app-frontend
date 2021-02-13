@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Navigation from './shared/Navigation/Navigation';
 import Users from './users/Pages/Users/Users';
+import Notes from './notes/Pages/Notes/Notes';
 import './App.css';
 
 const App = () => {
@@ -13,6 +14,9 @@ const App = () => {
         <Navigation/>
         <Route path='/users' exact>
           <Users/>
+        </Route>
+        <Route path='/notes' exact>
+          <Notes/>
         </Route>
       </BrowserRouter>
     </div>

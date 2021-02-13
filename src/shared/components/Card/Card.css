@@ -2,5 +2,6 @@
     padding: 10px 20px;
     box-shadow: 0 0 2px  rgb(150, 150, 150);
     border-radius: 5px;
-    margin:10px
+    margin:10px auto;
+    width: 100%;
 }
