@@ -31,6 +31,10 @@
     margin-right: 15px;
 }
 
+.note-item-title-container{
+    justify-content: flex-start !important;
+}
+
 .note-item-title{
     font-size: 18px;
     font-weight: 700;

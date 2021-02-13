@@ -15,11 +15,11 @@ const NoteItem = props => {
                             <Image src={props.image} alt={props.title}/>
                         </div>
                         <div style={{width:'70%', paddingRight:10}}>
-                            <div className='center'>
-                                <p className='note-item-title'>{props.title} sdfkja kljdaf nkjfd adfgj fdgk algfdg adgkj dfg sdfgakjlfglf afdg fd </p>
+                            <div className='note-item-title-container center'>
+                                <p className='note-item-title'>{props.title}</p>
                                 <span className='note-item-date'>{props.createdDate}</span>
                             </div>
-                            <p className='note-item-description'>{props.description} safsdfsdafsdfsdfasdfdsfmnbmnnv kanv nfkn kjnkg nkj nfdakj nk nk lkagjlk nkf nkjnv kjnkjnv kjnv kjvnkdfjvn kjnv kjdnfkj ndkvj nfdskjkjnvkj nkjn kj nkj njk nkjn kjnvk n kjnv jd kjn kjdfn vadfkjnvkjfdnv kjdnkdjfnv kjdfnvkdfnv vkjnkjd nkvjdf nvkdfvnkdfjvnkdfjnvkjdfnv dkjfn vkjdfnv kjdf nkdjf nvdkjfn vkdjfnv</p>
+                            <p className='note-item-description'>{props.description}</p>
                         </div>
                     </div>
                 </NavLink>
