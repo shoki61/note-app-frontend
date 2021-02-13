@@ -9,7 +9,7 @@ const NoteItem = props => {
     return(
         <Card className='note-item-card'>
             <div className='note-item-container'>
-                <NavLink to='/noteDetail'>
+                <NavLink to='/note'>
                     <div className='note-item-content center'>
                         <div className='note-item-image'>
                             <Image src={props.image} alt={props.title}/>

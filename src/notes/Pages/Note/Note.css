@@ -1,0 +1,58 @@
+.note-container{
+    width: 55%;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.note-content{
+    margin-bottom: 40px;
+}
+
+.note-image{
+    width: 500px;
+    height: 400px;
+    margin: 10px auto 20px auto;
+}
+
+.note-title{
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    color:rgb(65, 65, 65);
+    margin:10px 0 25px 0
+}
+
+.note-description{
+    font-size: 18px;
+    color:rgb(68, 68, 68)
+}
+
+.note-creator{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.note-create-avatar{
+    width: 55px;
+    height: 55px;
+    border-radius: 100px;
+    margin-right: 10px;
+}
+
+.note-creator-name{
+    font-size: 17px;
+    font-weight: 600;
+    color:#414141
+}
+
+.note-created-date{
+    margin-left: 15px;
+    font-family:'Source Sans Pro', sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    color:#757575
+}
+
