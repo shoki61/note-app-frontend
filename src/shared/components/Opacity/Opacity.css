@@ -1,0 +1,15 @@
+.opacity{
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background-color: rgba(0, 80, 94, .7);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:0;
+    left:0;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    opacity: 0;
+}

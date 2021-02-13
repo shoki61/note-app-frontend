@@ -5,6 +5,7 @@ import Navigation from './shared/Navigation/Navigation';
 import Users from './users/Pages/Users/Users';
 import Notes from './notes/Pages/Notes/Notes';
 import Note from './notes/Pages/Note/Note';
+import Profile from './users/Pages/Profile/Profile';
 import './App.css';
 
 const App = () => {
@@ -21,6 +22,9 @@ const App = () => {
         </Route>
         <Route path='/note' exact>
           <Note/>
+        </Route>
+        <Route path='/profile' exact>
+          <Profile/>
         </Route>
       </BrowserRouter>
     </div>

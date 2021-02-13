@@ -29,7 +29,9 @@ const DUMMY_DATA = [
 ];
 
 const Notes = props => {
-    return  <NoteList data={DUMMY_DATA}/>
+    return  <div style={{width: '50vw', margin:'auto'}}>
+        <NoteList data={DUMMY_DATA}/>
+    </div>
 };
 
 export default Notes;
