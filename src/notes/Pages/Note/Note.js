@@ -3,6 +3,7 @@ import React from 'react';
 
 import Image from '../../../shared/components/Image/Image';
 import Button from '../../../shared/components/Button/Button';
+import Input from '../../../shared/components/Input/Input'
 import './Note.css';
 
 const note = {
@@ -29,7 +30,7 @@ const Note = props => {
                     <Button className='info-outline'><i class="fa fa-comment-o"></i><span>4</span></Button>
                     <Button className='info-outline'><i className="fa fa-heart-o"></i><span>203</span></Button>
                     <Button className='info-outline'><i class="fa fa-bookmark-o mark"></i><span>118</span></Button>
-                    <Button className='black-outline'>Fallow</Button>
+                    <Button className='black-outline'>Follow</Button>
                 </div>
             </div>
             <div className='note-content'>   
@@ -40,6 +41,12 @@ const Note = props => {
                 <p className='note-description'>{note.description}</p>
             </div>
             <div className='line'></div>
+
+            <div className='note-comment-container'>
+                <p className='note-footer-title'>Add comment</p>
+                <Input className='comment' placeholder='write something...'/>
+                <Button className='success'>Submit</Button>
+            </div>
 
         </div>
     );
