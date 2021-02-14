@@ -15,12 +15,12 @@ const Auth = props => {
                 <div className='auth-form-container'>
                     {!mode && <>
                         <p className='auth-title'>Your Name</p>
-                        <Input placeholder='enter your name...' className='auth-input' element='input'/>
+                        <Input placeholder='enter your name...' className='input-full' element='input'/>
                     </>}
                     <p className='auth-title'>E-mail</p>
-                    <Input placeholder='enter e-mail...' className='auth-input' element='input'/>
+                    <Input placeholder='enter e-mail...' className='input-full' element='input'/>
                     <p className='auth-title'>Password</p>
-                    <Input placeholder='enter password...' className='auth-input' element='input'/>
+                    <Input placeholder='enter password...' className='input-full' element='input'/>
                     <Button className='black auth-button'>{mode ? 'LOGIN' : 'SING UP'}</Button>
                     <p>
                         {mode ? "Aren't you a member?" : "Are you already a member?"} 
