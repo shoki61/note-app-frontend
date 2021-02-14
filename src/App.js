@@ -6,6 +6,7 @@ import Users from './users/Pages/Users/Users';
 import Notes from './notes/Pages/Notes/Notes';
 import Note from './notes/Pages/Note/Note';
 import Profile from './users/Pages/Profile/Profile';
+import Auth from './users/Pages/Auth/Auth';
 import './App.css';
 
 const App = () => {
@@ -25,6 +26,9 @@ const App = () => {
         </Route>
         <Route path='/profile' exact>
           <Profile/>
+        </Route>
+        <Route path='/auth' exact>
+          <Auth/>
         </Route>
       </BrowserRouter>
     </div>

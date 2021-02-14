@@ -1,4 +1,4 @@
-.btn{
+.button{
     outline: none !important;
     padding: 10px 15px;
     border:none;
@@ -12,6 +12,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.auth-button{
+    padding: 5px 15px;
+    margin-bottom: 10px;
 }
 
 .white {
@@ -59,16 +64,16 @@
 }
 
 .black{
-    background-color: rgb(29, 29, 29);
+    background-color: rgb(75, 75, 75);
     color:#fff
 }
 
 .black-outline{
-    border: 1px solid rgb(59, 59, 59);
-    color:rgb(59, 59, 59)
+    border: 1px solid rgb(75, 75, 75);
+    color:rgb(75, 75, 75)
 }
 
 .black-outline:hover{
-    background-color: rgb(59, 59, 59);
+    background-color: rgb(75, 75, 75);
     color:#fff
 }

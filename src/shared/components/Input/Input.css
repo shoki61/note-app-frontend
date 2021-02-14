@@ -6,6 +6,7 @@
     font-family: sans-serif;
     color:rgb(70, 70, 70);
     transition: all .2s ease-in-out;
+    display: block;
 }
 
 .input:focus{
@@ -20,4 +21,10 @@
     resize: none;
     padding: 5px 10px;
     min-height: 75px;
+}
+
+.auth-input{
+    width: 100%;
+    border:1px solid rgb(226, 226, 226);
+    margin:5px 0 20px 0;
 }
