@@ -57,7 +57,7 @@ const Profile = props => {
                         <div className='profile-image'>
                             <Image src={DUMMY_DATA[0].userInfo.image} alt='Murat Artan'/>
                             <Opacity>
-                                <Button className='white'>Update image<i className='fa fa-camera'></i></Button>
+                                <Button className='white'><i className='fa fa-camera'></i>Upload image</Button>
                             </Opacity>
                         </div>
                         <Button><span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span></Button>
@@ -77,6 +77,7 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
                     <Button className='black-outline'>Follow</Button>
+                    <Button className='danger-outline'>Delete the account</Button>
                 </div>
             </div>
             <div className='line'></div>
