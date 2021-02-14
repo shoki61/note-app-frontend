@@ -33,6 +33,11 @@
     color:#00bf73
 }
 
+.success-outline:hover{
+    background-color: #00bf73;
+    color:#fff
+}
+
 .info-outline:hover{
     background-color: #00bf73;
     color:#fff

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 import Image from '../../../shared/components/Image/Image';
 import Button from '../../../shared/components/Button/Button';
 import NotesList from '../../../notes/components/NotesList/NotesList';
 import Opacity from '../../../shared/components/Opacity/Opacity';
+import Input from '../../../shared/components/Input/Input';
 import './Profile.css';
 
 
@@ -44,6 +45,10 @@ const DUMMY_DATA = [
 ]
 
 const Profile = props => {
+
+    const [inputVisible, setInputVisible] = useState(false);
+
+    const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
     return (
         <div className='profile-container'>
             <div className='profile-info center'>
@@ -78,7 +83,16 @@ const Profile = props => {
             <div className='profile-notes'>
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
                     <p className='profile-notes-title'>Notes</p>
-                    <Button><i className='fa fa-search search'></i></Button>
+                    <div className='center'>
+                        <Button><i className='fa fa-plus'></i></Button>
+                        <Input
+                            placeholder='search note...'
+                            className='search-note-input'
+                            element='input'
+                            style={inputVisible ? {width:250, border:'1px solid grey'}:{width:0, padding:0}}
+                        />
+                        <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
+                    </div>
                 </div>
                 <NotesList data={DUMMY_DATA[0].userInfo.notes}/>
             </div>
