@@ -30,6 +30,8 @@ const Note = props => {
                     <Button className='info-outline'><i class="fa fa-comment-o"></i><span>4</span></Button>
                     <Button className='info-outline'><i className="fa fa-heart-o"></i><span>203</span></Button>
                     <Button className='info-outline'><i class="fa fa-bookmark-o"></i><span>118</span></Button>
+                    <Button className='yellow-outline'>Update</Button>
+                    <Button className='danger-outline'>Delete</Button>
                     <Button className='black-outline'>Follow</Button>
                 </div>
             </div>
@@ -44,7 +46,7 @@ const Note = props => {
 
             <div className='note-comment-container'>
                 <p className='note-footer-title'>Add comment</p>
-                <Input className='comment' placeholder='write something...'/>
+                <Input className='comment full' placeholder='write something...'/>
                 <Button className='success'>Submit</Button>
             </div>
 

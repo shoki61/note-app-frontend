@@ -68,6 +68,26 @@
     color:rgb(255, 60, 60)
 }
 
+.danger-outline:hover{
+    background-color: rgb(255, 60, 60);
+    color: #fff
+}
+
+.yellow{
+    background-color: #ff8400;
+    color: #fff
+}
+
+.yellow-outline{
+    border:1px solid #ff8400;
+    color: #ff8400
+}
+
+.yellow-outline:hover{
+    background-color: #ff8400;
+    color: #fff
+}
+
 .black{
     background-color: rgb(75, 75, 75);
     color:#fff
