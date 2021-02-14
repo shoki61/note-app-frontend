@@ -6,6 +6,7 @@ import Users from './users/Pages/Users/Users';
 import Notes from './notes/Pages/Notes/Notes';
 import Note from './notes/Pages/Note/Note';
 import NewNote from './notes/Pages/NewNote/NewNote';
+import UpdateNote from './notes/Pages/UpdateNote/UpdateNote';
 import Profile from './users/Pages/Profile/Profile';
 import Auth from './users/Pages/Auth/Auth';
 import './App.css';
@@ -34,6 +35,9 @@ const App = () => {
           </Route>
           <Route path='/new-note'>
             <NewNote/>
+          </Route>
+          <Route path='/update-note'>
+            <UpdateNote/>
           </Route>
           <Redirect to='/users'/>
         </Switch>

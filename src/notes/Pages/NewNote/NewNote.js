@@ -1,18 +1,11 @@
 import React from 'react';
 
 
-import Card from '../../../shared/components/Card/Card';
-import './NewNote.css';
 import NoteTaker from '../../components/NoteTaker/NoteTaker';
+import './NewNote.css';
 
 const NewNote = props => {
-    return (
-        <div className='new-note-container'>
-            <Card>
-                <NoteTaker/>
-            </Card>
-        </div>
-    );
+    return <NoteTaker/>;
 };
 
 export default NewNote;

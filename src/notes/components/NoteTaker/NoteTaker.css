@@ -1,10 +1,16 @@
-.new-note-title{
+.note-taker-container{
+    width: 45%;
+    margin: auto;
+    padding: 30px 0;
+}
+
+.note-taker-title{
     font-weight: 700;
     font-size: 20px;
     color:#575757
 }
 
-.new-note-detail{
+.note-taker-detail{
     width: 15px;
     height: 15px;
     margin-left: 5px;
@@ -16,7 +22,7 @@
     cursor: pointer;
 }
 
-.new-note-detail:hover{
+.note-taker-detail:hover{
     background-color: #414141;
     color:#fff
 }
