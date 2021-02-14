@@ -48,11 +48,14 @@ const Profile = props => {
         <div className='profile-container'>
             <div className='profile-info center'>
                 <div className='center'>
-                    <div className='profile-image'>
-                        <Image src={DUMMY_DATA[0].userInfo.image} alt='Murat Artan'/>
-                        <Opacity>
-                            <Button className='white'>Update image<i className='fa fa-camera'></i></Button>
-                        </Opacity>
+                    <div className='profile-image-container center'>
+                        <div className='profile-image'>
+                            <Image src={DUMMY_DATA[0].userInfo.image} alt='Murat Artan'/>
+                            <Opacity>
+                                <Button className='white'>Update image<i className='fa fa-camera'></i></Button>
+                            </Opacity>
+                        </div>
+                        <Button><span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span></Button>
                     </div>
                     <div>
                         <p className='profile-name'>{DUMMY_DATA[0].userInfo.name}</p>
@@ -68,6 +71,7 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
+                    <Button className='black-outline'>Follow</Button>
                 </div>
             </div>
             <div className='line'></div>

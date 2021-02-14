@@ -6,7 +6,7 @@
 
 .profile-info{
     justify-content: space-between !important;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .profile-name{
@@ -26,11 +26,29 @@
     width: 175px;
     height: 175px;
     border-radius: 100px;
-    margin-right: 15px;
     position: relative;
+    margin:auto
 }
 .profile-image:hover .opacity{
     opacity: 1;
+}
+
+.profile-edit{
+    text-decoration: underline;
+    color: grey
+}
+
+.profile-image-container{
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.profile-image-container button {
+    padding: 0;
+}
+
+.profile-image-container .glyphicon-pencil{
+    font-size: 14px;
 }
 
 .profile-box{
@@ -40,7 +58,7 @@
     font-size: 14px;
     border:1px solid #dadada;
     background-color: #fcfcfc;
-    margin-right:7px
+    margin-right:7px;
 }
 
 .prodile-links{

@@ -29,7 +29,7 @@ const Note = props => {
                 <div style={{display:'flex'}}>
                     <Button className='info-outline'><i class="fa fa-comment-o"></i><span>4</span></Button>
                     <Button className='info-outline'><i className="fa fa-heart-o"></i><span>203</span></Button>
-                    <Button className='info-outline'><i class="fa fa-bookmark-o mark"></i><span>118</span></Button>
+                    <Button className='info-outline'><i class="fa fa-bookmark-o"></i><span>118</span></Button>
                     <Button className='black-outline'>Follow</Button>
                 </div>
             </div>

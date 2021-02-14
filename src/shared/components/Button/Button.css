@@ -1,5 +1,5 @@
 .btn{
-    outline: none;
+    outline: none !important;
     padding: 10px 15px;
     border:none;
     cursor: pointer;
