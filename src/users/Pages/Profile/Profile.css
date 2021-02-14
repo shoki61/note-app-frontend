@@ -18,7 +18,7 @@
 .profile-job{
     font-size: 15px;
     color:rgba(0, 80, 94, .7);
-    margin-bottom: 15px;
+    margin-bottom: 7px;
     font-style: italic;
 }
 
@@ -85,4 +85,16 @@
 .fa-camera{
     font-size: 25px;
     margin-top: 5px;
+}
+
+.fa-envelope-o{
+    font-size: 12px;
+    margin-right: 5px;
+    color:#414141;
+}
+
+.profile-email{
+    font-size: 14px;
+    color:rgb(59, 87, 88);
+    margin-bottom: 10px;
 }

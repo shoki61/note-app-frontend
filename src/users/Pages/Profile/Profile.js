@@ -65,6 +65,7 @@ const Profile = props => {
                     <div>
                         <p className='profile-name'>{DUMMY_DATA[0].userInfo.name}</p>
                         <p className='profile-job'>{DUMMY_DATA[0].userInfo.job}</p>
+                        <p className='profile-email'><i className='fa fa-envelope-o'></i>example@gmail.com</p>
                         <div>
                             <span className='profile-box'>Followed: {DUMMY_DATA[0].userInfo.followed}</span>
                             <span className='profile-box'>Follower: {DUMMY_DATA[0].userInfo.follower}</span>
