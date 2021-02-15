@@ -21,7 +21,7 @@ const DUMMY_DATA = [
 
 const Users = () => {
   return (
-    <div className='center'>
+    <div className='center users-container'>
       <UserList data={DUMMY_DATA}/>
     </div>
   );

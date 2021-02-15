@@ -6,7 +6,7 @@ import './UserList.css';
 
 const UserList = props => {
     return(
-        <div>
+        <div style={{width:'100%'}}>
             {props.data.map(user => <UserItem
                 id={user.id}
                 name={user.name}
