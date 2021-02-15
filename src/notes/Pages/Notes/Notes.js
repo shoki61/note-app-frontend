@@ -29,7 +29,7 @@ const DUMMY_DATA = [
 ];
 
 const Notes = props => {
-    return  <div style={{width: '50vw', margin:'auto'}}>
+    return  <div className='notes-container'>
         <NoteList data={DUMMY_DATA}/>
     </div>
 };
