@@ -8,6 +8,7 @@ import Note from './notes/Pages/Note/Note';
 import NewNote from './notes/Pages/NewNote/NewNote';
 import UpdateNote from './notes/Pages/UpdateNote/UpdateNote';
 import Profile from './users/Pages/Profile/Profile';
+import UpdateProfile from './users/Pages/UpdateProfile/UpdateProfile';
 import Auth from './users/Pages/Auth/Auth';
 import './App.css';
 
@@ -38,6 +39,9 @@ const App = () => {
           </Route>
           <Route path='/update-note'>
             <UpdateNote/>
+          </Route>
+          <Route path='/update-profile'>
+            <UpdateProfile/>
           </Route>
           <Redirect to='/users'/>
         </Switch>

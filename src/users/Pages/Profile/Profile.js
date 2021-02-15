@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 
 import Image from '../../../shared/components/Image/Image';
@@ -60,7 +61,7 @@ const Profile = props => {
                                 <Button className='white'><i className='fa fa-camera'></i>Upload image</Button>
                             </Opacity>
                         </div>
-                        <Button><span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span></Button>
+                        <Button><NavLink to='/update-profile'><span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span></NavLink></Button>
                     </div>
                     <div>
                         <p className='profile-name'>{DUMMY_DATA[0].userInfo.name}</p>

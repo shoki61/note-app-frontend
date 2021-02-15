@@ -1,0 +1,12 @@
+
+.profile-image{
+    width: 175px;
+    height: 175px;
+    border-radius: 100px;
+    position: relative;
+    margin:auto
+}
+
+.profile-image:hover .opacity{
+    opacity: 1;
+}
