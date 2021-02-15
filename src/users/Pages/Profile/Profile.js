@@ -57,9 +57,6 @@ const Profile = props => {
                     <div className='profile-image-container center'>
                         <div className='profile-image'>
                             <Image src={DUMMY_DATA[0].userInfo.image} alt='Murat Artan'/>
-                            <Opacity>
-                                <Button className='white'><i className='fa fa-camera'></i>Upload image</Button>
-                            </Opacity>
                         </div>
                         <Button><NavLink to='/update-profile'><span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span></NavLink></Button>
                     </div>

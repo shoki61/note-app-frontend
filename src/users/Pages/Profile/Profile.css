@@ -29,9 +29,6 @@
     position: relative;
     margin:auto
 }
-.profile-image:hover .opacity{
-    opacity: 1;
-}
 
 .profile-edit{
     text-decoration: underline;
