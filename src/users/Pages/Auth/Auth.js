@@ -42,7 +42,7 @@ const Auth = props => {
           props.onSignUp(name, email, password);
           history.push('/users');
         }else{
-          if(!validator.isEmail(event.target[0].value)){
+          if(!validator.isEmail(event.target[0].value) || !validator.isLength(password,{min:6})){
             return setError('Please enter valid email.');
           };
           props.onLogin(email,password);
