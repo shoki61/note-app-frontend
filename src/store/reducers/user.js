@@ -2,10 +2,11 @@ import * as actionTypes from '../actions/actionTypes';
 
 
 const initialState = {
-    name: String,
-    email: String,
-    password: String,
-    rePassword: String
+    name: '',
+    email: '',
+    password: '',
+    rePassword: '',
+    isLoggedIn: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,14 +14,20 @@ const reducer = (state = initialState, action) => {
         case actionTypes.LOGIN: return {
             ...state,
             email: action.email,
-            password: action.password
+            password: action.password,
+            isLoggedIn: true
         };
         case actionTypes.SIGN_UP: return {
             ...state,
             name: action.name,
             email: action.email,
             password: action.password,
-            rePassword: action.rePassword
+            rePassword: action.rePassword,
+            isLoggedIn: true
+        };
+        case actionTypes.LOGOUT: return {
+            ...state,
+            isLoggedIn: false
         };
         default: return state;
     };

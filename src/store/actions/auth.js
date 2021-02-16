@@ -9,6 +9,12 @@ export const authLogin = (email, password) => {
     };
 };
 
+export const authLogout = () => {
+    return {
+        type:actionTypes.LOGOUT
+    };
+};
+
 export const authSignUp = (name, email, password) => {
     return {
         type:actionTypes.SIGN_UP,
