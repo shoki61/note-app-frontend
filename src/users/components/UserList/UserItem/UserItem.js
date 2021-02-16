@@ -10,7 +10,7 @@ const UserItem = props => {
     return (
         <Card className='user-item-card'>
             <div className='user-item-container'>
-                <NavLink to='/userDetail'>
+                <NavLink to='/profile'>
                     <div className='user-item-content center'>
                         <div className='user-item-image'>
                             <Image src={props.image} alt={props.name}/>

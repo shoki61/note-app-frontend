@@ -5,6 +5,8 @@ import './Input.css';
 const Input = props => {
     if(props.element === 'input'){
         return  <input 
+                    id={props.id}
+                    onChange={props.onChange}
                     value={props.value}
                     type={props.type} 
                     style={{...props.style}} 
@@ -13,6 +15,8 @@ const Input = props => {
                 />
     };
     return  <textarea 
+                id={props.id}
+                onChange={props.onChange}
                 value={props.value}
                 style={{...props.style}} 
                 placeholder={props.placeholder} 
