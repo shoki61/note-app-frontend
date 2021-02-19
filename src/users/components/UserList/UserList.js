@@ -8,6 +8,7 @@ const UserList = props => {
     return(
         <div style={{width:'100%'}}>
             {props.data.map(user => <UserItem
+                key={user.id}
                 id={user.id}
                 name={user.name}
                 image={user.image}

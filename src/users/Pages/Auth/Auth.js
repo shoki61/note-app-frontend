@@ -32,22 +32,46 @@ const Auth = props => {
       });
     };
 
-    const authSubmitHandler = event => {
+    const authSubmitHandler = async event => {
         event.preventDefault();
         const { name, email, password, rePassword} = inputs;
-        if(!mode){
-          if(!validator.isLength(name) || !validator.isEmail(email) || !validator.isLength(password,{min:6}) || password !== rePassword){
-            return setError('Error. Please check valid inputs');
-          };
-          props.onSignUp(name, email, password);
-          history.push('/users');
-        }else{
+
+        if(mode){
           if(!validator.isEmail(event.target[0].value) || !validator.isLength(password,{min:6})){
             return setError('Please enter valid email.');
           };
-          props.onLogin(email,password);
+          const data = JSON.stringify({email, password})
+          const response = await fetch('http://localhost:5000/api/users/login',{
+            method: 'POST',
+            headers:{
+              'Content-Type' : 'application/json'
+            },
+            body: data
+          });
+          const responseData = await response.json();
+          console.log(responseData)
+          props.onLogin(responseData.user.email, responseData.user.password);
           history.push('/users');
-        };
+        }else{
+          if(!validator.isLength(name) || !validator.isEmail(email) || !validator.isLength(password,{min:6}) || password !== rePassword){
+            return setError('Error. Please check valid inputs');
+          };
+          try {
+            const data = JSON.stringify({name, email, password})
+            const response = await fetch('http://localhost:5000/api/users/signup',{
+              method: 'POST',
+              headers:{
+                'Content-Type' : 'application/json'
+              },
+              body: data
+            });
+            const responseData = await response.json();
+            props.onSignUp(responseData.user.name, responseData.user.email, responseData.user.password);
+            history.push('/users');
+          } catch(e){
+            throw setError('Unknown error. Please try again');
+          };
+        }
     };
 
     const changeMode = () => {

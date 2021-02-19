@@ -15,7 +15,16 @@ const note = {
     image:'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
     creatorName:'Murat Artan',
     creatorImage: 'https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    createdDate: '13.02.2021'
+    createdDate: '13.02.2021',
+    keywords:[
+        {key: 'Lorem'},
+        {key: 'Ipsum'},
+        {key: 'Dolar'},
+        {key: 'Sit'},
+        {key: 'Amet'},
+        {key: 'Consectetur'},
+        {key: 'Elipiscing'}
+    ]
 }
 
 const Note = props => {
@@ -55,6 +64,12 @@ const Note = props => {
                     <Image src={note.image} alt={note.title}/>
                 </div>
                 <p className='note-description'>{note.description}</p>
+                <div>
+                    <p className='note-keywords-title'>Keywords</p>
+                    <div className='note-keywords'>
+                        {note.keywords.map(item => <span className='note-keyword'>{item.key}</span>)}
+                    </div>
+                </div>
             </div>
             <div className='line'></div>
 
