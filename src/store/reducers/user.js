@@ -5,7 +5,6 @@ const initialState = {
     name: '',
     email: '',
     password: '',
-    rePassword: '',
     isLoggedIn: false
 };
 

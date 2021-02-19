@@ -37,21 +37,27 @@ const Auth = props => {
         const { name, email, password, rePassword} = inputs;
 
         if(mode){
-          if(!validator.isEmail(event.target[0].value) || !validator.isLength(password,{min:6})){
+          if(!validator.isEmail(email) || !validator.isLength(password,{min:6})){
             return setError('Please enter valid email.');
           };
-          const data = JSON.stringify({email, password})
-          const response = await fetch('http://localhost:5000/api/users/login',{
-            method: 'POST',
-            headers:{
-              'Content-Type' : 'application/json'
-            },
-            body: data
-          });
-          const responseData = await response.json();
-          console.log(responseData)
-          props.onLogin(responseData.user.email, responseData.user.password);
-          history.push('/users');
+          try{
+            const data = JSON.stringify({email, password})
+            const response = await fetch('http://localhost:5000/api/users/login',{
+              method: 'POST',
+              headers:{
+                'Content-Type' : 'application/json'
+              },
+              body: data
+            });
+            const responseData = await response.json();
+            console.log(responseData)
+            try {
+              props.onLogin(responseData.user.email, responseData.user.password);
+              history.push('/users');
+            } catch(e){
+              setError(responseData.message);
+            };
+          } catch(e){}
         }else{
           if(!validator.isLength(name) || !validator.isEmail(email) || !validator.isLength(password,{min:6}) || password !== rePassword){
             return setError('Error. Please check valid inputs');

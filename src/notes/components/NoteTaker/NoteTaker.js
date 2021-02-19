@@ -13,6 +13,9 @@ const NoteTaker = props => {
     const inputHandler = event => {
         setKeyword(event.target.value);
         setKeywords(event.target.value.split(' '));
+        if(!event.target.value.length){
+            setKeywords([])
+        }
     };
 
     const removeKeyword = i => {
@@ -35,7 +38,7 @@ const NoteTaker = props => {
                     <p className='note-taker-title'>Keyword</p>
                     <Input onChange={inputHandler} value={keyword} element='input' placeholder='add keywords with spaces between them...' className='input-full'/>
                     <div style={{display:'flex',flexWrap:'wrap'}}>
-                        {keywords.map((item, index) => <span key={index} className='note-taker-keyword'>{item} <i onClick={() => removeKeyword(index)} className='fa fa-close'></i></span>)}
+                        {keywords.map((item, index) => <span key={index} className='note-taker-keyword box'>{item}<i onClick={() => removeKeyword(index)} className='fa fa-close note-taker-close'></i></span>)}
                     </div>
                     <div style={{display:'flex',alignItems:'center',margin:'15px 0 30px 0'}}>
                         <Input style={{marginRight:7}} element='input' type='checkbox'/>
