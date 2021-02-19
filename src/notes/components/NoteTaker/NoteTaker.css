@@ -4,6 +4,10 @@
     padding: 30px 0;
 }
 
+.fa-close{
+    cursor: pointer;
+}
+
 .note-taker-title{
     font-weight: 700;
     font-size: 20px;
@@ -25,4 +29,12 @@
 .note-taker-detail:hover{
     background-color: #414141;
     color:#fff
+}
+
+.note-taker-keyword{
+    background-color: rgb(58, 58, 58);
+    margin: 0 7px 7px 0;
+    color:#fff;
+    padding: 3px 7px;
+    border-radius: 3px;
 }

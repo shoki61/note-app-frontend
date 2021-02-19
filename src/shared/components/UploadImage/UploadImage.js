@@ -41,7 +41,7 @@ const UploadImage = props => {
             accept='.png,.jpg,.jpeg'
             onChange={pickedHandler}
         />
-        <div>
+        <div className='upload-image-container'>
             { previewUrl && <Image src={previewUrl} alt='Preview'/> }
             { !previewUrl && <Button onClick={pickImageHandler}><i className='fa fa-file-image-o'></i>PICK IMAGE</Button>}
             { previewUrl && <Button style={{margin:'15px 0 30px 0'}} className='info-outline' onClick={pickImageHandler}>Change Image</Button>}
