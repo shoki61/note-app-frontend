@@ -84,7 +84,7 @@ const Profile = props => {
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
                     <p className='profile-notes-title'>Notes</p>
                     <div className='center'>
-                        <Button><i className='fa fa-plus'></i></Button>
+                        <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>
                         <Input
                             placeholder='search note...'
                             className='search-note-input'

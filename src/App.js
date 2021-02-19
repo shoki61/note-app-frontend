@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Navigation from './shared/Navigation/Navigation';
 import Users from './users/Pages/Users/Users';
@@ -12,7 +13,7 @@ import UpdateProfile from './users/Pages/UpdateProfile/UpdateProfile';
 import Auth from './users/Pages/Auth/Auth';
 import './App.css';
 
-const App = () => {
+const App = props => {
 
   return (
     <div>
@@ -34,13 +35,13 @@ const App = () => {
           <Route path='/auth'>
             <Auth/>
           </Route>
-          <Route path='/new-note'>
+          <Route path={props.userInfo.isLoggedIn ? '/new-note': '/users'}>
             <NewNote/>
           </Route>
-          <Route path='/update-note'>
+          <Route path={props.userInfo.isLoggedIn ? '/update-note': '/users'}>
             <UpdateNote/>
           </Route>
-          <Route path='/update-profile'>
+          <Route path={props.userInfo.isLoggedIn ? '/update-profile': '/users'}>
             <UpdateProfile/>
           </Route>
           <Redirect to='/users'/>
@@ -48,6 +49,13 @@ const App = () => {
       </BrowserRouter>
     </div>
   );
-}
+};
 
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    userInfo: state.userReducer
+  };
+};
+
+export default connect(mapStateToProps)(App);

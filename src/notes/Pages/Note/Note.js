@@ -7,6 +7,7 @@ import Input from '../../../shared/components/Input/Input';
 import NoteComments from '../../components/NoteComments/NoteComments';
 import Backdrop from '../../../shared/components/Backdrop/Backdrop';
 import './Note.css';
+import { NavLink } from 'react-router-dom';
 
 const note = {
     id:1,
@@ -53,7 +54,7 @@ const Note = props => {
                     <Button onClick={changeCommentsVisible} className='info-outline'><i class="fa fa-comment-o"></i><span>4</span></Button>
                     <Button className='info-outline'><i className="fa fa-heart-o"></i><span>203</span></Button>
                     <Button className='info-outline'><i class="fa fa-bookmark-o"></i><span>118</span></Button>
-                    <Button className='yellow-outline'>Update</Button>
+                    <Button className='yellow-outline'><NavLink className='nav-update' to='/update-note'>Update</NavLink></Button>
                     <Button className='danger-outline'>Delete</Button>
                     <Button className='black-outline'>Follow</Button>
                 </div>
