@@ -10,7 +10,7 @@ const UserItem = props => {
     return (
         <Card className='user-item-card'>
             <div className='user-item-container'>
-                <NavLink to='/profile'>
+                <NavLink to={{pathname:'/profile', state: {id: props.id}}}>
                     <div className='user-item-content center'>
                         <div className='user-item-image'>
                             <Image src={props.image ? props.image : require('../../../image/defaultImg.png').default} alt={props.name}/>

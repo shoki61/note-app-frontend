@@ -29,9 +29,7 @@ const App = props => {
           <Route path='/note'>
             <Note/>
           </Route>
-          <Route path='/profile'>
-            <Profile/>
-          </Route>
+          <Route path='/profile' render={(props) => <Profile {...props}/>}/>
           <Route path='/auth'>
             <Auth/>
           </Route>

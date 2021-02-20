@@ -1,72 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 
 import Image from '../../../shared/components/Image/Image';
 import Button from '../../../shared/components/Button/Button';
 import NotesList from '../../../notes/components/NotesList/NotesList';
-import Opacity from '../../../shared/components/Opacity/Opacity';
 import Input from '../../../shared/components/Input/Input';
+import Spinner from '../../../shared/components/Spinner/Spinner';
 import './Profile.css';
 
 
-const DUMMY_DATA = [
-    {
-        userInfo:{
-            id:1,
-            name: 'Murat Artan',
-            job:'Developer',
-            image: 'https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-            followed:30,
-            follower:623,
-            links: {
-                facebook:'',
-                instagram:'',
-                web:'',
-                twitter:''
-            },
-            notes:[
-                {
-                    id:1,
-                    title: 'Lorem ipsum dolor sit amet',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                    image:'https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-                    createdDate: '08.02.2021'
-                },
-                {
-                    id:2,
-                    title: 'Consectetur adipiscing elit',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                    image:'https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-                    createdDate: '13.02.2021'
-                }
-            ]
-        }
-    }
-]
-
 const Profile = props => {
-
     const [inputVisible, setInputVisible] = useState(false);
+    const [user, setUser] = useState();
+
+    useEffect(()=>{
+        const getUser = async() => {
+            const response = await fetch(`http://localhost:5000/api/users/user/${props.location.state.id}`);
+            const responseData = await response.json();
+            setUser(responseData);
+        };
+        getUser();
+    }, []);
 
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
     return (
-        <div className='profile-container'>
+        <div>
+            { user ? <div className='profile-container'>
             <div className='profile-info center'>
                 <div className='center'>
                     <div className='profile-image-container center'>
                         <div className='profile-image'>
-                            <Image src={DUMMY_DATA[0].userInfo.image} alt='Murat Artan'/>
+                            <Image src={user.image ? user.image : require('../../image/defaultImg.png').default} alt='Murat Artan'/>
                         </div>
                         <Button><NavLink to='/update-profile'><span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span></NavLink></Button>
                     </div>
                     <div>
-                        <p className='profile-name'>{DUMMY_DATA[0].userInfo.name}</p>
-                        <p className='profile-job'>{DUMMY_DATA[0].userInfo.job}</p>
-                        <p className='profile-email'><i className='fa fa-envelope-o'></i>example@gmail.com</p>
+                        <p className='profile-name'>{user.name}</p>
+                        <p className='profile-job'>{user.job}</p>
+                        <p className='profile-email'><i className='fa fa-envelope-o'></i>{user.email}</p>
                         <div>
-                            <span className='profile-box'>Followed: {DUMMY_DATA[0].userInfo.followed}</span>
-                            <span className='profile-box'>Follower: {DUMMY_DATA[0].userInfo.follower}</span>
+                            <span className='profile-box'>Followed: {user.following.length}</span>
+                            <span className='profile-box'>Follower: {user.follower.length}</span>
                         </div>
                     </div>
                 </div>
@@ -94,8 +69,9 @@ const Profile = props => {
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
                     </div>
                 </div>
-                <NotesList data={DUMMY_DATA[0].userInfo.notes}/>
+                <NotesList data={user.notes}/>
             </div>
+        </div> : <Spinner/> }
         </div>
     );
 };
