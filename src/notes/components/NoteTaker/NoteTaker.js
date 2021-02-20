@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import Card from '../../../shared/components/Card/Card';
 import Button from '../../../shared/components/Button/Button';
@@ -9,13 +10,56 @@ import './NoteTaker.css';
 const NoteTaker = props => {
     const [keyword, setKeyword] = useState('');
     const [keywords, setKeywords] = useState([]);
+    const [inputs, setInputs] = useState({
+        title: '',
+        description: '',
+        image:'',
+        keywords: [],
+        visible: false,
+        creator: props.userInfo.userId
+    });
 
     const inputHandler = event => {
+        setInputs(prevInputs => {
+            return {
+              ...prevInputs,
+              [event.target.id]: event.target.value
+            };
+        });
+    };
+
+    const keywordsHandler = event => {
         setKeyword(event.target.value);
         setKeywords(event.target.value.split(' '));
+        setInputs(prevState => {
+            return {
+                ...prevState,
+                keywords: event.target.value.split(' ')
+            };
+        });
         if(!event.target.value.length){
-            setKeywords([])
-        }
+            setKeywords([]);
+        };
+    };
+
+    const sendNote = async() => {
+        const {title, description, image, keywords, visible, creator} = inputs;
+        const response = await fetch('http://localhost:5000/api/notes/create-note', {
+            method: 'POST',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({title, description, image, keywords, visible, creator})
+        });
+    };
+
+    const privateHandler = event => {
+        setInputs(prevState =>{
+            return {
+                ...prevState,
+                visible: !inputs.visible
+            };
+        });
     };
 
     const removeKeyword = i => {
@@ -23,6 +67,12 @@ const NoteTaker = props => {
         const updateKeywordInput = keywords.filter((item, index) => index !== i).join(' ');
         setKeyword(updateKeywordInput);
         setKeywords(updateKeywords);
+        setInputs(prevState => {
+            return {
+                ...prevState,
+                keywords:updateKeywords
+            };
+        });
     };
 
 
@@ -30,22 +80,51 @@ const NoteTaker = props => {
         <div className='note-taker-container'>
             <Card>
                 <div style={{width:'100%'}}>
+                    {JSON.stringify(inputs)}
+                    {JSON.stringify(props.userInfo.userId)}
                     <p className='note-taker-title'>Title</p>
-                    <Input placeholder='enter title...' className='input-full' element='input'/>
+                    <Input 
+                        onChange={inputHandler}  
+                        placeholder='enter title...' 
+                        className='input-full' 
+                        element='input'
+                        id='title'
+                        value={inputs.title}
+                    />
                     <p className='note-taker-title'>Description</p>
-                    <Input placeholder='enter description...' className='input-full' style={{minHeight:150}}/>
+                    <Input 
+                        onChange={inputHandler} 
+                        placeholder='enter description...' 
+                        className='input-full'
+                        id='description'
+                        style={{minHeight:150}}
+                        value={inputs.description}
+                    />
                     <UploadImage/>
                     <p className='note-taker-title'>Keyword</p>
-                    <Input onChange={inputHandler} value={keyword} element='input' placeholder='add keywords with spaces between them...' className='input-full'/>
+                    <Input 
+                        onChange={keywordsHandler} 
+                        value={keyword} 
+                        element='input'
+                        placeholder='add keywords with spaces between them...' 
+                        className='input-full'
+                    />
                     <div style={{display:'flex',flexWrap:'wrap'}}>
                         {keywords.map((item, index) => <span key={index} className='note-taker-keyword box'>{item}<i onClick={() => removeKeyword(index)} className='fa fa-close note-taker-close'></i></span>)}
                     </div>
                     <div style={{display:'flex',alignItems:'center',margin:'15px 0 30px 0'}}>
-                        <Input style={{marginRight:7}} element='input' type='checkbox'/>
+                        <Input 
+                            onChange={privateHandler} 
+                            style={{marginRight:7}} 
+                            element='input' 
+                            type='checkbox'
+                            value={inputs.visible}
+                            id='private'
+                        />
                         <p className='note-taker-title'>Private</p>
                         <div title='only those who follow you can see' className='note-taker-detail center'>?</div>
                     </div>
-                    <Button className='info full'>SUBMIT</Button>
+                    <Button onClick={sendNote} className='info full'>SUBMIT</Button>
                 </div>
             </Card>
         </div>
@@ -53,4 +132,10 @@ const NoteTaker = props => {
     );
 };
 
-export default NoteTaker;
+const mapStateToProps = state => {
+    return {
+        userInfo: state.userReducer
+    };
+};
+
+export default connect(mapStateToProps)(NoteTaker);
