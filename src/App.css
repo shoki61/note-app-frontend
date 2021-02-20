@@ -38,3 +38,8 @@ p{
     color:rgb(255, 40, 40);
     margin: 10px 0;
 }
+
+.not-found-text{
+    font-size: 20px;
+    color: #525252
+}

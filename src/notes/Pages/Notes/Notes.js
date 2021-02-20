@@ -21,7 +21,7 @@ const Notes = props => {
     let noteList = <Spinner/>;
 
     if(notes) noteList = <NoteList data={notes}/>;
-    else noteList = <p className='notes-not-found-text'>There isn't any notes</p>;
+    else noteList = <p className='not-found-text'>There isn't any notes</p>;
 
     return  <div className='notes-container center'>
         {noteList}
