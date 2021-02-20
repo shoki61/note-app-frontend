@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 
 import NoteList from '../../components/NotesList/NotesList';
-import Spinner from '../../../shared/components/Spinner/Spinner';
 import './Notes.css';
 
 
 const Notes = props => {
-    const [ notes, setNotes ] = useState();
+    const [ notes, setNotes ] = useState([]);
 
     useEffect(() => {
         const getNotes = async() => {
@@ -18,13 +17,8 @@ const Notes = props => {
         getNotes();
     }, []);
 
-    let noteList = <Spinner/>;
-
-    if(notes) noteList = <NoteList data={notes}/>;
-    else noteList = <p className='not-found-text'>There isn't any notes</p>;
-
     return  <div className='notes-container center'>
-        {noteList}
+        <NoteList data={notes}/>
     </div>
 };
 

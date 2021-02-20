@@ -14,7 +14,6 @@ const UserList = props => {
         image={user.image}
         notes={user.notes.length}
      />);
-    else setTimeout(() => userList = <p className='not-found-text'>There isn't any users</p>, 2000);
     return(
         <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
             {userList}
