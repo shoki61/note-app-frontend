@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useCallback } from 'react';
+import React, { useState } from 'react';
 import validator from 'validator';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -20,7 +20,6 @@ const Auth = props => {
       rePassword: '',
     });
     const history = useHistory();
-
 
     const inputHandler = event => {
       setError();
@@ -50,9 +49,8 @@ const Auth = props => {
               body: data
             });
             const responseData = await response.json();
-            console.log(responseData)
             try {
-              props.onLogin(responseData.user.email, responseData.user.password);
+              props.onLogin(responseData.user.email, responseData.user.password, responseData.user._id);
               history.push('/users');
             } catch(e){
               setError(responseData.message);
@@ -72,7 +70,7 @@ const Auth = props => {
               body: data
             });
             const responseData = await response.json();
-            props.onSignUp(responseData.user.name, responseData.user.email, responseData.user.password);
+            props.onSignUp(responseData.user.name, responseData.user.email, responseData.user.password, responseData.user._id);
             history.push('/users');
           } catch(e){
             throw setError('Unknown error. Please try again');
@@ -148,8 +146,8 @@ const Auth = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (email, password) => dispatch(actions.authLogin(email, password)),
-    onSignUp: (name, email, password) => dispatch(actions.authSignUp(name, email, password))
+    onLogin: (email, password, userId) => dispatch(actions.authLogin(email, password, userId)),
+    onSignUp: (name, email, password, userId) => dispatch(actions.authSignUp(name, email, password, userId))
   };
 };
 

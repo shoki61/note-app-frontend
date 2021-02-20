@@ -5,7 +5,8 @@ const initialState = {
     name: '',
     email: '',
     password: '',
-    isLoggedIn: false
+    isLoggedIn: false,
+    userId:null
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,7 +15,8 @@ const reducer = (state = initialState, action) => {
             ...state,
             email: action.email,
             password: action.password,
-            isLoggedIn: true
+            isLoggedIn: true,
+            userId: action.userId
         };
         case actionTypes.SIGN_UP: return {
             ...state,
@@ -22,11 +24,13 @@ const reducer = (state = initialState, action) => {
             email: action.email,
             password: action.password,
             rePassword: action.rePassword,
-            isLoggedIn: true
+            isLoggedIn: true,
+            userId: action.userId
         };
         case actionTypes.LOGOUT: return {
             ...state,
-            isLoggedIn: false
+            isLoggedIn: false,
+            userId: null
         };
         default: return state;
     };

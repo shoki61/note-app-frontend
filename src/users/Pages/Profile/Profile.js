@@ -25,7 +25,7 @@ const Profile = props => {
 
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
     return (
-        <div>
+        <div style={{display:'flex', justifyContent:'center'}}>
             { user ? <div className='profile-container'>
             <div className='profile-info center'>
                 <div className='center'>
@@ -69,7 +69,7 @@ const Profile = props => {
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
                     </div>
                 </div>
-                <NotesList data={user.notes}/>
+                { user.notes.length ? <NotesList data={user.notes}/> : <p className='no-notes-text'>There is no user note</p> }
             </div>
         </div> : <Spinner/> }
         </div>
