@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 import Image from '../../../shared/components/Image/Image';
@@ -11,8 +12,9 @@ import './Profile.css';
 
 
 const Profile = props => {
-    const [inputVisible, setInputVisible] = useState(false);
-    const [user, setUser] = useState();
+    const [ inputVisible, setInputVisible ] = useState(false);
+    const [ user, setUser ] = useState();
+    const { userId, isLoggedIn } = props.userInfo;
 
     useEffect(()=>{
         const getUser = async() => {
@@ -20,7 +22,7 @@ const Profile = props => {
             const responseData = await response.json();
             setUser(responseData);
         };
-        getUser();
+        if(props.location.state.id) getUser();
     }, []);
 
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
@@ -33,7 +35,11 @@ const Profile = props => {
                         <div className='profile-image'>
                             <Image src={user.image ? user.image : require('../../image/defaultImg.png').default} alt='Murat Artan'/>
                         </div>
-                        <Button><NavLink to='/update-profile'><span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span></NavLink></Button>
+                        {userId === user._id && isLoggedIn && <Button>
+                            <NavLink to={{pathname: '/update-profile', }}>
+                                <span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span>
+                            </NavLink>
+                        </Button>}
                     </div>
                     <div>
                         <p className='profile-name'>{user.name}</p>
@@ -50,16 +56,16 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
-                    <Button className='black-outline'>Follow</Button>
-                    <Button className='danger-outline'>Delete the account</Button>
+                    {userId !== user._id && isLoggedIn && <Button className='black-outline'>Follow</Button>}
+                    {userId === user._id && isLoggedIn && <Button className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>
             <div className='line'></div>
             <div className='profile-notes'>
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
-                    <p className='profile-notes-title'>Notes</p>
+                <p className='profile-notes-title'>Notes</p>
                     <div className='center'>
-                        <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>
+                        {userId === user._id && <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>}
                         <Input
                             placeholder='search note...'
                             className='search-note-input'
@@ -71,9 +77,15 @@ const Profile = props => {
                 </div>
                 { user.notes.length ? <NotesList data={user.notes}/> : <p className='no-notes-text'>There is no user note</p> }
             </div>
-        </div> : <Spinner/> }
+        </div>: <Spinner/> }
         </div>
     );
 };
 
-export default Profile;
+const mapStateToProps = state => {
+    return {
+        userInfo: state.userReducer
+    };
+};
+
+export default connect(mapStateToProps)(Profile);

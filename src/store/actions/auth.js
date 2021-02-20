@@ -1,11 +1,12 @@
 import * as actionTypes from './actionTypes';
 
 
-export const authLogin = (email, password) => {
+export const authLogin = (email, password, userId) => {
     return {
         type:actionTypes.LOGIN,
         email,
-        password
+        password,
+        userId
     };
 };
 
@@ -15,11 +16,12 @@ export const authLogout = () => {
     };
 };
 
-export const authSignUp = (name, email, password) => {
+export const authSignUp = (name, email, password, userId) => {
     return {
         type:actionTypes.SIGN_UP,
         name,
         email,
-        password
+        password,
+        userId
     };
 };
