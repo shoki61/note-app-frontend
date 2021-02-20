@@ -21,19 +21,20 @@ const Navigation = props => {
             path='/notes'
           />
           {
-            props.user.isLoggedIn && <NavigationItem
+            props.userInfo.isLoggedIn && <NavigationItem
             title='Profile'
             path='/profile'
+            userId={props.userInfo.userId}
           />
           }
           {
-            !props.user.isLoggedIn && <NavigationItem
+            !props.userInfo.isLoggedIn && <NavigationItem
             title='Login'
             path='/auth'
           />
           }
           {
-            props.user.isLoggedIn && <Button className='nav-auth-button' onClick={props.onLogout}>
+            props.userInfo.isLoggedIn && <Button className='nav-auth-button' onClick={props.onLogout}>
               Logout
           </Button>
           }
@@ -46,7 +47,7 @@ const Navigation = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.userReducer
+    userInfo: state.userReducer
   };
 };
 
