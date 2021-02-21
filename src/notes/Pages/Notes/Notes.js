@@ -17,7 +17,7 @@ const Notes = props => {
         getNotes();
     }, []);
 
-    return  <div className='notes-container center'>
+    return  <div className='notes-container'>
         <NoteList data={notes}/>
     </div>
 };
