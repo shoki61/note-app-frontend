@@ -14,13 +14,18 @@ import './Profile.css';
 const Profile = props => {
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();
+    const [ userNotes, setUserNotes ] = useState([]);
     const { userId, isLoggedIn } = props.userInfo;
 
     useEffect(()=>{
         const getUser = async() => {
-            const response = await fetch(`http://localhost:5000/api/users/user/${props.location.state.id}`);
-            const responseData = await response.json();
+            const responseUser = await fetch(`http://localhost:5000/api/users/user/${props.location.state.id}`);
+            const responseNotes = await fetch(`http://localhost:5000/api/notes/user-notes/${props.location.state.id}`);
+            const responseData = await responseUser.json();
+            const responseUserNotes = await responseNotes.json();
             setUser(responseData);
+            setUserNotes(responseUserNotes);
+            console.log(responseUserNotes);
         };
         if(props.location.state.id) getUser();
     }, []);

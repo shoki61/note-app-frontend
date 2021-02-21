@@ -89,8 +89,6 @@ const NoteTaker = props => {
         <div className='note-taker-container'>
             <Card>
                 <div style={{width:'100%'}}>
-                    {JSON.stringify(inputs)}
-                    {JSON.stringify(props.userInfo.userId)}
                     <p className='note-taker-title'>Title</p>
                     <Input 
                         onChange={inputHandler}  
