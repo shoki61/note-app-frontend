@@ -11,11 +11,11 @@ const NotesList = props => {
     
     if(props.data){
         noteItem = props.data.map(note => <NoteItem
-            id={note.id}
+            id={note._id}
             image={note.image}
             title={note.title}
             description={note.description}
-            createdDate={note.createdDate}
+            createdDate={note.createdAt}
         />);
     };
     return <div>

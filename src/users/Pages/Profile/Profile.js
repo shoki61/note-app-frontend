@@ -25,7 +25,7 @@ const Profile = props => {
             const responseUserNotes = await responseNotes.json();
             setUser(responseData);
             setUserNotes(responseUserNotes);
-            console.log(responseUserNotes);
+            console.log(responseUserNotes)
         };
         if(props.location.state.id) getUser();
     }, []);
@@ -80,7 +80,7 @@ const Profile = props => {
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
                     </div>
                 </div>
-                { user.notes.length ? <NotesList data={user.notes}/> : <p className='no-notes-text'>There is no user note</p> }
+                { user.notes.length ? <NotesList data={userNotes.notes}/> : <p className='no-notes-text'>There is no user note</p> }
             </div>
         </div>: <Spinner/> }
         </div>
