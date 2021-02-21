@@ -15,7 +15,7 @@ const NoteTaker = props => {
         description: '',
         image:'',
         keywords: [],
-        visible: false,
+        hidden: false,
         creator: props.userInfo.userId
     });
 
@@ -43,21 +43,22 @@ const NoteTaker = props => {
     };
 
     const sendNote = async() => {
-        const {title, description, image, keywords, visible, creator} = inputs;
+        const {title, description, image, keywords, hidden, creator} = inputs;
         const response = await fetch('http://localhost:5000/api/notes/create-note', {
             method: 'POST',
-            headers:{
-                'Content-Type' : 'application/json'
+            headers: {
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({title, description, image, keywords, visible, creator})
+            body: JSON.stringify({title, description, image, keywords, hidden, creator})
         });
+        console.log(response)
     };
 
-    const privateHandler = event => {
+    const hiddenHandler = () => {
         setInputs(prevState =>{
             return {
                 ...prevState,
-                visible: !inputs.visible
+                hidden: !inputs.hidden
             };
         });
     };
@@ -71,6 +72,14 @@ const NoteTaker = props => {
             return {
                 ...prevState,
                 keywords:updateKeywords
+            };
+        });
+    };
+    const setFile = (file) => {
+        setInputs(prevState => {
+            return {
+                ...prevState,
+                image: ''
             };
         });
     };
@@ -100,7 +109,7 @@ const NoteTaker = props => {
                         style={{minHeight:150}}
                         value={inputs.description}
                     />
-                    <UploadImage/>
+                    <UploadImage fileHandler={file => setFile(file)}/>
                     <p className='note-taker-title'>Keyword</p>
                     <Input 
                         onChange={keywordsHandler} 
@@ -114,11 +123,11 @@ const NoteTaker = props => {
                     </div>
                     <div style={{display:'flex',alignItems:'center',margin:'15px 0 30px 0'}}>
                         <Input 
-                            onChange={privateHandler} 
+                            onChange={hiddenHandler} 
                             style={{marginRight:7}} 
                             element='input' 
                             type='checkbox'
-                            value={inputs.visible}
+                            value={inputs.hidden}
                             id='private'
                         />
                         <p className='note-taker-title'>Private</p>

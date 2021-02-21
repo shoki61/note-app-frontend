@@ -23,10 +23,11 @@ const UploadImage = props => {
         let pickedFile;
         if(event.target.files && event.target.files.length !== 0){
             pickedFile = event.target.files[0];
-            setFile(pickedFile);
+            setFile(event.target.files[0]);
         }else{
             console.log('error')
         }
+        props.fileHandler(pickedFile)
     };
 
     const pickImageHandler = () => {
