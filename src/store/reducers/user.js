@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.LOGIN: return {
             ...state,
+            name: action.name,
             email: action.email,
             password: action.password,
             isLoggedIn: true,

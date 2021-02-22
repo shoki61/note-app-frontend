@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
 
 
-export const authLogin = (email, password, userId) => {
+export const authLogin = (name, email, password, userId) => {
     return {
         type:actionTypes.LOGIN,
+        name,
         email,
         password,
         userId

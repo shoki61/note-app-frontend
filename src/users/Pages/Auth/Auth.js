@@ -50,7 +50,7 @@ const Auth = props => {
             });
             const responseData = await response.json();
             try {
-              props.onLogin(responseData.user.email, responseData.user.password, responseData.user._id);
+              props.onLogin(responseData.user.name, responseData.user.email, responseData.user.password, responseData.user._id);
               history.push('/users');
             } catch(e){
               setError(responseData.message);
@@ -146,7 +146,7 @@ const Auth = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (email, password, userId) => dispatch(actions.authLogin(email, password, userId)),
+    onLogin: (name, email, password, userId) => dispatch(actions.authLogin(name, email, password, userId)),
     onSignUp: (name, email, password, userId) => dispatch(actions.authSignUp(name, email, password, userId))
   };
 };
