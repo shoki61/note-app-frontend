@@ -100,7 +100,7 @@ const Note = (props) => {
           </div>
           {commentsVisible && (
             <Fragment>
-              <NoteComments onClose={changeCommentsVisible} />
+              <NoteComments data={note.comments} onClose={changeCommentsVisible} />
               <Backdrop onClose={changeCommentsVisible} />
             </Fragment>
           )}
