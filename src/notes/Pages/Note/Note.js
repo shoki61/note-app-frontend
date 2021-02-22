@@ -9,35 +9,19 @@ import Backdrop from '../../../shared/components/Backdrop/Backdrop';
 import './Note.css';
 import { NavLink } from 'react-router-dom';
 
-const note = {
-    id:1,
-    title: 'This is my title',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    image:'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    creatorName:'Murat Artan',
-    creatorImage: 'https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    createdDate: '13.02.2021',
-    keywords:[
-        {key: 'Lorem'},
-        {key: 'Ipsum'},
-        {key: 'Dolar'},
-        {key: 'Sit'},
-        {key: 'Amet'},
-        {key: 'Consectetur'},
-        {key: 'Elipiscing'}
-    ]
-}
-
 const Note = props => {
+    const [commentsVisible, setCommentsVisible] = useState(false);
+    const [note, setNote] = useState();
 
     useEffect(() => {
-        return () => {
-            setCommentsVisible(false);
+        const getNote = async() => {
+            const response = await fetch(`http://localhost:5000/api/notes/note/${props.location.state.id}`);
+            const responseData = await response.json();
+            setNote(responseData.note);
+            console.log(responseData.note);
         };
+        getNote();
     },[]);
-
-
-    const [commentsVisible, setCommentsVisible] = useState(true);
 
     const changeCommentsVisible = () => setCommentsVisible(prevVisible => !prevVisible);
 
@@ -46,15 +30,18 @@ const Note = props => {
             <div className='note-creator'>
                 <div className='center'>
                     <div className='note-create-avatar'>
-                        <Image src={note.creatorImage} alt={note.creatorName}/>
+                        {note.creator.image 
+                            ? <Image src={note.creator.image} alt={note.creator.name}/>
+                            : <Image src={require('../../../users/image/defaultImg.png').default}/>
+                        }
                     </div>
-                    <p className='note-creator-name'>{note.creatorName} <span className='note-created-date'>{note.createdDate}</span></p>
+                    <p className='note-creator-name'>{note.creator.name} <span className='note-created-date'>{note.createdAt}</span></p>
                 </div>
                 <div style={{display:'flex'}}>
-                    <Button onClick={changeCommentsVisible} className='info-outline'><i class="fa fa-comment-o"></i><span>4</span></Button>
-                    <Button className='info-outline'><i className="fa fa-heart-o"></i><span>203</span></Button>
-                    <Button className='info-outline'><i class="fa fa-bookmark-o"></i><span>118</span></Button>
-                    <Button className='yellow-outline'><NavLink className='nav-update' to='/update-note'>Update</NavLink></Button>
+                    <Button onClick={changeCommentsVisible} className='info-outline'><i class="fa fa-comment-o"></i><span>{note.commends.length}</span></Button>
+                    <Button className='info-outline'><i className="fa fa-heart-o"></i><span>{note.likes}</span></Button>
+                    <Button className='info-outline'><i class="fa fa-bookmark-o"></i><span>{note.markings}</span></Button>
+                    {note.creator._id === 3343344 && <Button className='yellow-outline'><NavLink className='nav-update' to='/update-note'>Update</NavLink></Button>}
                     <Button className='danger-outline'>Delete</Button>
                     <Button className='black-outline'>Follow</Button>
                 </div>
@@ -62,16 +49,17 @@ const Note = props => {
             <div className='note-content'>   
                 <p className='note-title'>{note.title}</p>
                 <div className='note-image'>
-                    <Image src={note.image} alt={note.title}/>
+                    {note.image && <Image src={note.image} alt={note.title}/>}
                 </div>
                 <p className='note-description'>{note.description}</p>
                 <div>
                     <p className='note-keywords-title'>Keywords</p>
                     <div className='note-keywords'>
-                        {note.keywords.map(item => <span className='note-keyword'>{item.key}</span>)}
+                        {note.keywords.map(item => <span className='note-keyword'>{item}</span>)}
                     </div>
                 </div>
             </div>
+
             <div className='line'></div>
 
             <div className='note-comment-container'>
@@ -88,5 +76,6 @@ const Note = props => {
         </div>
     );
 };
+
 
 export default Note;

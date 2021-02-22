@@ -26,10 +26,8 @@ const App = props => {
           <Route path='/notes'>
             <Notes/>
           </Route>
-          <Route path='/note'>
-            <Note/>
-          </Route>
-          <Route path='/profile' render={(props) => <Profile {...props}/>}/>
+          <Route path='/note' render={props => <Note {...props}/>}/>
+          <Route path='/profile' render={props => <Profile {...props}/>}/>
           <Route path='/auth'>
             <Auth/>
           </Route>
