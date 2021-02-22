@@ -13,6 +13,10 @@ import { NavLink } from "react-router-dom";
 const Note = (props) => {
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [note, setNote] = useState();
+  const [comment, setComment] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [worning, setWorning] = useState(false);
+  const [successStatus, setSuccessStatus] = useState('');
 
   useEffect(() => {
     const getNote = async () => {
@@ -28,6 +32,39 @@ const Note = (props) => {
 
   const changeCommentsVisible = () =>
     setCommentsVisible((prevVisible) => !prevVisible);
+
+
+    const inputHandler = event => {
+        setComment(event.target.value);
+    };
+
+    const commentHandler = async() => {
+        const response = await fetch(`http://localhost:5000/api/notes/add-comment/${props.location.state.id}`, {
+            method: 'PATCH',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({userId: props.userInfo.userId, comment})
+        });
+        const responseData = await response.json();
+        if(responseData.note) {
+            setWorning(true)
+            setSuccess(true);
+            setSuccessStatus('Your note has been saved successfully.');
+            setTimeout(()=>{
+                setWorning(false);
+            },5000);
+        }else{
+            setWorning(true)
+            setSuccess(false);
+            setSuccessStatus('Unexpected error occured please try again');
+            setTimeout(()=>{
+                setWorning(false);
+            },5000);
+        }
+    };
+
+
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -52,7 +89,7 @@ const Note = (props) => {
             <div style={{ display: "flex" }}>
               <Button onClick={changeCommentsVisible} className="info-outline">
                 <i class="fa fa-comment-o"></i>
-                <span>{note.commends.length}</span>
+                <span>{note.comments.length}</span>
               </Button>
               <Button className="info-outline">
                 <i className="fa fa-heart-o"></i>
@@ -92,11 +129,11 @@ const Note = (props) => {
           </div>
 
           <div className="line"></div>
-
+          {worning && <p className={success ? 'success-text' : 'un-success-text'}>{successStatus}</p>}
           <div className="note-comment-container">
             <p className="note-footer-title">Add comment</p>
-            <Input className="comment full" placeholder="write something..." />
-            <Button className="success">Submit</Button>
+            <Input value={comment} onChange={inputHandler} className="comment full" placeholder="write something..." />
+            <Button onClick={commentHandler} className="success">Submit</Button>
           </div>
           {commentsVisible && (
             <Fragment>
