@@ -25,7 +25,6 @@ const Note = (props) => {
       );
       const responseData = await response.json();
       setNote(responseData.note);
-      console.log(responseData.note);
     };
     getNote();
   }, []);
@@ -47,8 +46,13 @@ const Note = (props) => {
             body: JSON.stringify({userId: props.userInfo.userId, comment})
         });
         const responseData = await response.json();
+        console.log(props.userInfo);
         if(responseData.note) note.comments.push({
-            userId: props.userInfo.userId,
+            user:{
+              name: props.userInfo.name,
+              image: props.userInfo.image
+            },
+            date: new Date().toLocaleDateString(),
             comment
         })
         if(responseData.note) {

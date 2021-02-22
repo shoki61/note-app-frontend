@@ -8,10 +8,13 @@ const CommentItem = (props) => {
     <div className="comment-item-container">
       <div className='center comment-item-header'>
         <div className="comment-item-avatar">
-          <Image src={props.avatar} alt={props.name} />
+          {props.userImage 
+            ? <Image src={props.userImage} alt={props.userName} /> 
+            : <Image src={require('../../../../users/image/defaultImg.png').default} alt={props.userName} />
+          }
         </div>
         <div>
-            <p className='comment-item-name'>{props.name}</p>
+            <p className='comment-item-name'>{props.userName}</p>
             <p className='comment-item-date'>{props.date}</p>
         </div>
       </div>
