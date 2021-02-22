@@ -47,6 +47,10 @@ const Note = (props) => {
             body: JSON.stringify({userId: props.userInfo.userId, comment})
         });
         const responseData = await response.json();
+        if(responseData.note) note.comments.push({
+            userId: props.userInfo.userId,
+            comment
+        })
         if(responseData.note) {
             setWorning(true)
             setSuccess(true);
