@@ -1,4 +1,5 @@
 import React, {Fragment, useState, useEffect} from 'react';
+import { connect } from 'react-redux';
 
 
 import Image from '../../../shared/components/Image/Image';
@@ -41,7 +42,7 @@ const Note = props => {
                     <Button onClick={changeCommentsVisible} className='info-outline'><i class="fa fa-comment-o"></i><span>{note.commends.length}</span></Button>
                     <Button className='info-outline'><i className="fa fa-heart-o"></i><span>{note.likes}</span></Button>
                     <Button className='info-outline'><i class="fa fa-bookmark-o"></i><span>{note.markings}</span></Button>
-                    {note.creator._id === 3343344 && <Button className='yellow-outline'><NavLink className='nav-update' to='/update-note'>Update</NavLink></Button>}
+                    {note.creator._id === props.userInfo.userId && <Button className='yellow-outline'><NavLink className='nav-update' to='/update-note'>Update</NavLink></Button>}
                     <Button className='danger-outline'>Delete</Button>
                     <Button className='black-outline'>Follow</Button>
                 </div>
@@ -77,5 +78,10 @@ const Note = props => {
     );
 };
 
+const mapStateToProps = state => {
+    return {
+        userInfo: state.userReducer
+    };
+};
 
-export default Note;
+export default connect(mapStateToProps)(Note);
