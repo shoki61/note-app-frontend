@@ -10,7 +10,7 @@ const NoteComments = props => {
         <div className='note-comments-container'>
             <Button onClick={props.onClose} className='note-comments-close'><i className='fa fa-close'></i></Button>
             <p className='note-comment-title'>Comments</p>
-            {props.data ? props.data.map(comment => <CommentItem
+            {props.data.length ? props.data.map(comment => <CommentItem
                 id={comment.id}
                 name={comment.name}
                 date={comment.date}
