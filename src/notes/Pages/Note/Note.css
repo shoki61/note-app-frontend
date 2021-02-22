@@ -83,17 +83,18 @@
 
 .note-keyword{
     padding: 4px 10px;
-    background-color: #ececec;
+    background-color: #ff480027;
     font-weight: 600;
     font-family: monospace;
     margin:0 7px 7px 0;
-    color:#4b4b4b;
+    color:#ff4800;
+    border-radius: 5px;
     transition: all .2s ease-in-out;
 }
 
 .note-keyword:hover{
     color:#fff;
-    background-color: #414141;
+    background-color: #ff4800;
 }
 
 a, a:hover{
