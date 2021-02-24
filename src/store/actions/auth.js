@@ -1,13 +1,14 @@
 import * as actionTypes from './actionTypes';
 
 
-export const authLogin = (name, email, password, userId) => {
+export const authLogin = (name, email, password, userId, image) => {
     return {
         type:actionTypes.LOGIN,
         name,
         email,
         password,
-        userId
+        userId,
+        image
     };
 };
 
