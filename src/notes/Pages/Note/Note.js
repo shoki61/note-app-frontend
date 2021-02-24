@@ -25,54 +25,38 @@ const Note = (props) => {
       );
       const responseData = await response.json();
       setNote(responseData.note);
+      console.log(responseData)
     };
     getNote();
   }, []);
 
-  const changeCommentsVisible = () =>
-    setCommentsVisible((prevVisible) => !prevVisible);
+  const changeCommentsVisible = () => setCommentsVisible((prevVisible) => !prevVisible);
 
 
-    const inputHandler = event => {
-        setComment(event.target.value);
+  const inputHandler = event => setComment(event.target.value);
+
+
+  const updatePostHandler = async type => {
+    const userId = props.userInfo.userId;
+    let data;
+    if(type === 'likes'){
+      data={likes: '', userId};
+    }else if( type === 'markings'){
+      data={markings:'', userId};
+    }else{
+      data={comments: '', comment, userId};
     };
 
-    const commentHandler = async() => {
-        const response = await fetch(`http://localhost:5000/api/notes/add-comment/${props.location.state.id}`, {
-            method: 'PATCH',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({userId: props.userInfo.userId, comment})
-        });
-        const responseData = await response.json();
-        console.log(props.userInfo);
-        if(responseData.note) note.comments.push({
-            user:{
-              name: props.userInfo.name,
-              image: props.userInfo.image
-            },
-            date: new Date().toLocaleDateString(),
-            comment
-        })
-        if(responseData.note) {
-            setWorning(true)
-            setSuccess(true);
-            setSuccessStatus('Your note has been saved successfully.');
-            setTimeout(()=>{
-                setWorning(false);
-            },5000);
-        }else{
-            setWorning(true)
-            setSuccess(false);
-            setSuccessStatus('Unexpected error occured please try again');
-            setTimeout(()=>{
-                setWorning(false);
-            },5000);
-        }
-    };
-
-
+    const response = await fetch(`http://localhost:5000/api/notes/update-note/${props.location.state.id}`,{
+      method: 'PATCH',
+      headers:{
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const responseData = await response.json();
+    
+  };
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -90,8 +74,8 @@ const Note = (props) => {
                 )}
               </div>
               <p className="note-creator-name">
-                {note.creator.name}{" "}
-                <span className="note-created-date">{note.createdAt}</span>
+                {note.creator.name}
+                <span className="note-created-date">{new Date(note.createdAt).toLocaleString()}</span>
               </p>
             </div>
             <div style={{ display: "flex" }}>
@@ -99,13 +83,17 @@ const Note = (props) => {
                 <i class="fa fa-comment-o"></i>
                 <span>{note.comments.length}</span>
               </Button>
-              <Button className="info-outline">
+              <Button 
+                onClick={() => updatePostHandler('likes')} 
+                className="info-outline">
                 <i className="fa fa-heart-o"></i>
-                <span>{note.likes}</span>
+                <span>{note.likes.length}</span>
               </Button>
-              <Button className="info-outline">
+              <Button 
+                onClick={() => updatePostHandler('markings')} 
+                className="info-outline">
                 <i class="fa fa-bookmark-o"></i>
-                <span>{note.markings}</span>
+                <span>{note.markings.length}</span>
               </Button>
               {note.creator._id === props.userInfo.userId && (
                 <Button className="yellow-outline">
@@ -141,7 +129,7 @@ const Note = (props) => {
           <div className="note-comment-container">
             <p className="note-footer-title">Add comment</p>
             <Input value={comment} onChange={inputHandler} className="comment full" placeholder="write something..." />
-            <Button onClick={commentHandler} className="success">Submit</Button>
+            <Button onClick={()=> updatePostHandler('comments')} className="success">Submit</Button>
           </div>
           {commentsVisible && (
             <Fragment>
