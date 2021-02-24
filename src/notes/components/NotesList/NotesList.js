@@ -11,6 +11,7 @@ const NotesList = props => {
     
     if(props.data){
         noteItem = props.data.map(note => <NoteItem
+            key={note._id}
             id={note._id}
             image={note.image}
             title={note.title}

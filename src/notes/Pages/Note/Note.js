@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { useHistory } from 'react-router-dom';
 
 import Image from "../../../shared/components/Image/Image";
 import Button from "../../../shared/components/Button/Button";
@@ -11,6 +12,7 @@ import "./Note.css";
 import { NavLink } from "react-router-dom";
 
 const Note = (props) => {
+  const history = useHistory();
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [note, setNote] = useState();
   const [comment, setComment] = useState('');
@@ -111,6 +113,13 @@ const Note = (props) => {
     };
   };
 
+  const deletePost = async() => {
+    await fetch(`http://localhost:5000/api/notes/delete-note/${props.location.state.id}`,{
+      method:'DELETE'
+    });
+    history.push('/notes');
+  };
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       {note ? (
@@ -156,13 +165,12 @@ const Note = (props) => {
                 </Button>
               )}
               {note.creator._id === props.userInfo.userId && (
-                <Button className="danger-outline">Delete</Button>
+                <Button onClick={deletePost} className="danger-outline">Delete</Button>
               )}
               {note.creator._id !== props.userInfo.userId && props.userInfo.isLoggedIn && <Button className="black-outline">Follow</Button>}
             </div>
           </div>
           <div className="note-content">
-            {JSON.stringify(userActions)}
             <p className="note-title">{note.title}</p>
             <div className="note-image">
               {note.image && <Image src={note.image} alt={note.title} />}
