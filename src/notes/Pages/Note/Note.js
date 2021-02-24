@@ -55,7 +55,33 @@ const Note = (props) => {
       body: JSON.stringify(data)
     });
     const responseData = await response.json();
-    
+    if(responseData.note){
+      if(type === 'likes'){
+
+      }else if(type === 'markings'){
+  
+      }else{
+        note.comments.push({
+          user:{
+            name: props.userInfo.name,
+            image: props.userInfo.image
+          },
+          date: new Date().toLocaleString(),
+          comment
+        });
+      };
+      setWorning(true)
+      setSuccess(true);
+      setSuccessStatus('Your note has been saved successfully.');
+      setTimeout(()=>setWorning(false),4000);
+    }else{
+      if(type === 'comments'){
+        setWorning(true)
+        setSuccess(false);
+        setSuccessStatus('Unexpected error occured please try again.');
+        setTimeout(()=>setWorning(false),4000);
+      };
+    };
   };
 
   return (
