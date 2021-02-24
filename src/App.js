@@ -37,9 +37,7 @@ const App = props => {
           <Route path={props.userInfo.isLoggedIn ? '/update-note': '/users'}>
             <UpdateNote/>
           </Route>
-          <Route path={props.userInfo.isLoggedIn ? '/update-profile': '/users'}>
-            <UpdateProfile/>
-          </Route>
+          <Route path={props.userInfo.isLoggedIn ? '/update-profile': '/users'} render={(props) => <UpdateProfile {...props}/>}/>
           <Redirect to='/users'/>
         </Switch>
       </BrowserRouter>

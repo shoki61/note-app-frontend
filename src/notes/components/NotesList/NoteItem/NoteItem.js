@@ -14,10 +14,10 @@ const NoteItem = props => {
                         {props.image && <div className='note-item-image'>
                             <Image src={props.image} alt={props.title}/>
                         </div>}
-                        <div style={{width:'70%', paddingRight:10, paddingLeft:25}}>
+                        <div style={{width: props.image ? '70%' : '95%', paddingRight:10, paddingLeft:25}}>
                             <div className='note-item-title-container center'>
                                 <p className='note-item-title'>{props.title}</p>
-                                <span className='note-item-date'>{props.createdDate}</span>
+                                <span className='note-item-date'>{new Date(props.createdDate).toLocaleString()}</span>
                             </div>
                             <p className='note-item-description'>{props.description}</p>
                         </div>

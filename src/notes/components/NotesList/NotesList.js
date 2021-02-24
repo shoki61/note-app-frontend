@@ -18,7 +18,7 @@ const NotesList = props => {
             createdDate={note.createdAt}
         />);
     };
-    return <div>
+    return <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
         {noteItem}
     </div>
 };

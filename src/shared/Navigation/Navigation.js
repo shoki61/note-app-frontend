@@ -9,7 +9,7 @@ import './Navigation.css';
 const Navigation = props => {
   return(
     <header className='navigation box app-back-color'>
-      <p className='app-name'>My notes</p>
+      <p className='app-name'>My block</p>
       <nav>
         <ul className='center'>
           <NavigationItem
@@ -17,7 +17,7 @@ const Navigation = props => {
             path='/users'
           />
           <NavigationItem
-            title='Notes'
+            title='Posts'
             path='/notes'
           />
           {

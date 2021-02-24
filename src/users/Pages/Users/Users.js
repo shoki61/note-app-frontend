@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 
 import UserList from '../../components/UserList/UserList';
+import Spinner from '../../../shared/components/Spinner/Spinner';
 import './Users.css';
 
 
@@ -19,7 +20,7 @@ const Users = () => {
 
   return (
     <div className='center users-container'>
-      <UserList data={users}/>
+      {users ? <UserList data={users}/> : <Spinner/>}
     </div>
   );
 };

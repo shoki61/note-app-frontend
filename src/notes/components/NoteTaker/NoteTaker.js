@@ -51,7 +51,7 @@ const NoteTaker = props => {
             },
             body: JSON.stringify({title, description, image, keywords, hidden, creator})
         });
-        console.log(response)
+        console.log(response.json())
     };
 
     const hiddenHandler = () => {
