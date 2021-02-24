@@ -17,6 +17,7 @@ const Note = (props) => {
   const [success, setSuccess] = useState(false);
   const [worning, setWorning] = useState(false);
   const [successStatus, setSuccessStatus] = useState('');
+  const [userActions, setUserActions] = useState({favorable: true, markable:true});
 
   useEffect(() => {
     const getNote = async () => {
@@ -25,12 +26,22 @@ const Note = (props) => {
       );
       const responseData = await response.json();
       setNote(responseData.note);
-      console.log(responseData)
+      console.log(responseData);
+      if(responseData.note.likes.indexOf(props.userInfo.userId) > -1){
+        setUserActions(prevActions => {
+          return {...prevActions, favorable:false}
+        });
+      }
+      if(responseData.note.markings.indexOf(props.userInfo.userId) > -1){
+        setUserActions(prevActions => {
+          return {...prevActions, markable:false}
+        });
+      }
     };
     getNote();
   }, []);
 
-  const changeCommentsVisible = () => setCommentsVisible((prevVisible) => !prevVisible);
+  const changeCommentsVisible = () => setCommentsVisible(prevVisible => !prevVisible);
 
 
   const inputHandler = event => setComment(event.target.value);
@@ -57,9 +68,25 @@ const Note = (props) => {
     const responseData = await response.json();
     if(responseData.note){
       if(type === 'likes'){
-
+        if(note[type].indexOf(props.userInfo.userId) > -1) return;
+        setUserActions(prevActions => {
+          return {...prevActions, favorable:false};
+        });
+        let updateLikes = note.likes;
+        updateLikes.push(userId);
+        setNote(prevNote => {
+          return {...prevNote, likes: updateLikes}
+        });
       }else if(type === 'markings'){
-  
+        if(note[type].indexOf(props.userInfo.userId) > -1) return;
+        setUserActions(prevActions => {
+          return {...prevActions, markable:false};
+        });
+        let updateMarkings = note.markings;
+        updateMarkings.push(userId)
+        setNote(prevNote => {
+          return {...prevNote, markings: updateMarkings}
+        });
       }else{
         note.comments.push({
           user:{
@@ -69,14 +96,14 @@ const Note = (props) => {
           date: new Date().toLocaleString(),
           comment
         });
+        setWorning(true);
+        setSuccess(true);
+        setSuccessStatus('Your note has been saved successfully.');
+        setTimeout(()=>setWorning(false),4000);
       };
-      setWorning(true)
-      setSuccess(true);
-      setSuccessStatus('Your note has been saved successfully.');
-      setTimeout(()=>setWorning(false),4000);
     }else{
       if(type === 'comments'){
-        setWorning(true)
+        setWorning(true);
         setSuccess(false);
         setSuccessStatus('Unexpected error occured please try again.');
         setTimeout(()=>setWorning(false),4000);
@@ -111,13 +138,13 @@ const Note = (props) => {
               </Button>
               <Button 
                 onClick={() => updatePostHandler('likes')} 
-                className="info-outline">
+                className={userActions.favorable ? 'info-outline': 'info'}>
                 <i className="fa fa-heart-o"></i>
                 <span>{note.likes.length}</span>
               </Button>
               <Button 
                 onClick={() => updatePostHandler('markings')} 
-                className="info-outline">
+                className={userActions.markable ? 'info-outline': 'info'}>
                 <i class="fa fa-bookmark-o"></i>
                 <span>{note.markings.length}</span>
               </Button>
@@ -135,6 +162,7 @@ const Note = (props) => {
             </div>
           </div>
           <div className="note-content">
+            {JSON.stringify(userActions)}
             <p className="note-title">{note.title}</p>
             <div className="note-image">
               {note.image && <Image src={note.image} alt={note.title} />}
@@ -143,8 +171,8 @@ const Note = (props) => {
             <div>
               <p className="note-keywords-title">Keywords</p>
               <div className="note-keywords">
-                {note.keywords.map((item) => (
-                  <span className="note-keyword">{item}</span>
+                {note.keywords.map((item, index) => (
+                  <span key={index} className="note-keyword">{item}</span>
                 ))}
               </div>
             </div>
