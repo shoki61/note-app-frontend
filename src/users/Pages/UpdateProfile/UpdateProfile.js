@@ -9,19 +9,21 @@ import UpdateLink from '../../components/UpdateLink/UpdateLink';
 import './UpdateProfile.css';
 
 const UpdateProfile = props => {
+    console.log(props)
+    const { name, email, job, image } = props.location.state;
     return(
         <div className='update-profile-container'>
             <Card>
                 <div className='update-profile-form-container'>
-                    <UploadProfileImg/>
+                    <UploadProfileImg initialValue={image}/>
                     <p className='update-profile-title'>Name</p>
-                    <Input value='Murat Artan' element='input' className='input-full'/>
+                    <Input value={name} element='input' className='input-full'/>
 
                     <p className='update-profile-title'>Job</p>
-                    <Input value='Developer' element='input' className='input-full'/>
+                    <Input value={job} placeholder='ender job...' element='input' className='input-full'/>
 
                     <p className='update-profile-title'>E-mail</p>
-                    <Input element='input' className='input-full' value='exaple@gmail.com'/>
+                    <Input element='input' className='input-full' value={email}/>
 
                     <p className='update-profile-title'>Links</p>
                     <UpdateLink value='loremipsum' iconName='fa fa-facebook'/>

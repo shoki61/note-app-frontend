@@ -13,6 +13,7 @@ const UploadProfileImg = props => {
 
     useEffect(() => {
         if(!file) {
+            if(props.initialValue) return setPreviewUrl(props.initialValue);
             return setPreviewUrl(defaultImg);
         };
         const fileReader = new FileReader();
@@ -27,7 +28,6 @@ const UploadProfileImg = props => {
         console.log(event.target.files)
         if(event.target.files && event.target.files.length !== 0){
             pickedFile = event.target.files[0];
-            console.log('sssssss')
             setFile(pickedFile);
         }else{
             console.log('error')

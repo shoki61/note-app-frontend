@@ -41,7 +41,7 @@ const Profile = props => {
                             <Image src={user.image ? user.image : require('../../image/defaultImg.png').default} alt='Murat Artan'/>
                         </div>
                         {userId === user._id && isLoggedIn && <Button>
-                            <NavLink to={{pathname: '/update-profile', }}>
+                            <NavLink to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job}}}>
                                 <span className='profile-edit'><i class="glyphicon glyphicon-pencil"></i> edit profile</span>
                             </NavLink>
                         </Button>}
@@ -68,7 +68,7 @@ const Profile = props => {
             <div className='line'></div>
             <div className='profile-notes'>
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
-                <p className='profile-notes-title'>Notes</p>
+                <p className='profile-notes-title'>Posts</p>
                     <div className='center'>
                         {userId === user._id && <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>}
                         <Input
