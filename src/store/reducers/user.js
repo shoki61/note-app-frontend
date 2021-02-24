@@ -6,7 +6,8 @@ const initialState = {
     email: '',
     password: '',
     isLoggedIn: false,
-    userId:null
+    userId:null,
+    image:''
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,7 +18,8 @@ const reducer = (state = initialState, action) => {
             email: action.email,
             password: action.password,
             isLoggedIn: true,
-            userId: action.userId
+            userId: action.userId,
+            image: action.image
         };
         case actionTypes.SIGN_UP: return {
             ...state,
