@@ -114,10 +114,10 @@ const Note = (props) => {
   };
 
   const deletePost = async() => {
-    await fetch(`http://localhost:5000/api/notes/delete-note/${props.location.state.id}`,{
+    const response = await fetch(`http://localhost:5000/api/notes/delete-note/${props.location.state.id}`,{
       method:'DELETE'
     });
-    history.push('/notes');
+    if(response.status === 200) history.push('/notes');
   };
 
   return (
