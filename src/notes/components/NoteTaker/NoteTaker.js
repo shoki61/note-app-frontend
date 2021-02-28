@@ -8,14 +8,14 @@ import UploadImage from '../../../shared/components/UploadImage/UploadImage';
 import './NoteTaker.css';
 
 const NoteTaker = props => {
-    const [keyword, setKeyword] = useState('');
-    const [keywords, setKeywords] = useState([]);
+    const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : '');
+    const [keywords, setKeywords] = useState(props.keywords || []);
     const [inputs, setInputs] = useState({
-        title: '',
-        description: '',
-        image:'',
+        title: props.title || '',
+        description: props.description || '',
+        image: props.image || '',
         keywords: [],
-        hidden: false,
+        hidden: props.hidden || false,
         creator: props.userInfo.userId
     });
 

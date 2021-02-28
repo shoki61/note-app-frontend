@@ -126,6 +126,7 @@ const Note = (props) => {
         <div className="note-container">
           <div className="note-creator">
             <div className="center">
+              <NavLink to={{pathname:'/profile', state: {id: note.creator._id}}}>
               <div className="note-create-avatar">
                 {note.creator.image ? (
                   <Image src={note.creator.image} alt={note.creator.name} />
@@ -135,6 +136,7 @@ const Note = (props) => {
                   />
                 )}
               </div>
+              </NavLink>
               <p className="note-creator-name">
                 {note.creator.name}
                 <span className="note-created-date">{new Date(note.createdAt).toLocaleString()}</span>
@@ -159,7 +161,7 @@ const Note = (props) => {
               </Button>
               {note.creator._id === props.userInfo.userId && (
                 <Button className="yellow-outline">
-                  <NavLink className="nav-update" to="/update-note">
+                  <NavLink className="nav-update" to={{pathname:'/update-note', state:{note}}}>
                     Update
                   </NavLink>
                 </Button>
