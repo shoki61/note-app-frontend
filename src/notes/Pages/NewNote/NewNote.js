@@ -5,7 +5,7 @@ import NoteTaker from '../../components/NoteTaker/NoteTaker';
 import './NewNote.css';
 
 const NewNote = props => {
-    return <NoteTaker/>;
+    return <NoteTaker type='new'/>;
 };
 
 export default NewNote;

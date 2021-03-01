@@ -8,13 +8,14 @@ import UploadImage from '../../../shared/components/UploadImage/UploadImage';
 import './NoteTaker.css';
 
 const NoteTaker = props => {
+    console.log(props.hidden);
     const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : '');
     const [keywords, setKeywords] = useState(props.keywords || []);
     const [inputs, setInputs] = useState({
         title: props.title || '',
         description: props.description || '',
         image: props.image || '',
-        keywords: [],
+        keywords: props.keywords || [],
         hidden: props.hidden || false,
         creator: props.userInfo.userId
     });
@@ -42,14 +43,17 @@ const NoteTaker = props => {
         };
     };
 
-    const sendNote = async() => {
+    const sendNote = async(value) => {
         const {title, description, image, keywords, hidden, creator} = inputs;
-        const response = await fetch('http://localhost:5000/api/notes/create-note', {
-            method: 'POST',
+        let url = 'http://localhost:5000/api/notes/create-note';
+
+        if(value === 'update') url = `http://localhost:5000/api/notes/update-note/${props.id}`
+        const response = await fetch(url, {
+            method: value === 'update' ? 'PATCH' : 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({title, description, image, keywords, hidden, creator})
+            body: JSON.stringify({title, description, image, keywords, hidden, userId: creator})
         });
         console.log(response.json())
     };
@@ -131,7 +135,7 @@ const NoteTaker = props => {
                         <p className='note-taker-title'>Private</p>
                         <div title='only those who follow you can see' className='note-taker-detail center'>?</div>
                     </div>
-                    <Button onClick={sendNote} className='info full'>SUBMIT</Button>
+                    <Button onClick={() => sendNote(props.type)} className='info full'>SUBMIT</Button>
                 </div>
             </Card>
         </div>

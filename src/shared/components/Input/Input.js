@@ -8,9 +8,9 @@ const Input = props => {
                     id={props.id}
                     onChange={props.onChange}
                     value={props.value}
-                    type={props.type} 
-                    style={{...props.style}} 
-                    placeholder={props.placeholder} 
+                    type={props.type}
+                    style={{...props.style}}
+                    placeholder={props.placeholder}
                     className={`input ${props.className}`}
                 />
     };
@@ -18,8 +18,8 @@ const Input = props => {
                 id={props.id}
                 onChange={props.onChange}
                 value={props.value}
-                style={{...props.style}} 
-                placeholder={props.placeholder} 
+                style={{...props.style}}
+                placeholder={props.placeholder}
                 className={`input ${props.className}`}
             />;
 };

@@ -144,7 +144,7 @@ const Note = (props) => {
             </div>
             <div style={{ display: "flex" }}>
               <Button onClick={changeCommentsVisible} className="info-outline">
-                <i class="fa fa-comment-o"></i>
+                <i className="fa fa-comment-o"></i>
                 <span>{note.comments.length}</span>
               </Button>
               <Button 
@@ -156,7 +156,7 @@ const Note = (props) => {
               <Button 
                 onClick={() => updatePostHandler('markings')} 
                 className={userActions.markable ? 'info-outline': 'info'}>
-                <i class="fa fa-bookmark-o"></i>
+                <i className="fa fa-bookmark-o"></i>
                 <span>{note.markings.length}</span>
               </Button>
               {note.creator._id === props.userInfo.userId && (
