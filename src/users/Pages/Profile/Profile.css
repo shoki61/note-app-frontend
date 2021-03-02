@@ -73,7 +73,7 @@
     margin-right: 15px;
 }
 
-.profile-notes i{
+.profile-notes .fa-plus, .fa-search, .fa-close{
     color:rgba(0, 80, 94, .7);
     font-size: 18px;
     font-weight: 100;

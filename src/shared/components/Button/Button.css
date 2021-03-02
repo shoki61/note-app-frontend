@@ -12,6 +12,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .auth-button{
@@ -20,7 +21,11 @@
 }
 
 .white {
-    color:#fff
+    color:#fff !important
+}
+
+.inline{
+    display:block
 }
 
 .success{
