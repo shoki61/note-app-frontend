@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import Card from '../../../shared/components/Card/Card';
 import Button from '../../../shared/components/Button/Button';
@@ -8,7 +9,7 @@ import UploadImage from '../../../shared/components/UploadImage/UploadImage';
 import './NoteTaker.css';
 
 const NoteTaker = props => {
-    console.log(props.hidden);
+    const history = useHistory();
     const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : '');
     const [keywords, setKeywords] = useState(props.keywords || []);
     const [inputs, setInputs] = useState({
@@ -47,7 +48,7 @@ const NoteTaker = props => {
         const {title, description, image, keywords, hidden, creator} = inputs;
         let url = 'http://localhost:5000/api/notes/create-note';
 
-        if(value === 'update') url = `http://localhost:5000/api/notes/update-note/${props.id}`
+        if(value === 'update') url = `http://localhost:5000/api/notes/update-note/${props.id}`;
         const response = await fetch(url, {
             method: value === 'update' ? 'PATCH' : 'POST',
             headers: {
@@ -55,7 +56,8 @@ const NoteTaker = props => {
             },
             body: JSON.stringify({title, description, image, keywords, hidden, userId: creator})
         });
-        console.log(response.json())
+        const responseData = response.json();
+        if(responseData.note) history.push('/notes');
     };
 
     const hiddenHandler = () => {
