@@ -31,6 +31,19 @@ const Profile = props => {
     }, []);
 
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
+
+    const follow = async () => {
+        const response = await fetch(`http://localhost:5000/api/users/update-user/${userId}`,{
+            method: 'PATCH',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({follow: props.location.state.id})
+        });
+        const responseData = response.json();
+        console.log(responseData);
+    };
+
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
             { user ? <div className='profile-container'>
@@ -61,7 +74,7 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
-                    {userId !== user._id && isLoggedIn && <Button className='black-outline'>Follow</Button>}
+                    {userId !== user._id && isLoggedIn && <Button onClick={follow} className='black-outline'>Follow</Button>}
                     {userId === user._id && isLoggedIn && <Button className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>
