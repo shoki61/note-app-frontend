@@ -169,7 +169,6 @@ const Note = (props) => {
               {note.creator._id === props.userInfo.userId && (
                 <Button onClick={deletePost} className="danger-outline">Delete</Button>
               )}
-              {note.creator._id !== props.userInfo.userId && props.userInfo.isLoggedIn && <Button className="black-outline">Follow</Button>}
             </div>
           </div>
           <div className="note-content">

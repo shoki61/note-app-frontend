@@ -45,6 +45,14 @@ const Profile = props => {
         };
     };
 
+    const deleteAccount = async () => {
+        const response = await fetch(`http://localhost:5000/api/users/delete-user/${userId}`,{
+                method: 'DELETE',
+        });
+        const responseData = response.json();
+        console.log(responseData);
+    };
+
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
             { user ? <div className='profile-container'>
@@ -76,7 +84,7 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
                     {userId !== user._id && isLoggedIn && <Button onClick={follow} className={user.follower.includes(userId)? 'black' : 'black-outline'}>{user.follower.includes(userId) ? 'Following' : 'Follow'}</Button>}
-                    {userId === user._id && isLoggedIn && <Button className='danger-outline'>Delete the account</Button>}
+                    {userId === user._id && isLoggedIn && <Button onClick={deleteAccount}  className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>
             <div className='line'></div>
