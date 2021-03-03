@@ -31,9 +31,12 @@ const reducer = (state = initialState, action) => {
             userId: action.userId
         };
         case actionTypes.LOGOUT: return {
-            ...state,
+            name: '',
+            email: '',
+            password: '',
             isLoggedIn: false,
-            userId: null
+            userId: null,
+            image:''
         };
         default: return state;
     };

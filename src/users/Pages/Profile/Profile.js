@@ -8,6 +8,7 @@ import Button from '../../../shared/components/Button/Button';
 import NotesList from '../../../notes/components/NotesList/NotesList';
 import Input from '../../../shared/components/Input/Input';
 import Spinner from '../../../shared/components/Spinner/Spinner';
+import * as actions from '../../../store/actions/index';
 import './Profile.css';
 
 
@@ -50,7 +51,10 @@ const Profile = props => {
         const response = await fetch(`http://localhost:5000/api/users/delete-user/${userId}`,{
                 method: 'DELETE',
         });
-        if(response.status === 200) history.push('/users')
+        if(response.status === 200) {
+            props.isLogout();
+            history.push('/users');
+        };
     };
 
     return (
@@ -117,5 +121,10 @@ const mapStateToProps = state => {
         userInfo: state.userReducer
     };
 };
+const mapDispatchToProps = dispatch => {
+    return {
+        isLogout: () => dispatch(actions.authLogout())
+    };
+};
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
