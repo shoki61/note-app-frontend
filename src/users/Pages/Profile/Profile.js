@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -12,6 +12,7 @@ import './Profile.css';
 
 
 const Profile = props => {
+    const history = useHistory();
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();
     const [ userNotes, setUserNotes ] = useState([]);
@@ -49,8 +50,7 @@ const Profile = props => {
         const response = await fetch(`http://localhost:5000/api/users/delete-user/${userId}`,{
                 method: 'DELETE',
         });
-        const responseData = response.json();
-        console.log(responseData);
+        if(response.status === 200) history.push('/users')
     };
 
     return (
