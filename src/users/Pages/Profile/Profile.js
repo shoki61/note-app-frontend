@@ -17,6 +17,7 @@ const Profile = props => {
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();
     const [ userNotes, setUserNotes ] = useState([]);
+    const [ isFollowed, setIsFollowed ] = useState(false);
     const { userId, isLoggedIn } = props.userInfo;
 
     useEffect(()=>{
@@ -27,7 +28,7 @@ const Profile = props => {
             const responseUserNotes = await responseNotes.json();
             setUser(responseData);
             setUserNotes(responseUserNotes);
-            console.log(responseUserNotes)
+            if(responseData.follower.includes(userId)) setIsFollowed(true);
         };
         if(props.location.state.id) getUser();
     }, []);
@@ -43,7 +44,7 @@ const Profile = props => {
                 },
                 body: JSON.stringify({follow: props.location.state.id})
             });
-            const responseData = response.json();
+            if(response.status === 200) setIsFollowed(true);
         };
     };
 
@@ -87,7 +88,7 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
-                    {userId !== user._id && isLoggedIn && <Button onClick={follow} className={user.follower.includes(userId)? 'black' : 'black-outline'}>{user.follower.includes(userId) ? 'Following' : 'Follow'}</Button>}
+                    {userId !== user._id && isLoggedIn && <Button onClick={follow} className={isFollowed ? 'black' : 'black-outline'}>{isFollowed ? 'Following' : 'Follow'}</Button>}
                     {userId === user._id && isLoggedIn && <Button onClick={deleteAccount}  className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>
