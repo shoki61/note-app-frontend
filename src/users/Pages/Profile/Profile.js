@@ -33,15 +33,16 @@ const Profile = props => {
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
 
     const follow = async () => {
-        const response = await fetch(`http://localhost:5000/api/users/update-user/${userId}`,{
-            method: 'PATCH',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({follow: props.location.state.id})
-        });
-        const responseData = response.json();
-        console.log(responseData);
+        if(!user.follower.includes(userId)){
+            const response = await fetch(`http://localhost:5000/api/users/update-user/${userId}`,{
+                method: 'PATCH',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({follow: props.location.state.id})
+            });
+            const responseData = response.json();
+        };
     };
 
     return (
@@ -74,7 +75,7 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
-                    {userId !== user._id && isLoggedIn && <Button onClick={follow} className='black-outline'>Follow</Button>}
+                    {userId !== user._id && isLoggedIn && <Button onClick={follow} className={user.follower.includes(userId)? 'black' : 'black-outline'}>{user.follower.includes(userId) ? 'Following' : 'Follow'}</Button>}
                     {userId === user._id && isLoggedIn && <Button className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>
