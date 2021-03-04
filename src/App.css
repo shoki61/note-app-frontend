@@ -30,6 +30,10 @@ p{
     border-top:1px solid #e0e0e0;
 }
 
+.inline{
+    display: inline;
+}
+
 .full{
     width: 100%;
 }

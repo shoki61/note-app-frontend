@@ -1,10 +1,25 @@
-.Modal{
+.modal{
     position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 300;
-    background-color: white;
-    border-radius: 7px;
-    border:1px solid rgb(192, 192, 192);
+    width: 65vw;
+    height: 85vh;
+    margin-top: 50px;
+    padding: 50px 10px 10px 10px
+}
+
+.modal-close-button{
+    position: absolute;
+    top:15px;
+    right:15px;
 }
