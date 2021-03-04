@@ -8,6 +8,7 @@ import Button from '../../../shared/components/Button/Button';
 import NotesList from '../../../notes/components/NotesList/NotesList';
 import Input from '../../../shared/components/Input/Input';
 import Spinner from '../../../shared/components/Spinner/Spinner';
+import Modal from '../../../shared/components/Modal/Modal';
 import * as actions from '../../../store/actions/index';
 import './Profile.css';
 
@@ -18,6 +19,8 @@ const Profile = props => {
     const [ user, setUser ] = useState();
     const [ userNotes, setUserNotes ] = useState([]);
     const [ isFollowed, setIsFollowed ] = useState(false);
+    const [ showFollow, setShowFollow ] = useState(false);
+
     const { userId, isLoggedIn } = props.userInfo;
 
     useEffect(()=>{
@@ -58,8 +61,13 @@ const Profile = props => {
         };
     };
 
+    const changeShowFollow = () => {
+        setShowFollow(prevState => !prevState);
+    };
+
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
+            {showFollow && <Modal closeModal={changeShowFollow}><p>test</p></Modal>}
             { user ? <div className='profile-container'>
             <div className='profile-info center'>
                 <div className='center'>
@@ -78,8 +86,8 @@ const Profile = props => {
                         <p className='profile-job'>{user.job}</p>
                         <p className='profile-email'><i className='fa fa-envelope-o'></i>{user.email}</p>
                         <div>
-                            <span className='profile-box'>Followed: {user.following.length}</span>
-                            <span className='profile-box'>Follower: {user.follower.length}</span>
+                            <Button onClick={changeShowFollow} className='profile-box inline'>Following: {user.following.length}</Button>
+                            <Button onClick={changeShowFollow} className='profile-box inline'>Followers: {user.follower.length}</Button>
                         </div>
                     </div>
                 </div>
