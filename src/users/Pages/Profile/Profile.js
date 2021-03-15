@@ -9,6 +9,7 @@ import NotesList from '../../../notes/components/NotesList/NotesList';
 import Input from '../../../shared/components/Input/Input';
 import Spinner from '../../../shared/components/Spinner/Spinner';
 import Modal from '../../../shared/components/Modal/Modal';
+import PersonsList from '../../components/PersonsList/PersonsList';
 import * as actions from '../../../store/actions/index';
 import './Profile.css';
 
@@ -67,7 +68,9 @@ const Profile = props => {
 
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
-            {showFollow && <Modal closeModal={changeShowFollow}><p>test</p></Modal>}
+            {showFollow && <Modal closeModal={changeShowFollow}>
+                <PersonsList/>
+            </Modal>}
             { user ? <div className='profile-container'>
             <div className='profile-info center'>
                 <div className='center'>

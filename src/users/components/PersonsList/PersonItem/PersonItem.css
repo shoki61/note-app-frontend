@@ -1,0 +1,23 @@
+.person-item-container{
+    width: 100%;
+    padding:10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.person-item-avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+}
+
+.person-item-name{
+    font-size: 17px;
+    color:#414141
+}
+
+.person-item-job{
+    color:#6e6e6e;
+    
+}

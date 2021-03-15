@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+p{
+    letter-spacing: .5px;
+}
+
 .app-back-color{
     background-color: rgb(0, 80, 94);
 }
