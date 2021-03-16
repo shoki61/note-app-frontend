@@ -3,20 +3,16 @@ import React from 'react';
 import PersonItem from './PersonItem/PersonItem';
 import './PersonsList.css';
 
-const DUMMY_DATA = [
-    {
-        image: 'https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        name: 'Murat Artan',
-        job: 'Developer',
-    }
-]
-
 const PersonList = props => {
-    return <div>
-        {DUMMY_DATA.map(person => <PersonItem 
+    console.log(props.data)
+    return <div style={{width:'85%'}}>
+        {props.data.map(person => <PersonItem 
+            key={person._id}
             name={person.name}
             job={person.job}
             image={person.image}
+            id={person._id}
+            closeModal={props.closeModal}
         />)} 
     </div>;
 };

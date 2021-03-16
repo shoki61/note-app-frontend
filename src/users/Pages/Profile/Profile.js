@@ -21,8 +21,12 @@ const Profile = props => {
     const [ userNotes, setUserNotes ] = useState([]);
     const [ isFollowed, setIsFollowed ] = useState(false);
     const [ showFollow, setShowFollow ] = useState(false);
+    const [followData, setFollowData] = useState([]);
 
     const { userId, isLoggedIn } = props.userInfo;
+
+    console.log(props.location.state.id)
+
 
     useEffect(()=>{
         const getUser = async() => {
@@ -30,12 +34,13 @@ const Profile = props => {
             const responseNotes = await fetch(`http://localhost:5000/api/notes/user-notes/${props.location.state.id}`);
             const responseData = await responseUser.json();
             const responseUserNotes = await responseNotes.json();
+            console.log(responseData.follower)
             setUser(responseData);
             setUserNotes(responseUserNotes);
             if(responseData.follower.includes(userId)) setIsFollowed(true);
         };
         if(props.location.state.id) getUser();
-    }, []);
+    }, [props.location.state.id]);
 
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
 
@@ -62,14 +67,15 @@ const Profile = props => {
         };
     };
 
-    const changeShowFollow = () => {
+    const changeShowFollow = value => {
+        setFollowData(value);
         setShowFollow(prevState => !prevState);
     };
 
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
             {showFollow && <Modal closeModal={changeShowFollow}>
-                <PersonsList/>
+                <PersonsList data={followData} closeModal={changeShowFollow}/>
             </Modal>}
             { user ? <div className='profile-container'>
             <div className='profile-info center'>
@@ -89,8 +95,8 @@ const Profile = props => {
                         <p className='profile-job'>{user.job}</p>
                         <p className='profile-email'><i className='fa fa-envelope-o'></i>{user.email}</p>
                         <div>
-                            <Button onClick={changeShowFollow} className='profile-box inline'>Following: {user.following.length}</Button>
-                            <Button onClick={changeShowFollow} className='profile-box inline'>Followers: {user.follower.length}</Button>
+                            <Button onClick={() => changeShowFollow(user.following)} className='profile-box inline'>Following: {user.following.length}</Button>
+                            <Button onClick={() => changeShowFollow(user.follower)} className='profile-box inline'>Followers: {user.follower.length}</Button>
                         </div>
                     </div>
                 </div>
