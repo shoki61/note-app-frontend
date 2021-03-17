@@ -10,7 +10,7 @@ const CommentItem = (props) => {
         <div className="comment-item-avatar">
           {props.userImage 
             ? <Image src={props.userImage} alt={props.userName} /> 
-            : <Image src={require('../../../../users/image/defaultImg.png').default} alt={props.userName} />
+            : <p>{props.userName}</p>
           }
         </div>
         <div>

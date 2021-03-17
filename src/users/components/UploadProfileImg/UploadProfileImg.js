@@ -3,7 +3,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import Button from '../../../shared/components/Button/Button';
 import Image from '../../../shared/components/Image/Image';
 import Opacity from '../../../shared/components/Opacity/Opacity';
-import defaultImg from '../../image/defaultImg.png';
 import './UploadProfileImg.css';
 
 const UploadProfileImg = props => {
@@ -14,7 +13,6 @@ const UploadProfileImg = props => {
     useEffect(() => {
         if(!file) {
             if(props.initialValue) return setPreviewUrl(props.initialValue);
-            return setPreviewUrl(defaultImg);
         };
         const fileReader = new FileReader();
         fileReader.onload = () => {
@@ -48,7 +46,10 @@ const UploadProfileImg = props => {
         />
         <div>
             <div className='profile-image'>
-                <Image className='profile-image' src={previewUrl}/>
+                {previewUrl
+                    ? <Image className='profile-image' src={previewUrl}/>
+                    : <p>Lorem ipsum</p>
+                }
                 <Opacity>
                     <Button onClick={pickImageHandler} className='white'><i className='fa fa-camera'></i>Upload image</Button>
                 </Opacity>

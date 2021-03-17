@@ -132,9 +132,7 @@ const Note = (props) => {
                 {note.creator.image ? (
                   <Image src={note.creator.image} alt={note.creator.name} />
                 ) : (
-                  <Image
-                    src={require("../../../users/image/defaultImg.png").default}
-                  />
+                  <p>{note.creator.name}</p>
                 )}
               </div>
               </NavLink>

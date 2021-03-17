@@ -13,7 +13,10 @@ const UserItem = props => {
                 <NavLink to={{pathname:'/profile', state: {id: props.id}}}>
                     <div className='user-item-content center'>
                         <div className='user-item-image'>
-                            <Image src={props.image ? props.image : require('../../../image/defaultImg.png').default} alt={props.name}/>
+                            {props.image 
+                                ? <Image src={props.image} alt={props.name}/> 
+                                : <p className='user-avatar-name'>{props.name}</p>
+                            }
                         </div>
                         <div>
                             <p className='user-item-name'>{props.name}</p>

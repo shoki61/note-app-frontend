@@ -80,7 +80,10 @@ const Profile = props => {
                 <div className='center'>
                     <div className='profile-image-container center'>
                         <div className='profile-image'>
-                            <Image src={user.image ? user.image : require('../../image/defaultImg.png').default} alt='Murat Artan'/>
+                            {user.image
+                                ? <Image src={user.image} alt={user.name}/> 
+                                : <p>{user.name}</p>
+                            }
                         </div>
                         {isLoggedIn && userInfo._id === user._id && <Button>
                             <NavLink to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job}}}>

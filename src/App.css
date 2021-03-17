@@ -59,3 +59,17 @@ p{
     font-size: 20px;
     color: #525252
 }
+
+
+.avatar-name{
+    width: 100%;
+    height: 100%;
+    background-color:#ff2b79;
+    border-radius: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+}
