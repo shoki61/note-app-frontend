@@ -9,6 +9,7 @@ import UploadImage from '../../../shared/components/UploadImage/UploadImage';
 import './NoteTaker.css';
 
 const NoteTaker = props => {
+    const { userInfo } = props.userRdcr;
     const history = useHistory();
     const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : '');
     const [keywords, setKeywords] = useState(props.keywords || []);
@@ -18,7 +19,7 @@ const NoteTaker = props => {
         image: props.image || '',
         keywords: props.keywords || [],
         hidden: props.hidden || false,
-        creator: props.userInfo.userId
+        creator: userInfo._id
     });
 
     const inputHandler = event => {
@@ -147,7 +148,7 @@ const NoteTaker = props => {
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.userReducer
+        userRdcr: state.userReducer
     };
 };
 

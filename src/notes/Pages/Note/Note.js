@@ -21,6 +21,8 @@ const Note = (props) => {
   const [successStatus, setSuccessStatus] = useState('');
   const [userActions, setUserActions] = useState({favorable: true, markable:true});
 
+  const {_id: userId, image, name} = props.userRdcr.userInfo;
+
   useEffect(() => {
     const getNote = async () => {
       const response = await fetch(
@@ -29,12 +31,12 @@ const Note = (props) => {
       const responseData = await response.json();
       setNote(responseData.note);
       console.log(responseData);
-      if(responseData.note.likes.indexOf(props.userInfo.userId) > -1){
+      if(responseData.note.likes.indexOf(userId) > -1){
         setUserActions(prevActions => {
           return {...prevActions, favorable:false}
         });
       }
-      if(responseData.note.markings.indexOf(props.userInfo.userId) > -1){
+      if(responseData.note.markings.indexOf(userId) > -1){
         setUserActions(prevActions => {
           return {...prevActions, markable:false}
         });
@@ -50,7 +52,6 @@ const Note = (props) => {
 
 
   const updatePostHandler = async type => {
-    const userId = props.userInfo.userId;
     let data;
     if(type === 'likes'){
       data={likes: '', userId};
@@ -70,7 +71,7 @@ const Note = (props) => {
     const responseData = await response.json();
     if(responseData.note){
       if(type === 'likes'){
-        if(note[type].indexOf(props.userInfo.userId) > -1) return;
+        if(note[type].indexOf(userId) > -1) return;
         setUserActions(prevActions => {
           return {...prevActions, favorable:false};
         });
@@ -80,7 +81,7 @@ const Note = (props) => {
           return {...prevNote, likes: updateLikes}
         });
       }else if(type === 'markings'){
-        if(note[type].indexOf(props.userInfo.userId) > -1) return;
+        if(note[type].indexOf(userId) > -1) return;
         setUserActions(prevActions => {
           return {...prevActions, markable:false};
         });
@@ -92,8 +93,8 @@ const Note = (props) => {
       }else{
         note.comments.push({
           user:{
-            name: props.userInfo.name,
-            image: props.userInfo.image
+            name,
+            image
           },
           date: new Date().toLocaleString(),
           comment
@@ -159,14 +160,14 @@ const Note = (props) => {
                 <i className="fa fa-bookmark-o"></i>
                 <span>{note.markings.length}</span>
               </Button>
-              {note.creator._id === props.userInfo.userId && (
+              {note.creator._id === userId && (
                 <Button className="yellow-outline">
                   <NavLink className="nav-update" to={{pathname:'/update-note', state:{note}}}>
                     Update
                   </NavLink>
                 </Button>
               )}
-              {note.creator._id === props.userInfo.userId && (
+              {note.creator._id === userId && (
                 <Button onClick={deletePost} className="danger-outline">Delete</Button>
               )}
             </div>
@@ -210,7 +211,7 @@ const Note = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userReducer,
+    userRdcr: state.userReducer,
   };
 };
 

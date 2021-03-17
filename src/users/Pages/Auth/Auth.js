@@ -50,7 +50,7 @@ const Auth = props => {
             });
             const responseData = await response.json();
             try {
-              props.onLogin(responseData.user.name, responseData.user.email, responseData.user.password, responseData.user._id, responseData.user.image);
+              props.onLogin(responseData.user);
               history.push('/users');
             } catch(e){
               setError(responseData.message);
@@ -70,7 +70,7 @@ const Auth = props => {
               body: data
             });
             const responseData = await response.json();
-            props.onSignUp(responseData.user.name, responseData.user.email, responseData.user.password, responseData.user._id);
+            props.onSignUp(responseData.user);
             history.push('/users');
           } catch(e){
             throw setError('Unknown error. Please try again');
@@ -146,8 +146,8 @@ const Auth = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (name, email, password, userId, image) => dispatch(actions.authLogin(name, email, password, userId, image)),
-    onSignUp: (name, email, password, userId) => dispatch(actions.authSignUp(name, email, password, userId))
+    onLogin: (user) => dispatch(actions.authLogin(user)),
+    onSignUp: (user) => dispatch(actions.authSignUp(user))
   };
 };
 

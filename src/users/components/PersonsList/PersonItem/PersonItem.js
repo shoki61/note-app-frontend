@@ -7,7 +7,8 @@ import Button from '../../../../shared/components/Button/Button';
 import './PersonItem.css';
 
 const PersonItem = props => {
-    console.log(props)
+    console.log(props.userInfo.follower)
+    const { _id, following } = props.userInfo;
     return <NavLink to={{pathname:'/profile', state: {id: props.id}}} onClick={props.closeModal} className='person-item-container'>
         <div style={{display:'flex'}}>
             <Image className='person-item-avatar mr-1' src={props.image} alt={props.name}/>
@@ -16,7 +17,13 @@ const PersonItem = props => {
                 <p className='person-item-job'>{props.job}</p>
             </div>
         </div>
-        <Button className={'black-outline'}>Follow</Button>
+        {_id !== props.id && 
+            <Button 
+                className={following.includes(props.id) ? 'black' : 'black-outline'}
+            >
+                {following.includes(props.id) ? 'Following' : 'Follow'}
+            </Button>
+        }
     </NavLink>;
 };
 

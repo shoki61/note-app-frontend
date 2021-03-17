@@ -21,12 +21,11 @@ const Profile = props => {
     const [ userNotes, setUserNotes ] = useState([]);
     const [ isFollowed, setIsFollowed ] = useState(false);
     const [ showFollow, setShowFollow ] = useState(false);
-    const [followData, setFollowData] = useState([]);
+    const [followData, setFollowData] = useState();
 
-    const { userId, isLoggedIn } = props.userInfo;
+    const { userInfo, isLoggedIn } = props.userRdcr;
 
-    console.log(props.location.state.id)
-
+    console.log(props.userRdcr);
 
     useEffect(()=>{
         const getUser = async() => {
@@ -34,10 +33,9 @@ const Profile = props => {
             const responseNotes = await fetch(`http://localhost:5000/api/notes/user-notes/${props.location.state.id}`);
             const responseData = await responseUser.json();
             const responseUserNotes = await responseNotes.json();
-            console.log(responseData.follower)
             setUser(responseData);
             setUserNotes(responseUserNotes);
-            if(responseData.follower.includes(userId)) setIsFollowed(true);
+            if(isLoggedIn && responseData.follower.includes(userInfo._id)) setIsFollowed(true);
         };
         if(props.location.state.id) getUser();
     }, [props.location.state.id]);
@@ -45,8 +43,8 @@ const Profile = props => {
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
 
     const follow = async () => {
-        if(!user.follower.includes(userId)){
-            const response = await fetch(`http://localhost:5000/api/users/update-user/${userId}`,{
+        if(!user.follower.includes(userInfo._id)){
+            const response = await fetch(`http://localhost:5000/api/users/update-user/${userInfo._id}`,{
                 method: 'PATCH',
                 headers:{
                     'Content-Type': 'application/json'
@@ -58,7 +56,7 @@ const Profile = props => {
     };
 
     const deleteAccount = async () => {
-        const response = await fetch(`http://localhost:5000/api/users/delete-user/${userId}`,{
+        const response = await fetch(`http://localhost:5000/api/users/delete-user/${userInfo._id}`,{
                 method: 'DELETE',
         });
         if(response.status === 200) {
@@ -75,7 +73,7 @@ const Profile = props => {
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
             {showFollow && <Modal closeModal={changeShowFollow}>
-                <PersonsList data={followData} closeModal={changeShowFollow}/>
+                <PersonsList userInfo={userInfo ? userInfo : null} data={followData} closeModal={changeShowFollow}/>
             </Modal>}
             { user ? <div className='profile-container'>
             <div className='profile-info center'>
@@ -84,7 +82,7 @@ const Profile = props => {
                         <div className='profile-image'>
                             <Image src={user.image ? user.image : require('../../image/defaultImg.png').default} alt='Murat Artan'/>
                         </div>
-                        {userId === user._id && isLoggedIn && <Button>
+                        {isLoggedIn && userInfo._id === user._id && <Button>
                             <NavLink to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job}}}>
                                 <span className='profile-edit'><i className="glyphicon glyphicon-pencil"></i> edit profile</span>
                             </NavLink>
@@ -105,8 +103,8 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
-                    {userId !== user._id && isLoggedIn && <Button onClick={follow} className={isFollowed ? 'black' : 'black-outline'}>{isFollowed ? 'Following' : 'Follow'}</Button>}
-                    {userId === user._id && isLoggedIn && <Button onClick={deleteAccount}  className='danger-outline'>Delete the account</Button>}
+                    {isLoggedIn && userInfo._id !== user._id && <Button onClick={follow} className={isFollowed ? 'black' : 'black-outline'}>{isFollowed ? 'Following' : 'Follow'}</Button>}
+                    {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>
             <div className='line'></div>
@@ -117,7 +115,7 @@ const Profile = props => {
                         <Button className='black-outline inline'><i className="fa fa-comment-o"></i> {user.comments.length}</Button>
                         <Button className='black-outline inline'><i className="fa fa-bookmark-o"></i> {user.markings.length}</Button>
                         <Button className='black-outline inline'><i className="fa fa-heart-o"></i> {user.likes.length}</Button>
-                        {userId === user._id && <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>}
+                        {isLoggedIn && userInfo._id === user._id && <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>}
                         <Input
                             placeholder='search note...'
                             className='search-note-input'
@@ -136,7 +134,7 @@ const Profile = props => {
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.userReducer
+        userRdcr: state.userReducer
     };
 };
 const mapDispatchToProps = dispatch => {

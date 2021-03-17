@@ -7,6 +7,7 @@ import * as actions from '../../store/actions/index';
 import './Navigation.css';
 
 const Navigation = props => {
+  const { userInfo, isLoggedIn } = props.userRdcr;
   return(
     <header className='navigation box app-back-color'>
       <p className='app-name'>My block</p>
@@ -21,20 +22,20 @@ const Navigation = props => {
             path='/notes'
           />
           {
-            props.userInfo.isLoggedIn && <NavigationItem
+            isLoggedIn && <NavigationItem
             title='Profile'
             path='/profile'
-            userId={props.userInfo.userId}
+            userId={userInfo ? userInfo._id : null}
           />
           }
           {
-            !props.userInfo.isLoggedIn && <NavigationItem
+            !isLoggedIn && <NavigationItem
             title='Login'
             path='/auth'
           />
           }
           {
-            props.userInfo.isLoggedIn && <Button className='nav-auth-button' onClick={props.onLogout}>
+            isLoggedIn && <Button className='nav-auth-button' onClick={props.onLogout}>
               Logout
           </Button>
           }
@@ -47,7 +48,7 @@ const Navigation = props => {
 
 const mapStateToProps = state => {
   return {
-    userInfo: state.userReducer
+    userRdcr: state.userReducer
   };
 };
 
