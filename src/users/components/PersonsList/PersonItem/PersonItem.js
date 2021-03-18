@@ -7,12 +7,13 @@ import Button from '../../../../shared/components/Button/Button';
 import './PersonItem.css';
 
 const PersonItem = props => {
+    console.log(props.userInfo)
     return <NavLink to={{pathname:'/profile', state: {id: props.id}}} onClick={props.closeModal} className='person-item-container'>
         <div style={{display:'flex'}}>
             <div className='person-item-avatar mr-1'>
                 {props.image
                     ? <Image src={props.image} alt={props.name}/>
-                    : <div className='avatar-name'><p>{props.name.charAt(0).toUpperCase()}</p></div>
+                    : <div className='avatar-name font-20'><p>{props.name.charAt(0).toUpperCase()}</p></div>
                 }
             </div>
             <div style={{display:'flex',flexDirection:'column',justifyContent:'center'}}>

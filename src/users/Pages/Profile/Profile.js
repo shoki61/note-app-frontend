@@ -25,7 +25,6 @@ const Profile = props => {
 
     const { userInfo, isLoggedIn } = props.userRdcr;
 
-    console.log(props.userRdcr);
 
     useEffect(()=>{
         const getUser = async() => {
@@ -35,7 +34,7 @@ const Profile = props => {
             const responseUserNotes = await responseNotes.json();
             setUser(responseData);
             setUserNotes(responseUserNotes);
-            if(isLoggedIn && responseData.follower.includes(userInfo._id)) setIsFollowed(true);
+            if(isLoggedIn && responseData.follower.find(item => item._id === userInfo._id)) setIsFollowed(true);
         };
         if(props.location.state.id) getUser();
     }, [props.location.state.id]);
@@ -43,16 +42,17 @@ const Profile = props => {
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
 
     const follow = async () => {
-        if(!user.follower.includes(userInfo._id)){
-            const response = await fetch(`http://localhost:5000/api/users/update-user/${userInfo._id}`,{
-                method: 'PATCH',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({follow: props.location.state.id})
-            });
-            if(response.status === 200) setIsFollowed(true);
-        };
+        await fetch(`http://localhost:5000/api/users/update-user/${userInfo._id}`,{
+            method: 'PATCH',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({follow: props.location.state.id})
+        }).then(response => response.json())
+        .then(responseData => {
+            props.onUpdateUser(responseData.user);
+            setIsFollowed(true);
+        });
     };
 
     const deleteAccount = async () => {
@@ -82,7 +82,7 @@ const Profile = props => {
                         <div className='profile-image'>
                             {user.image
                                 ? <Image src={user.image} alt={user.name}/> 
-                                : <p>{user.name}</p>
+                                : <p className='avatar-name font-50'>{user.name.charAt().toUpperCase()}</p>
                             }
                         </div>
                         {isLoggedIn && userInfo._id === user._id && <Button>
@@ -111,6 +111,7 @@ const Profile = props => {
                 </div>
             </div>
             <div className='line'></div>
+            {JSON.stringify(props.userRdcr)}
             <div className='profile-notes'>
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
                 <p className='profile-notes-title'>Posts</p>
@@ -142,7 +143,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        isLogout: () => dispatch(actions.authLogout())
+        isLogout: () => dispatch(actions.authLogout()),
+        onUpdateUser: user => dispatch(actions.updateUser(user))
     };
 };
 

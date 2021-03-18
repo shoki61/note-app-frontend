@@ -25,7 +25,7 @@
 }
 
 .comment-item-date{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     font-family: 'Source Sans Pro', sans-serif;
     color:#757575
@@ -33,6 +33,6 @@
 
 .comment-item-comment{
     font-weight: 500;
-    color:#856969;
+    color:#505050;
     margin:7px 0 25px 0
 }

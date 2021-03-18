@@ -22,6 +22,10 @@ const reducer = (state = initialState, action) => {
             isLoggedIn: false,
             userInfo: null
         };
+        case actionTypes.UPDATE_USER: return {
+            ...state,
+            userInfo: action.user
+        }
         default: return state;
     };
 };

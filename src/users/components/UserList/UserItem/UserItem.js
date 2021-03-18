@@ -15,7 +15,7 @@ const UserItem = props => {
                         <div className='user-item-image'>
                             {props.image 
                                 ? <Image src={props.image} alt={props.name}/> 
-                                : <p className='user-avatar-name'>{props.name}</p>
+                                : <p className='avatar-name font-20'>{props.name.charAt(0).toUpperCase()}</p>
                             }
                         </div>
                         <div>

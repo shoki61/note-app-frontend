@@ -21,7 +21,15 @@ const Note = (props) => {
   const [successStatus, setSuccessStatus] = useState('');
   const [userActions, setUserActions] = useState({favorable: true, markable:true});
 
-  const {_id: userId, image, name} = props.userRdcr.userInfo;
+
+  let userId;
+  let image;
+  let name;
+  if(props.userRdcr.userInfo){
+    userId = props.userRdcr.userInfo._id;
+    image = props.userRdcr.userInfo.image;
+    name = props.userRdcr.userInfo.name; 
+  }
 
   useEffect(() => {
     const getNote = async () => {
@@ -52,65 +60,72 @@ const Note = (props) => {
 
 
   const updatePostHandler = async type => {
-    let data;
-    if(type === 'likes'){
-      data={likes: '', userId};
-    }else if( type === 'markings'){
-      data={markings:'', userId};
-    }else{
-      data={comments: '', comment, userId};
-    };
-
-    const response = await fetch(`http://localhost:5000/api/notes/update-note/${props.location.state.id}`,{
-      method: 'PATCH',
-      headers:{
-        'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    const responseData = await response.json();
-    if(responseData.note){
+    if(props.userRdcr.userInfo){
+        let data;
       if(type === 'likes'){
-        if(note[type].indexOf(userId) > -1) return;
-        setUserActions(prevActions => {
-          return {...prevActions, favorable:false};
-        });
-        let updateLikes = note.likes;
-        updateLikes.push(userId);
-        setNote(prevNote => {
-          return {...prevNote, likes: updateLikes}
-        });
-      }else if(type === 'markings'){
-        if(note[type].indexOf(userId) > -1) return;
-        setUserActions(prevActions => {
-          return {...prevActions, markable:false};
-        });
-        let updateMarkings = note.markings;
-        updateMarkings.push(userId)
-        setNote(prevNote => {
-          return {...prevNote, markings: updateMarkings}
-        });
+        data={likes: '', userId};
+      }else if( type === 'markings'){
+        data={markings:'', userId};
       }else{
-        note.comments.push({
-          user:{
-            name,
-            image
-          },
-          date: new Date().toLocaleString(),
-          comment
-        });
-        setWorning(true);
-        setSuccess(true);
-        setSuccessStatus('Your note has been saved successfully.');
-        setTimeout(()=>setWorning(false),4000);
+        data={comments: '', comment, userId};
       };
-    }else{
-      if(type === 'comments'){
-        setWorning(true);
-        setSuccess(false);
-        setSuccessStatus('Unexpected error occured please try again.');
-        setTimeout(()=>setWorning(false),4000);
+
+      const response = await fetch(`http://localhost:5000/api/notes/update-note/${props.location.state.id}`,{
+        method: 'PATCH',
+        headers:{
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const responseData = await response.json();
+      if(responseData.note){
+        if(type === 'likes'){
+          if(note[type].indexOf(userId) > -1) return;
+          setUserActions(prevActions => {
+            return {...prevActions, favorable:false};
+          });
+          let updateLikes = note.likes;
+          updateLikes.push(userId);
+          setNote(prevNote => {
+            return {...prevNote, likes: updateLikes}
+          });
+        }else if(type === 'markings'){
+          if(note[type].indexOf(userId) > -1) return;
+          setUserActions(prevActions => {
+            return {...prevActions, markable:false};
+          });
+          let updateMarkings = note.markings;
+          updateMarkings.push(userId)
+          setNote(prevNote => {
+            return {...prevNote, markings: updateMarkings}
+          });
+        }else{
+          note.comments.push({
+            user:{
+              name,
+              image
+            },
+            date: new Date().toLocaleString(),
+            comment
+          });
+          setWorning(true);
+          setSuccess(true);
+          setSuccessStatus('Your note has been saved successfully.');
+          setTimeout(()=>setWorning(false),4000);
+        };
+      }else{
+        if(type === 'comments'){
+          setWorning(true);
+          setSuccess(false);
+          setSuccessStatus('Unexpected error occured please try again.');
+          setTimeout(()=>setWorning(false),4000);
+        };
       };
+    }else if(type === 'comments'){
+      setWorning(true);
+      setSuccess(false);
+      setSuccessStatus('Please login first');
+      setTimeout(()=>setWorning(false),4000);
     };
   };
 
@@ -132,7 +147,7 @@ const Note = (props) => {
                 {note.creator.image ? (
                   <Image src={note.creator.image} alt={note.creator.name} />
                 ) : (
-                  <p>{note.creator.name}</p>
+                  <p className='avatar-name font-20'>{note.creator.name.charAt(0).toUpperCase()}</p>
                 )}
               </div>
               </NavLink>

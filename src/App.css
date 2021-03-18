@@ -70,6 +70,25 @@ p{
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 20px;
     font-weight: 600;
+}
+
+.font-50{
+    font-size: 50px;
+}
+
+.font-40{
+    font-size: 40px;
+}
+
+.font-30{
+    font-size: 30px;
+}
+
+.font-20{
+    font-size: 20px;
+}
+
+.font-15{
+    font-size: 15px;
 }
