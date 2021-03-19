@@ -41,13 +41,15 @@ const Profile = props => {
 
     const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
 
-    const follow = async () => {
+    const follow = async (followId = null) => {
+        let id = props.location.state.id;
+        if(followId) id = followId;
         await fetch(`http://localhost:5000/api/users/update-user/${userInfo._id}`,{
             method: 'PATCH',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({follow: props.location.state.id})
+            body: JSON.stringify({follow: id ? id : props.location.state.id})
         }).then(response => response.json())
         .then(responseData => {
             props.onUpdateUser(responseData.user);
@@ -73,7 +75,12 @@ const Profile = props => {
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
             {showFollow && <Modal closeModal={changeShowFollow}>
-                <PersonsList userInfo={userInfo ? userInfo : null} data={followData} closeModal={changeShowFollow}/>
+                <PersonsList 
+                    follow={follow}
+                    userInfo={userInfo ? userInfo : null} 
+                    data={followData} 
+                    closeModal={changeShowFollow}
+                />
             </Modal>}
             { user ? <div className='profile-container'>
             <div className='profile-info center'>
@@ -106,7 +113,7 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
-                    {isLoggedIn && userInfo._id !== user._id && <Button onClick={follow} className={isFollowed ? 'black' : 'black-outline'}>{isFollowed ? 'Following' : 'Follow'}</Button>}
+                    {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isFollowed ? 'black' : 'black-outline'}>{isFollowed ? 'Following' : 'Follow'}</Button>}
                     {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>

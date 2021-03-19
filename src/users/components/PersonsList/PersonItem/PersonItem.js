@@ -7,9 +7,8 @@ import Button from '../../../../shared/components/Button/Button';
 import './PersonItem.css';
 
 const PersonItem = props => {
-    console.log(props.userInfo)
-    return <NavLink to={{pathname:'/profile', state: {id: props.id}}} onClick={props.closeModal} className='person-item-container'>
-        <div style={{display:'flex'}}>
+    return <div className='person-item-container'>
+        <NavLink to={{pathname:'/profile', state: {id: props.id}}} style={{display:'flex', width: '100%'}} onClick={props.closeModal}>
             <div className='person-item-avatar mr-1'>
                 {props.image
                     ? <Image src={props.image} alt={props.name}/>
@@ -20,15 +19,16 @@ const PersonItem = props => {
                 <p className='person-item-name'>{props.name}</p>
                 <p className='person-item-job'>{props.job}</p>
             </div>
-        </div>
+        </NavLink>
         {props.userInfo && props.userInfo._id !== props.id && 
             <Button 
+                onClick={() => props.follow(props.id)}
                 className={props.userInfo && props.userInfo.following.includes(props.id) ? 'black' : 'black-outline'}
             >
                 {props.userInfo && props.userInfo.following.includes(props.id) ? 'Following' : 'Follow'}
             </Button>
         }
-    </NavLink>;
+    </div>;
 };
 
 
