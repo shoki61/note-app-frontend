@@ -101,10 +101,8 @@ const Note = (props) => {
           });
         }else{
           note.comments.push({
-            user:{
-              name,
-              image
-            },
+            name,
+            image,
             date: new Date().toLocaleString(),
             comment
           });

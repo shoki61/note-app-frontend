@@ -6,6 +6,7 @@ import './NoteComments.css';
 
 
 const NoteComments = props => {
+    console.log(props.data)
     return (
         <div className='note-comments-container'>
             <Button onClick={props.onClose} className='note-comments-close'><i className='fa fa-close'></i></Button>
@@ -13,10 +14,10 @@ const NoteComments = props => {
             {props.data.length ? props.data.map(comment => <CommentItem
                 key={comment._id}
                 id={comment._id}
-                userName={comment.user.name}
+                userName={comment.name}
                 date={comment.date}
                 comment={comment.comment}
-                userImage={comment.user.image}
+                userImage={comment.image}
             />): <p className='no-note-comment'>This note has no comments yet</p> }
         </div>
     );
