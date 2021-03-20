@@ -57,8 +57,7 @@ const NoteTaker = props => {
             },
             body: JSON.stringify({title, description, image, keywords, hidden, userId: creator})
         });
-        const responseData = response.json();
-        if(responseData.note) history.push('/notes');
+        if(response.status === 201 || 200) history.push('/notes');
     };
 
     const hiddenHandler = () => {

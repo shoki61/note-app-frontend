@@ -191,14 +191,16 @@ const Note = (props) => {
               {note.image && <Image src={note.image} alt={note.title} />}
             </div>
             <p className="note-description">{note.description}</p>
-            <div>
-              <p className="note-keywords-title">Keywords</p>
-              <div className="note-keywords">
-                {note.keywords.map((item, index) => (
-                  <span key={index} className="note-keyword">{item}</span>
-                ))}
+            {note.keywords.length > 0 &&
+              <div>
+                <p className="note-keywords-title">Keywords</p>
+                <div className="note-keywords">
+                  {note.keywords.map((item, index) => (
+                    <span key={index} className="note-keyword">{item}</span>
+                  ))}
+                </div>
               </div>
-            </div>
+            }
           </div>
 
           <div className="line"></div>
