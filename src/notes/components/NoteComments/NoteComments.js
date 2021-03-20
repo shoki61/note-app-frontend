@@ -12,6 +12,7 @@ const NoteComments = props => {
             <Button onClick={props.onClose} className='note-comments-close'><i className='fa fa-close'></i></Button>
             <p className='note-comment-title'>Comments</p>
             {props.data.length ? props.data.map(comment => <CommentItem
+                user={comment.user}
                 key={comment._id}
                 id={comment._id}
                 userName={comment.name}

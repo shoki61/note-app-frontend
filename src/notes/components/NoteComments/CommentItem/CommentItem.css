@@ -36,3 +36,42 @@
     color:#505050;
     margin:7px 0 25px 0
 }
+
+.user-info{
+    width: 360px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgb(197, 197, 197);
+    background-color: #fff;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    border:1px solid rgb(211, 211, 211)
+}
+
+.user-info-container{
+    display: none;
+    position:absolute;
+    padding:0 0 15px 0;
+}
+
+.user-name-container{
+    position: relative;
+}
+
+.user-name-container:hover .comment-item-name{
+    color:#000;
+    cursor: pointer;
+}
+
+.user-name-container:hover .user-info-container{
+    display: flex;
+    transform: translate(-55px, -115px);
+}
+
+.user-info-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+
