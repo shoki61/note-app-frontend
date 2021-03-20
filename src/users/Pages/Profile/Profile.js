@@ -19,7 +19,7 @@ const Profile = props => {
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();
     const [ userNotes, setUserNotes ] = useState([]);
-    const [ isFollowed, setIsFollowed ] = useState(false);
+    const [ isFollowed, setIsFollowed ] = useState();
     const [ showFollow, setShowFollow ] = useState(false);
     const [followData, setFollowData] = useState();
 
@@ -108,7 +108,7 @@ const Profile = props => {
                         </div>
                     </div>
                 </div>
-                <div className='prodile-links center'>
+                <div className='profile-links center'>
                     <Button className='black-outline'><i className='fa fa-facebook'></i></Button>
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
