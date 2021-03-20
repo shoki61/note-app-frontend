@@ -12,7 +12,12 @@ const Notes = props => {
         const getNotes = async() => {
             const response = await fetch('http://localhost:5000/api/notes');
             const responseData = await response.json();
-            const publicNotes = responseData.notes.filter(item => item.creator === props.userRdcr.userInfo._id ? item : item.hidden === false)
+            let publicNotes;
+            if(props.userRdcr.userInfo){
+                publicNotes = responseData.notes.filter(item => item.creator === props.userRdcr.userInfo._id ? item : item.hidden === false);
+            }else{
+                publicNotes = responseData.notes.filter(item => item.hidden === false);
+            };
             setNotes(publicNotes);
         };
         getNotes();

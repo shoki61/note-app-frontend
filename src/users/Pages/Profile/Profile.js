@@ -33,7 +33,13 @@ const Profile = props => {
             const responseData = await responseUser.json();
             const responseUserNotes = await responseNotes.json();
             setUser(responseData);
-            setUserNotes(responseUserNotes);
+            let publicUserNotes;
+            if(userInfo){
+                publicUserNotes = responseUserNotes.notes.filter(item => item.creator === userInfo._id ? item : item.hidden === false);
+            }else{
+                publicUserNotes = responseUserNotes.notes.filter(item => item.hidden === false);
+            };
+            setUserNotes(publicUserNotes);
             if(isLoggedIn) setIsFollowed(responseData.follower.find(item => item._id === userInfo._id));
         };
         if(props.location.state.id) getUser();
@@ -135,7 +141,7 @@ const Profile = props => {
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
                     </div>
                 </div>
-                { user.notes.length ? <NotesList data={userNotes.notes}/> : <p className='no-notes-text'>There is no user note</p> }
+                { user.notes.length ? <NotesList data={userNotes}/> : <p className='no-notes-text'>There is no user note</p> }
             </div>
         </div>: <Spinner/> }
         </div>
