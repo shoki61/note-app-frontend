@@ -34,6 +34,9 @@ const CommentItem = (props) => {
       <div className='comment-item-content'>
           <p className='comment-item-comment'>{props.comment}</p>
       </div>
+      {
+        !props.user && <p className='deleted-acount'>account deleted</p>
+      }
     </div>
   );
 };
