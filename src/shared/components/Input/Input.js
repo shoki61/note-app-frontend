@@ -5,6 +5,7 @@ import './Input.css';
 const Input = props => {
     if(props.element === 'input'){
         return  <input 
+                    checked={props.value}
                     id={props.id}
                     onChange={props.onChange}
                     value={props.value}
