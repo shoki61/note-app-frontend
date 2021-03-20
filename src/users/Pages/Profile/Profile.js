@@ -34,7 +34,7 @@ const Profile = props => {
             const responseUserNotes = await responseNotes.json();
             setUser(responseData);
             setUserNotes(responseUserNotes);
-            if(isLoggedIn && responseData.follower.find(item => item._id === userInfo._id)) setIsFollowed(true);
+            if(isLoggedIn) setIsFollowed(responseData.follower.find(item => item._id === userInfo._id));
         };
         if(props.location.state.id) getUser();
     }, [props.location.state.id]);
@@ -53,7 +53,7 @@ const Profile = props => {
         }).then(response => response.json())
         .then(responseData => {
             props.onUpdateUser(responseData.user);
-            setIsFollowed(true);
+            setIsFollowed(responseData.user.following.find(item => item === user._id));
         });
     };
 
@@ -113,12 +113,11 @@ const Profile = props => {
                     <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
                     <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
                     <Button className='black-outline'><i className='fa fa-link'></i></Button>
-                    {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isFollowed ? 'black' : 'black-outline'}>{isFollowed ? 'Following' : 'Follow'}</Button>}
+                    {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
                     {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline'>Delete the account</Button>}
                 </div>
             </div>
             <div className='line'></div>
-            {JSON.stringify(props.userRdcr)}
             <div className='profile-notes'>
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
                 <p className='profile-notes-title'>Posts</p>
