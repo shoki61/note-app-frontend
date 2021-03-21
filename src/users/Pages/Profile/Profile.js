@@ -19,7 +19,7 @@ const Profile = props => {
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();
     const [ userNotes, setUserNotes ] = useState([]);
-    const [ notesToRender, setNotesToRender] = useState();
+    const [ notesToRender, setNotesToRender] = useState([]);
     const [ isFollowed, setIsFollowed ] = useState();
     const [ showFollow, setShowFollow ] = useState(false);
     const [ followData, setFollowData ] = useState();
@@ -83,7 +83,7 @@ const Profile = props => {
 
     const searchPost = event => {
         setSearchingPost(event.target.value);
-        setNotesToRender(userNotes.filter(item => item.title.toLowerCase().includes(event.target.value)));
+        setNotesToRender(userNotes.filter(item => item.title.toLowerCase().includes(event.target.value.toLowerCase())));
     };
 
     return (
@@ -152,7 +152,12 @@ const Profile = props => {
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
                     </div>
                 </div>
-                { user.notes.length ? <NotesList data={notesToRender}/> : <p className='no-notes-text'>There is no user note</p> }
+                { userNotes.length && notesToRender.length
+                    ? <NotesList data={notesToRender}/> 
+                    : (userNotes.length && searchingPost)
+                    ? <p className='no-notes-text mt-2'>No matching posts</p> 
+                    : <p className='no-notes-text mt-2'>There is no user posts</p> 
+                }
             </div>
         </div>: <Spinner/> }
         </div>
