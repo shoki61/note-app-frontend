@@ -88,8 +88,10 @@ const Profile = props => {
 
     const filterNote = type => {
         if(userInfo && user._id === userInfo._id){
+            console.log(userInfo[type].filter(item => item))
             setNotesToRender(userInfo[type].filter(item => item));
         }else{
+            console.log(user[type].filter(item => item.hidden === false))
             setNotesToRender(user[type].filter(item => item.hidden === false));
         };
     };
@@ -160,7 +162,7 @@ const Profile = props => {
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
                     </div>
                 </div>
-                { userNotes.length && notesToRender.length
+                { userNotes.length || notesToRender.length
                     ? <NotesList data={notesToRender}/> 
                     : (userNotes.length && searchingPost)
                     ? <p className='no-notes-text mt-2'>No matching posts</p> 

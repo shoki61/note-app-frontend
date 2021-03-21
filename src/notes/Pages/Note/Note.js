@@ -103,6 +103,7 @@ const Note = (props) => {
           note.comments.push({
             name,
             image,
+            user: props.userRdcr.userInfo,
             date: new Date().toLocaleString(),
             comment
           });
