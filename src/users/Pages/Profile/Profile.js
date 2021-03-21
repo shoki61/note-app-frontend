@@ -86,6 +86,14 @@ const Profile = props => {
         setNotesToRender(userNotes.filter(item => item.title.toLowerCase().includes(event.target.value.toLowerCase())));
     };
 
+    const filterNote = type => {
+        if(userInfo && user._id === userInfo._id){
+            setNotesToRender(userInfo[type].filter(item => item));
+        }else{
+            setNotesToRender(user[type].filter(item => item.hidden === false));
+        };
+    };
+
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
             {showFollow && <Modal closeModal={changeShowFollow}>
@@ -137,9 +145,9 @@ const Profile = props => {
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
                 <p className='profile-notes-title'>Posts</p>
                     <div className='center'>
-                        <Button className='black-outline inline'><i className="fa fa-comment-o"></i> {user.comments.length}</Button>
-                        <Button className='black-outline inline'><i className="fa fa-bookmark-o"></i> {user.markings.length}</Button>
-                        <Button className='black-outline inline'><i className="fa fa-heart-o"></i> {user.likes.length}</Button>
+                        <Button onClick={() => filterNote('comments')} className='black-outline inline'><i className="fa fa-comment-o"></i> {user.comments.length}</Button>
+                        <Button onClick={() => filterNote('markings')} className='black-outline inline'><i className="fa fa-bookmark-o"></i> {user.markings.length}</Button>
+                        <Button onClick={() => filterNote('likes')} className='black-outline inline'><i className="fa fa-heart-o"></i> {user.likes.length}</Button>
                         {isLoggedIn && userInfo._id === user._id && <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>}
                         <Input
                             placeholder='search note...'
