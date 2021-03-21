@@ -19,9 +19,11 @@ const Profile = props => {
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();
     const [ userNotes, setUserNotes ] = useState([]);
+    const [ notesToRender, setNotesToRender] = useState();
     const [ isFollowed, setIsFollowed ] = useState();
     const [ showFollow, setShowFollow ] = useState(false);
-    const [followData, setFollowData] = useState();
+    const [ followData, setFollowData ] = useState();
+    const [ searchingPost, setSearchingPost ] = useState('');
 
     const { userInfo, isLoggedIn } = props.userRdcr;
 
@@ -40,6 +42,7 @@ const Profile = props => {
                 publicUserNotes = responseUserNotes.notes.filter(item => item.hidden === false);
             };
             setUserNotes(publicUserNotes);
+            setNotesToRender(publicUserNotes);
             if(isLoggedIn) setIsFollowed(responseData.follower.find(item => item._id === userInfo._id));
         };
         if(props.location.state.id) getUser();
@@ -76,6 +79,11 @@ const Profile = props => {
     const changeShowFollow = value => {
         setFollowData(value);
         setShowFollow(prevState => !prevState);
+    };
+
+    const searchPost = event => {
+        setSearchingPost(event.target.value);
+        setNotesToRender(userNotes.filter(item => item.title.toLowerCase().includes(event.target.value)));
     };
 
     return (
@@ -124,6 +132,7 @@ const Profile = props => {
                 </div>
             </div>
             <div className='line'></div>
+            {searchingPost}
             <div className='profile-notes'>
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
                 <p className='profile-notes-title'>Posts</p>
@@ -136,12 +145,14 @@ const Profile = props => {
                             placeholder='search note...'
                             className='search-note-input'
                             element='input'
+                            value={searchingPost}
+                            onChange={searchPost}
                             style={inputVisible ? {width:250, border:'1px solid grey'}:{width:0, padding:0}}
                         />
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
                     </div>
                 </div>
-                { user.notes.length ? <NotesList data={userNotes}/> : <p className='no-notes-text'>There is no user note</p> }
+                { user.notes.length ? <NotesList data={notesToRender}/> : <p className='no-notes-text'>There is no user note</p> }
             </div>
         </div>: <Spinner/> }
         </div>
