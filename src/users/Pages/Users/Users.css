@@ -4,7 +4,6 @@
     margin:auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     align-items: flex-start;
 }
 
@@ -28,13 +27,14 @@
     z-index: 100;
     font-size: 20px;
     padding-left: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     margin-top: 15px;
 }
 
 .home-content{
     display: flex;
     align-items: flex-end;
+    margin-top: 150px;
 }
 
 .user-list-container{
@@ -47,5 +47,4 @@
     font-weight: 600;
     font-family: consolas;
     color: #fff;
-    text-shadow: 1px 1px rgb(192, 192, 192);
 }

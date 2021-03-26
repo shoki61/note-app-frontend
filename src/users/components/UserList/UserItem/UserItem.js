@@ -20,7 +20,7 @@ const UserItem = props => {
                         </div>
                         <div>
                             <p className='user-item-name'>{props.name}</p>
-                            <p className='user-item-notes'>Notes: {props.notes}</p>
+                            <p className='user-item-notes'>Posts: {props.notes}</p>
                         </div>
                     </div>
                 </NavLink>

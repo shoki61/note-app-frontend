@@ -36,7 +36,7 @@ const Users = () => {
           <p className='home-description'>Freely share your own ideas, follow people and read their posts, like, mark for later reading and comment on posts.</p>
         </div>
         <div className='user-list-container'>
-          <p className='user-list-title'>Recent posts</p>
+          <p className='user-list-title'>Users</p>
           {users ? <UserList data={users}/> : <Spinner/>}
         </div>
       </div>

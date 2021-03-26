@@ -1,5 +1,19 @@
 .user-item-card{
     transition: all .2s ease-in-out;
+    background-color: rgba(0, 0, 0, .4);
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom:1px solid rgba(129, 129, 129, 0.4)
+}
+
+.user-item-card:first-child{
+    border-radius:  5px 5px 0 0;
+    margin-top: 10px;
+}
+
+.user-item-card:last-child{
+    border-radius: 0 0 5px 5px;
+    border-bottom: 0;
 }
 
 .user-item-container{
@@ -12,17 +26,19 @@
 }
 
 .user-item-card:hover{
-    background-color: rgb(240, 240, 240);
+    background-color: rgba(0, 0, 0, .7);
 }
 
 .user-item-content{
     width: 100%;
-    max-width: 300px;
-    min-width: 250px;
+    max-width: 250px;
+    min-width: 200px;
     justify-content: flex-start !important;
 }
 
 .user-item-image{
+    min-width: 75px;
+    min-height: 75px;
     width: 75px;
     height: 75px;
     border-radius: 100px;
@@ -31,12 +47,14 @@
 
 .user-item-name{
     font-size: 18px;
-    font-weight: 700;
-    color:#555555
+    font-weight: 500;
+    width: 100%;
+    color:rgb(236, 236, 236)
 }
 
 .user-item-notes{
-    color:rgb(116, 116, 116)
+    color:rgb(196, 196, 196);
+    font-size: 17px;
 }
 
 .user-avatar-name{
