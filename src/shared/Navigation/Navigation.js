@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 
 import NavigationItem from './NavigationItem/NavigationItem';
 import Button from '../components/Button/Button';
+import Image from '../components/Image/Image';
+import Logo from '../../assets/logo.png';
 import * as actions from '../../store/actions/index';
 import './Navigation.css';
 
 const Navigation = props => {
   const { userInfo, isLoggedIn } = props.userRdcr;
   return(
-    <header className='navigation box app-back-color'>
-      <p className='app-name'>My block</p>
+    <header className='navigation box'>
+      <Image className='logo' src={Logo}/>
       <nav>
         <ul className='center'>
           <NavigationItem

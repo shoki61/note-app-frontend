@@ -1,18 +1,15 @@
 .navigation{
-    height: 55px;
+    height: 75px;
     width: 100%;
     color:#fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 25px
+    padding: 0 25px;
+    position: fixed;
+    z-index: 100;
 }
 
-ul li+li::before {
-    content: "|";
-    padding: 0 2rem;
-    color: rgb(165, 165, 165);
-}
 
 .app-name{
     font-size: 20px;
@@ -21,7 +18,6 @@ ul li+li::before {
 ul{
     list-style: none;
     justify-content: space-between !important;
-    margin:0
 }
 
 .nav-auth-button{
