@@ -3,8 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     isLoggedIn: false,
-    userInfo:null,
-    path: '/',
+    userInfo:null
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,12 +25,6 @@ const reducer = (state = initialState, action) => {
         case actionTypes.UPDATE_USER: return {
             ...state,
             userInfo: action.user
-        };
-        case actionTypes.CHANGE_PATH:
-            console.log(action.path) 
-        return {
-            ...state,
-            path: action.path
         };
         default: return state;
     };

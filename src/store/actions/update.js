@@ -7,10 +7,3 @@ export const updateUser = user => {
         user
     };
 };
-
-export const updatePath = path => {
-    return {
-        type: actionTypes.CHANGE_PATH,
-        path
-    };
-};

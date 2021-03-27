@@ -14,7 +14,6 @@ import Auth from './users/Pages/Auth/Auth';
 import './App.css';
 
 const App = props => {
-
   return (
     <div>
       <BrowserRouter>

@@ -5,6 +5,5 @@ export {
 } from './auth';
 
 export {
-    updateUser,
-    updatePath
+    updateUser
 } from './update';

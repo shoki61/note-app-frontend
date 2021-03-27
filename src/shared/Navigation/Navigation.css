@@ -1,15 +1,14 @@
 .navigation{
     height: 75px;
     width: 100%;
-    color:#fff;
     display: flex;
     align-items: center;
+    color:#fff;
     justify-content: space-between;
     padding: 0 25px;
     position: fixed;
     z-index: 100;
 }
-
 
 .app-name{
     font-size: 20px;
