@@ -15,7 +15,7 @@
 }
 
 .home-text{
-    color:#fff;
+    color:rgb(233, 233, 233);
     z-index: 100;
     padding-left: 50px;
     font-family: consolas;
@@ -23,12 +23,11 @@
 }
 
 .home-description{
-    color:#fff;
+    color:rgb(224, 224, 224);
     z-index: 100;
     font-size: 20px;
     padding-left: 50px;
-    margin-bottom: 50px;
-    margin-top: 15px;
+    margin: 15px 0 35px 0;
 }
 
 .home-content{
@@ -39,7 +38,7 @@
 
 .user-list-container{
     margin:auto;
-    width: 40%;
+    width: 33%;
 }
 
 .user-list-title{

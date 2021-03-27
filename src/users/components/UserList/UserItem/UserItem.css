@@ -3,18 +3,13 @@
     background-color: rgba(0, 0, 0, .4);
     box-shadow: none;
     border-radius: 0;
-    border-bottom:1px solid rgba(129, 129, 129, 0.4)
-}
-
-.user-item-card:first-child{
-    border-radius:  5px 5px 0 0;
-    margin-top: 10px;
+    border-bottom:1px solid rgba(129, 129, 129, 0.4);
 }
 
 .user-item-card:last-child{
-    border-radius: 0 0 5px 5px;
-    border-bottom: 0;
+    border-bottom: none;
 }
+
 
 .user-item-container{
     width: 100%;
