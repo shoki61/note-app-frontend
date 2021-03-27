@@ -5,7 +5,7 @@ import './NavigationItem.css';
 
 const NavigationItem = props => {
     return (
-        <li className='nav-item'>
+        <li onClick={() => props.updatePath(props.path)} className='nav-item'>
             <NavLink to={{pathname: props.path, state:{id: props.userId}}}>
                 {props.title}
             </NavLink>
