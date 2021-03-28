@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 import Card from '../../../shared/components/Card/Card';
@@ -9,13 +9,40 @@ import UpdateLink from '../../components/UpdateLink/UpdateLink';
 import './UpdateProfile.css';
 
 const UpdateProfile = props => {
-    console.log(props)
-    const { name, email, job, image } = props.location.state;
+    const [newImage, setNewImage] = useState(null);
+    const [file, setFile] = useState();
+    const { name, email, job, image, id } = props.location.state;
+
+
+    const newImageHandler = (img, file) => {
+        setNewImage(img);
+        setFile(file)
+    };
+
+    const saveNewUserData = async () => {
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('name', name);
+        formData.append('image', file);
+        formData.append('job', job);
+        console.log(file);
+        const response = await fetch(`http://localhost:5000/api/users/update-user/${id}`, {
+            method: 'PATCH',
+            body: formData
+        })
+
+        const responseData = await response.json();
+        console.log(responseData);
+    };
+
+
     return(
         <div className='update-profile-container'>
             <Card>
                 <div className='update-profile-form-container'>
-                    <UploadProfileImg initialValue={image}/>
+                    {JSON.stringify(newImage)}
+                    {newImage && <img src={newImage} style={{width: 100}}/>}
+                    <UploadProfileImg imageHandler={newImageHandler} initialValue={image}/>
                     <p className='update-profile-title'>Name</p>
                     <Input value={name} element='input' className='input-full'/>
 
@@ -33,11 +60,12 @@ const UpdateProfile = props => {
                     <UpdateLink value='loremipsum' iconName='fa fa-linkedin'/>
 
                     <div style={{margin:'40px 0 30px 0'}} className='line'></div>
-                    <Button className='info full'>Save the change</Button>
+                    <Button onClick={saveNewUserData} className='info full'>Save the change</Button>
                 </div>
             </Card>
         </div>
     )
 };
+
 
 export default UpdateProfile;

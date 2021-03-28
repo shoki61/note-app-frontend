@@ -120,7 +120,7 @@ const Profile = props => {
                             }
                         </div>
                         {isLoggedIn && userInfo._id === user._id && <Button>
-                            <NavLink to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job}}}>
+                            <NavLink to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job, id: user._id}}}>
                                 <span className='profile-edit'><i className="glyphicon glyphicon-pencil"></i> edit profile</span>
                             </NavLink>
                         </Button>}

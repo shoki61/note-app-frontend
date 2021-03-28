@@ -10,26 +10,36 @@ const UploadProfileImg = props => {
     const [file, setFile] = useState();
     const [previewUrl, setPreviewUrl] = useState();
 
-    useEffect(() => {
-        if(!file) {
-            if(props.initialValue) return setPreviewUrl(props.initialValue);
-        };
+    // useEffect(() => {
+    //     if(!file) {
+    //         if(props.initialValue) return setPreviewUrl(props.initialValue);
+    //     };
+    //     const fileReader = new FileReader();
+    //     fileReader.onload = () => {
+    //         setPreviewUrl(fileReader.result);
+    //     };
+    //     fileReader.readAsDataURL(file);
+    // }, [file]);
+
+    const pickedHandler = async event => {
+        let pickedFile;
+
+        pickedFile = event.target.files[0];
+
         const fileReader = new FileReader();
         fileReader.onload = () => {
             setPreviewUrl(fileReader.result);
+            props.imageHandler(fileReader.result, pickedFile);
         };
-        fileReader.readAsDataURL(file);
-    }, [file]);
-
-    const pickedHandler = event => {
-        let pickedFile;
-        console.log(event.target.files)
-        if(event.target.files && event.target.files.length !== 0){
-            pickedFile = event.target.files[0];
-            setFile(pickedFile);
-        }else{
-            console.log('error')
-        }
+        fileReader.readAsDataURL(pickedFile);
+        
+        // if(event.target.files && event.target.files.length !== 0){
+        //     pickedFile = event.target.files[0];
+        //     setFile(pickedFile);
+        // }else{
+        //     console.log('error')
+        // }
+        
     };
 
     const pickImageHandler = () => {
@@ -54,7 +64,6 @@ const UploadProfileImg = props => {
                     <Button onClick={pickImageHandler} className='white'><i className='fa fa-camera'></i>Upload image</Button>
                 </Opacity>
             </div> 
-            
         </div>
     </div>
 };
