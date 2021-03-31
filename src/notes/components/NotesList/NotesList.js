@@ -8,7 +8,7 @@ import './NotesList.css';
 const NotesList = props => {
 
     let noteItem = <Spinner/>;
-    
+    console.log(props.data)
     if(props.data){
         noteItem = props.data.map(note => <NoteItem
             key={note._id}
@@ -18,6 +18,8 @@ const NotesList = props => {
             description={note.description}
             createdDate={note.createdAt}
         />);
+    }else{
+        noteItem = <p>Post Not Found</p>
     };
     return <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
         {noteItem}

@@ -61,6 +61,7 @@ const Profile = props => {
             body: JSON.stringify({follow: id ? id : props.location.state.id})
         }).then(response => response.json())
         .then(responseData => {
+            console.log(responseData)
             props.onUpdateUser(responseData.user);
             setIsFollowed(responseData.user.following.find(item => item === user._id));
         });
@@ -115,7 +116,7 @@ const Profile = props => {
                     <div className='profile-image-container center'>
                         <div className='profile-image'>
                             {user.image
-                                ? <Image src={user.image} alt={user.name}/> 
+                                ? <Image src={`http://localhost:5000/${user.image}`} alt={user.name}/> 
                                 : <p className='avatar-name font-50'>{user.name.charAt().toUpperCase()}</p>
                             }
                         </div>

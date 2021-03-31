@@ -13,9 +13,9 @@ const Notes = props => {
             const response = await fetch('http://localhost:5000/api/notes');
             const responseData = await response.json();
             let publicNotes;
-            if(props.userRdcr.userInfo){
+            if(props.userRdcr.userInfo && responseData.notes){
                 publicNotes = responseData.notes.filter(item => item.creator === props.userRdcr.userInfo._id ? item : item.hidden === false);
-            }else{
+            }else if(responseData.notes){
                 publicNotes = responseData.notes.filter(item => item.hidden === false);
             };
             setNotes(publicNotes);

@@ -144,7 +144,7 @@ const Note = (props) => {
               <NavLink to={{pathname:'/profile', state: {id: note.creator._id}}}>
               <div className="note-create-avatar">
                 {note.creator.image ? (
-                  <Image src={note.creator.image} alt={note.creator.name} />
+                  <Image src={`http://localhost:5000/${note.creator.image}`} alt={note.creator.name} />
                 ) : (
                   <p className='avatar-name font-20'>{note.creator.name.charAt(0).toUpperCase()}</p>
                 )}
