@@ -7,19 +7,13 @@ import './UploadProfileImg.css';
 
 const UploadProfileImg = props => {
     const filePickerRef = useRef();
-    const [file, setFile] = useState();
     const [previewUrl, setPreviewUrl] = useState();
 
-    // useEffect(() => {
-    //     if(!file) {
-    //         if(props.initialValue) return setPreviewUrl(props.initialValue);
-    //     };
-    //     const fileReader = new FileReader();
-    //     fileReader.onload = () => {
-    //         setPreviewUrl(fileReader.result);
-    //     };
-    //     fileReader.readAsDataURL(file);
-    // }, [file]);
+    useEffect(() => {
+        if(!previewUrl && props.initialValue) {
+            setPreviewUrl(`http://localhost:5000/${props.initialValue}`);
+        };
+    }, [previewUrl]);
 
     const pickedHandler = async event => {
         let pickedFile;
@@ -29,17 +23,9 @@ const UploadProfileImg = props => {
         const fileReader = new FileReader();
         fileReader.onload = () => {
             setPreviewUrl(fileReader.result);
-            props.imageHandler(fileReader.result, pickedFile);
+            props.imageHandler(pickedFile);
         };
-        fileReader.readAsDataURL(pickedFile);
-        
-        // if(event.target.files && event.target.files.length !== 0){
-        //     pickedFile = event.target.files[0];
-        //     setFile(pickedFile);
-        // }else{
-        //     console.log('error')
-        // }
-        
+        fileReader.readAsDataURL(pickedFile);        
     };
 
     const pickImageHandler = () => {

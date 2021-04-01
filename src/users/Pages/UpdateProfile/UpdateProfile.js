@@ -9,30 +9,38 @@ import UpdateLink from '../../components/UpdateLink/UpdateLink';
 import './UpdateProfile.css';
 
 const UpdateProfile = props => {
-    const [newImage, setNewImage] = useState(null);
     const [file, setFile] = useState();
     const { name, email, job, image, id } = props.location.state;
+    const [userData, setUserData] = useState({
+        name,
+        email,
+        job
+    });
 
-
-    const newImageHandler = (img, file) => {
-        setNewImage(img);
+    const newImageHandler = file => {
         setFile(file)
     };
 
     const saveNewUserData = async () => {
         const formData = new FormData();
-        formData.append('email', email);
-        formData.append('name', name);
-        formData.append('image', file);
-        formData.append('job', job);
-        console.log(file);
+        formData.append('email', userData.email);
+        formData.append('name', userData.name);
+        formData.append('image', file || image);
+        formData.append('job', userData.job);
         const response = await fetch(`http://localhost:5000/api/users/update-user/${id}`, {
             method: 'PATCH',
             body: formData
         })
-
         const responseData = await response.json();
-        console.log(responseData);
+    };
+
+    const inputHandler = event => {
+        setUserData(prevData => {
+            return {
+                ...prevData,
+                [event.target.id]: event.target.value
+            }
+        })
     };
 
 
@@ -40,17 +48,34 @@ const UpdateProfile = props => {
         <div className='update-profile-container'>
             <Card>
                 <div className='update-profile-form-container'>
-                    {JSON.stringify(newImage)}
-                    {newImage && <img src={newImage} style={{width: 100}}/>}
                     <UploadProfileImg imageHandler={newImageHandler} initialValue={image}/>
                     <p className='update-profile-title'>Name</p>
-                    <Input value={name} element='input' className='input-full'/>
+                    <Input 
+                        value={userData.name} 
+                        element='input' 
+                        className='input-full'
+                        id='name'
+                        onChange={inputHandler}
+                    />
 
                     <p className='update-profile-title'>Job</p>
-                    <Input value={job} placeholder='ender job...' element='input' className='input-full'/>
+                    <Input 
+                        value={userData.job} 
+                        placeholder='ender job...' 
+                        element='input' 
+                        className='input-full'
+                        id='job'
+                        onChange={inputHandler}
+                    />
 
                     <p className='update-profile-title'>E-mail</p>
-                    <Input element='input' className='input-full' value={email}/>
+                    <Input 
+                        element='input' 
+                        className='input-full' 
+                        id='email'
+                        value={userData.email}
+                        onChange={inputHandler}
+                    />
 
                     <p className='update-profile-title'>Links</p>
                     <UpdateLink value='loremipsum' iconName='fa fa-facebook'/>
