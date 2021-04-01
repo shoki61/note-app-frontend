@@ -40,7 +40,7 @@ const Auth = props => {
             return setError('Please enter valid email.');
           };
           try{
-            const data = JSON.stringify({email, password})
+            const data = JSON.stringify({email, password});
             const response = await fetch('http://localhost:5000/api/users/login',{
               method: 'POST',
               headers:{
@@ -49,19 +49,21 @@ const Auth = props => {
               body: data
             });
             const responseData = await response.json();
-            try {
+            if(responseData.user){
               props.onLogin(responseData.user);
               history.push('/users');
-            } catch(e){
+            }else{
               setError(responseData.message);
             };
-          } catch(e){}
+          } catch(e){
+            setError(e);
+          };
         }else{
           if(!validator.isLength(name) || !validator.isEmail(email) || !validator.isLength(password,{min:6}) || password !== rePassword){
             return setError('Error. Please check valid inputs');
           };
           try {
-            const data = JSON.stringify({name, email, password})
+            const data = JSON.stringify({name, email, password});
             const response = await fetch('http://localhost:5000/api/users/signup',{
               method: 'POST',
               headers:{
@@ -75,7 +77,7 @@ const Auth = props => {
           } catch(e){
             throw setError('Unknown error. Please try again');
           };
-        }
+        };
     };
 
     const changeMode = () => {
