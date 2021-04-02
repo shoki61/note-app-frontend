@@ -24,9 +24,9 @@ const PersonItem = props => {
         {props.userInfo && props.userInfo._id !== props.id && 
             <Button 
                 onClick={() => props.follow(props.id)}
-                className={props.userInfo && props.userInfo.following.includes(props.id) ? 'black' : 'black-outline'}
+                className={props.userInfo && props.userInfo.following.find(item => item._id === props.id) ? 'black' : 'black-outline'}
             >
-                {props.userInfo && props.userInfo.following.includes(props.id) ? 'Following' : 'Follow'}
+                {props.userInfo && props.userInfo.following.find(item => item._id === props.id) ? 'Following' : 'Follow'}
             </Button>
         }
     </div>;
