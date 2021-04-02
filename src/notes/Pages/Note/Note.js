@@ -187,7 +187,7 @@ const Note = (props) => {
           <div className="note-content">
             <p className="note-title">{note.title}</p>
             <div className="note-image">
-              {note.image && <Image src={note.image} alt={note.title} />}
+              {note.image && <Image src={`http://localhost:5000/${note.image}`} alt={note.title} />}
             </div>
             <p className="note-description">{note.description}</p>
             {note.keywords.length > 0 &&

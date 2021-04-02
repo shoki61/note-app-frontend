@@ -11,12 +11,12 @@ import './NoteTaker.css';
 const NoteTaker = props => {
     const { userInfo } = props.userRdcr;
     const history = useHistory();
+    const [file, setFile] = useState();
     const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : '');
     const [keywords, setKeywords] = useState(props.keywords || []);
     const [inputs, setInputs] = useState({
         title: props.title || '',
         description: props.description || '',
-        image: props.image || '',
         keywords: props.keywords || [],
         hidden: props.hidden || false,
         creator: userInfo._id
@@ -46,16 +46,24 @@ const NoteTaker = props => {
     };
 
     const sendNote = async(value) => {
-        const {title, description, image, keywords, hidden, creator} = inputs;
-        let url = 'http://localhost:5000/api/notes/create-note';
+        const {title, description, keywords, hidden, creator} = inputs;
 
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('image', file);
+        formData.append('keywords', keywords);
+        formData.append('hidden', hidden);
+        formData.append('userId', creator);
+
+        console.log(inputs.keywords)
+
+        let url = 'http://localhost:5000/api/notes/create-note';
         if(value === 'update') url = `http://localhost:5000/api/notes/update-note/${props.id}`;
         const response = await fetch(url, {
             method: value === 'update' ? 'PATCH' : 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({title, description, image, keywords, hidden, userId: creator})
+            body: formData
         });
         if(response.status === 201 || 200) history.push('/notes');
     };
@@ -81,13 +89,8 @@ const NoteTaker = props => {
             };
         });
     };
-    const setFile = (file) => {
-        setInputs(prevState => {
-            return {
-                ...prevState,
-                image: ''
-            };
-        });
+    const uploadFile = file => {
+        setFile(file);
     };
 
 
@@ -113,7 +116,8 @@ const NoteTaker = props => {
                         style={{minHeight:150}}
                         value={inputs.description}
                     />
-                    <UploadImage fileHandler={file => setFile(file)}/>
+                    <UploadImage fileHandler={uploadFile}/>
+                    <p>{JSON.stringify(inputs)}//////////</p>
                     <p className='note-taker-title'>Keyword</p>
                     <Input 
                         onChange={keywordsHandler} 
