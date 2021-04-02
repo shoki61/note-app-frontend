@@ -8,14 +8,14 @@ const CommentItem = (props) => {
     <div className="comment-item-container">
       <div className='center comment-item-header'>
         <div className="comment-item-avatar">
-          {props.userImage 
-            ? <Image src={`http://localhost:5000/${props.userImage}`} alt={props.userName} /> 
-            : <p className='avatar-name font-15'>{props.userName.charAt(0).toUpperCase()}</p>
+          {props.userImage || props.user 
+            ? <Image src={`http://localhost:5000/${props.user ? props.user.image : props.userImage}`} alt={props.userName} /> 
+            : <p className='avatar-name font-15'>{props.user ? props.user.name.charAt(0).toUpperCase() : props.userName.charAt(0).toUpperCase()}</p>
           }
         </div>
         <div>
             <div className='user-name-container'>
-              <p className='comment-item-name'>{props.userName}</p>
+              <p className='comment-item-name'>{props.user ? props.user.name : props.userName}</p>
               <div className='user-info-container'>
                 <div className='user-info'>
                   <div className='user-info-avatar mr-1'>

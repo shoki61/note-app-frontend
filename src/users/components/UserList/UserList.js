@@ -30,8 +30,7 @@ const UserList = props => {
 
     return(
         <div className='user-list'>
-            <div 
-                onClick={handleScroll} 
+            <div
                 style={{background:'linear-gradient(transparent, black)', display: showBlur > 1 ? 'none' : 'block'}} 
                 id='user-list-blur'>
             </div>

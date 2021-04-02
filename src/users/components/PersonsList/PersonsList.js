@@ -8,9 +8,9 @@ const PersonList = props => {
     return <div style={{width:'85%'}}>
         {props.data.length 
             ? props.data.map(person => <PersonItem 
+                key={person._id}
                 follow={props.follow}
                 userInfo={props.userInfo}
-                key={person._id}
                 name={person.name}
                 job={person.job}
                 image={person.image}

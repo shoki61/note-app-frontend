@@ -61,9 +61,9 @@ const Profile = props => {
             body: JSON.stringify({follow: id ? id : props.location.state.id})
         }).then(response => response.json())
         .then(responseData => {
-            console.log(responseData)
-            props.onUpdateUser(responseData.user);
-            setIsFollowed(responseData.user.following.find(item => item === user._id));
+            const { user: userData } = responseData;
+            props.onUpdateUser(userData);
+            setIsFollowed(userData.following.find(item => item._id === user._id));
         });
     };
 
