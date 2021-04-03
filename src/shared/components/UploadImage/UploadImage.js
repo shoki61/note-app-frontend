@@ -8,14 +8,11 @@ const UploadImage = props => {
     const filePickerRef = useRef();
     const [previewUrl, setPreviewUrl] = useState();
 
-    // useEffect(() => {
-    //     if(!file) return;
-    //     const fileReader = new FileReader();
-    //     fileReader.onload = () => {
-    //         setPreviewUrl(fileReader.result);
-    //     };
-    //     fileReader.readAsDataURL(file);
-    // }, [file]);
+    useEffect(() => {
+        if(!previewUrl && props.postImg){
+            setPreviewUrl(`http://localhost:5000/${props.postImg}`);
+        };
+    }, [previewUrl]);
 
 
     const pickedHandler = event => {

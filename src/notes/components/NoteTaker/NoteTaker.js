@@ -22,6 +22,7 @@ const NoteTaker = props => {
         creator: userInfo._id
     });
 
+
     const inputHandler = event => {
         setInputs(prevInputs => {
             return {
@@ -52,12 +53,11 @@ const NoteTaker = props => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
-        formData.append('image', file);
+        formData.append('image', file || props.image);
         formData.append('keywords', keywords);
         formData.append('hidden', hidden);
         formData.append('userId', creator);
 
-        console.log(inputs.keywords)
 
         let url = 'http://localhost:5000/api/notes/create-note';
         if(value === 'update') url = `http://localhost:5000/api/notes/update-note/${props.id}`;
@@ -116,8 +116,7 @@ const NoteTaker = props => {
                         style={{minHeight:150}}
                         value={inputs.description}
                     />
-                    <UploadImage fileHandler={uploadFile}/>
-                    <p>{JSON.stringify(inputs)}//////////</p>
+                    <UploadImage fileHandler={uploadFile} postImg={props.image}/>
                     <p className='note-taker-title'>Keyword</p>
                     <Input 
                         onChange={keywordsHandler} 
