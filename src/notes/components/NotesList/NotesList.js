@@ -8,7 +8,6 @@ import './NotesList.css';
 const NotesList = props => {
 
     let noteItem = <Spinner/>;
-    console.log(props.data)
     if(props.data){
         noteItem = props.data.map(note => <NoteItem
             key={note._id}

@@ -4,7 +4,6 @@ import PersonItem from './PersonItem/PersonItem';
 import './PersonsList.css';
 
 const PersonList = props => {
-    console.log(props.data)
     return <div style={{width:'85%'}}>
         {props.data.length 
             ? props.data.map(person => <PersonItem 

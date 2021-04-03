@@ -38,7 +38,6 @@ const Note = (props) => {
       );
       const responseData = await response.json();
       setNote(responseData.note);
-      console.log(responseData);
       if(responseData.note.likes.indexOf(userId) > -1){
         setUserActions(prevActions => {
           return {...prevActions, favorable:false}

@@ -7,7 +7,6 @@ import Button from '../../../../shared/components/Button/Button';
 import './PersonItem.css';
 
 const PersonItem = props => {
-    console.log(props.name)
     return <div className='person-item-container'>
         <NavLink to={{pathname:'/profile', state: {id: props.id}}} style={{display:'flex', width: '100%'}} onClick={props.closeModal}>
             <div className='person-item-avatar mr-1'>
