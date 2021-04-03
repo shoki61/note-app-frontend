@@ -10,7 +10,7 @@ const Notes = props => {
 
     useEffect(() => {
         const getNotes = async() => {
-            const response = await fetch('http://localhost:5000/api/notes');
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes`);
             const responseData = await response.json();
             let publicNotes;
             if(props.userRdcr.userInfo && responseData.notes){

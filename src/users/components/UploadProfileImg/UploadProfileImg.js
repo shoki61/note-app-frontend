@@ -11,7 +11,7 @@ const UploadProfileImg = props => {
 
     useEffect(() => {
         if(!previewUrl && props.initialValue) {
-            setPreviewUrl(`http://localhost:5000/${props.initialValue}`);
+            setPreviewUrl(`${process.env.REACT_APP_ASSETS_URL}/${props.initialValue}`);
         };
     }, [previewUrl]);
 

@@ -30,8 +30,8 @@ const Profile = props => {
 
     useEffect(()=>{
         const getUser = async() => {
-            const responseUser = await fetch(`http://localhost:5000/api/users/user/${props.location.state.id}`);
-            const responseNotes = await fetch(`http://localhost:5000/api/notes/user-notes/${props.location.state.id}`);
+            const responseUser = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/user/${props.location.state.id}`);
+            const responseNotes = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/user-notes/${props.location.state.id}`);
             const responseData = await responseUser.json();
             const responseUserNotes = await responseNotes.json();
             setUser(responseData);
@@ -53,7 +53,7 @@ const Profile = props => {
     const follow = async (followId = null) => {
         let id = props.location.state.id;
         if(followId) id = followId;
-        await fetch(`http://localhost:5000/api/users/update-user/${userInfo._id}`,{
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/update-user/${userInfo._id}`,{
             method: 'PATCH',
             headers:{
                 'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ const Profile = props => {
     };
 
     const deleteAccount = async () => {
-        const response = await fetch(`http://localhost:5000/api/users/delete-user/${userInfo._id}`,{
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/delete-user/${userInfo._id}`,{
                 method: 'DELETE',
         });
         if(response.status === 200) {
@@ -116,7 +116,7 @@ const Profile = props => {
                     <div className='profile-image-container center'>
                         <div className='profile-image'>
                             {user.image
-                                ? <Image src={`http://localhost:5000/${user.image}`} alt={user.name}/> 
+                                ? <Image src={`${process.env.REACT_APP_ASSETS_URL}/${user.image}`} alt={user.name}/> 
                                 : <p className='avatar-name font-50'>{user.name.charAt().toUpperCase()}</p>
                             }
                         </div>

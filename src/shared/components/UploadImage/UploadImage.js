@@ -10,7 +10,7 @@ const UploadImage = props => {
 
     useEffect(() => {
         if(!previewUrl && props.postImg){
-            setPreviewUrl(`http://localhost:5000/${props.postImg}`);
+            setPreviewUrl(`${process.env.REACT_APP_ASSETS_URL}/${props.postImg}`);
         };
     }, [previewUrl]);
 

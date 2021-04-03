@@ -2,7 +2,7 @@
     transition: all .2s ease-in-out;
     background-color: rgba(0, 0, 0, .4);
     box-shadow: none;
-    border-radius: 0;
+    border-radius: 0 !important;
     border-bottom:1px solid rgba(129, 129, 129, 0.4);
 }
 

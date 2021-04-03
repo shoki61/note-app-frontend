@@ -59,8 +59,8 @@ const NoteTaker = props => {
         formData.append('userId', creator);
 
 
-        let url = 'http://localhost:5000/api/notes/create-note';
-        if(value === 'update') url = `http://localhost:5000/api/notes/update-note/${props.id}`;
+        let url = `${process.env.REACT_APP_BACKEND_URL}/notes/create-note`;
+        if(value === 'update') url = `${process.env.REACT_APP_BACKEND_URL}/notes/update-note/${props.id}`;
         const response = await fetch(url, {
             method: value === 'update' ? 'PATCH' : 'POST',
             body: formData

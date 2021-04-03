@@ -12,7 +12,7 @@ const NoteItem = props => {
                 <NavLink to={{pathname:'/note', state:{id:props.id}}}>
                     <div className='note-item-content center'>
                         {props.image && <div className='note-item-image'>
-                            <Image src={`http://localhost:5000/${props.image}`} alt={props.title}/>
+                            <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.image}`} alt={props.title}/>
                         </div>}
                         <div style={{width: props.image ? '70%' : '95%', paddingRight:10, paddingLeft:25}}>
                             <div className='note-item-title-container center'>

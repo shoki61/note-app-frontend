@@ -9,7 +9,7 @@ const CommentItem = (props) => {
       <div className='center comment-item-header'>
         <div className="comment-item-avatar">
           {props.userImage || props.user 
-            ? <Image src={`http://localhost:5000/${props.user ? props.user.image : props.userImage}`} alt={props.userName} /> 
+            ? <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.user ? props.user.image : props.userImage}`} alt={props.userName} /> 
             : <p className='avatar-name font-15'>{props.user ? props.user.name.charAt(0).toUpperCase() : props.userName.charAt(0).toUpperCase()}</p>
           }
         </div>

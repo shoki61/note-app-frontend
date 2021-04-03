@@ -11,7 +11,7 @@ const PersonItem = props => {
         <NavLink to={{pathname:'/profile', state: {id: props.id}}} style={{display:'flex', width: '100%'}} onClick={props.closeModal}>
             <div className='person-item-avatar mr-1'>
                 {props.image
-                    ? <Image src={`http://localhost:5000/${props.image}`} alt={props.name}/>
+                    ? <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.image}`} alt={props.name}/>
                     : <div className='avatar-name font-20'><p>{props.name.charAt(0).toUpperCase()}</p></div>
                 }
             </div>

@@ -14,7 +14,7 @@ const UserItem = props => {
                     <div className='user-item-content center'>
                         <div className='user-item-image'>
                             {props.image 
-                                ? <Image src={`http://localhost:5000/${props.image}`} alt={props.name}/> 
+                                ? <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.image}`} alt={props.name}/> 
                                 : <p className='avatar-name font-20'>{props.name.charAt(0).toUpperCase()}</p>
                             }
                         </div>

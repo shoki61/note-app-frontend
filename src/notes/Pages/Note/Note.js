@@ -34,7 +34,7 @@ const Note = (props) => {
   useEffect(() => {
     const getNote = async () => {
       const response = await fetch(
-        `http://localhost:5000/api/notes/note/${props.location.state.id}`
+        `${process.env.REACT_APP_BACKEND_URL}/notes/note/${props.location.state.id}`
       );
       const responseData = await response.json();
       setNote(responseData.note);
@@ -69,7 +69,7 @@ const Note = (props) => {
         data={comments: '', comment, userId};
       };
 
-      const response = await fetch(`http://localhost:5000/api/notes/update-note/${props.location.state.id}`,{
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/update-note/${props.location.state.id}`,{
         method: 'PATCH',
         headers:{
           'Content-Type' : 'application/json'
@@ -128,7 +128,7 @@ const Note = (props) => {
   };
 
   const deletePost = async() => {
-    const response = await fetch(`http://localhost:5000/api/notes/delete-note/${props.location.state.id}`,{
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/delete-note/${props.location.state.id}`,{
       method:'DELETE'
     });
     if(response.status === 200) history.push('/notes');
@@ -143,7 +143,7 @@ const Note = (props) => {
               <NavLink to={{pathname:'/profile', state: {id: note.creator._id}}}>
               <div className="note-create-avatar">
                 {note.creator.image ? (
-                  <Image src={`http://localhost:5000/${note.creator.image}`} alt={note.creator.name} />
+                  <Image src={`${process.env.REACT_APP_ASSETS_URL}/${note.creator.image}`} alt={note.creator.name} />
                 ) : (
                   <p className='avatar-name font-20'>{note.creator.name.charAt(0).toUpperCase()}</p>
                 )}
@@ -186,7 +186,7 @@ const Note = (props) => {
           <div className="note-content">
             <p className="note-title">{note.title}</p>
             <div className="note-image">
-              {note.image && <Image src={`http://localhost:5000/${note.image}`} alt={note.title} />}
+              {note.image && <Image src={`${process.env.REACT_APP_ASSETS_URL}/${note.image}`} alt={note.title} />}
             </div>
             <p className="note-description">{note.description}</p>
             {note.keywords.length > 0 &&

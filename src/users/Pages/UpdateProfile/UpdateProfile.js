@@ -27,7 +27,7 @@ const UpdateProfile = props => {
         formData.append('name', userData.name);
         formData.append('image', file || image);
         formData.append('job', userData.job);
-        const response = await fetch(`http://localhost:5000/api/users/update-user/${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/update-user/${id}`, {
             method: 'PATCH',
             body: formData
         })
