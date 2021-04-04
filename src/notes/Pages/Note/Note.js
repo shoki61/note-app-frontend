@@ -163,7 +163,7 @@ const Note = (props) => {
                 onClick={() => updatePostHandler('likes')} 
                 className='inline mr-1'
                 >
-                <i className={`post-action-icon ${userActions.favorable ? 'fa fa-heart-o' : 'fa fa-heart'}`}></i>
+                <i className={`post-action-icon ${userActions.favorable ? 'fa fa-heart-o' : 'fa fa-heart red'}`}></i>
                 <span className='post-action'>{note.likes.length}</span>
               </Button>
               <Button 
