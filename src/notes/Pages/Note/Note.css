@@ -1,7 +1,7 @@
 .note-container{
     width: 55%;
     margin: auto;
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 100px;
 }
 
@@ -12,6 +12,17 @@
 .note-image{
     width: 700px;
     margin: 10px auto 20px auto;
+}
+
+.post-action{
+    font-size: 20px;
+    color:#4d4d4d;
+    margin-left: 7px;
+}
+
+.post-action-icon{
+    font-size: 23px;
+    color: #646464;
 }
 
 .note-title{
@@ -57,14 +68,15 @@
 
 .note-comment-container{
     width: 100%;
-    background-color: #f8f8f8;
+    background-color: #f8f8f88a;
     padding: 15px;
     margin-top: 35px;
 }
 
 .note-footer-title{
     font-weight: 700;
-    color:#494949
+    color:#494949;
+    font-size: 20px;
 }
 
 .note-keywords{
@@ -83,18 +95,18 @@
 
 .note-keyword{
     padding: 4px 10px;
-    background-color: #ff480027;
+    background-color: #4d4d4d1a;
     font-weight: 600;
     font-family: monospace;
     margin:0 7px 7px 0;
-    color:#ff4800;
-    border-radius: 5px;
+    color:#636363;
+    border-radius: 3px;
     transition: all .2s ease-in-out;
 }
 
 .note-keyword:hover{
     color:#fff;
-    background-color: #ff4800;
+    background-color: #5c5c5c;
 }
 
 a, a:hover{

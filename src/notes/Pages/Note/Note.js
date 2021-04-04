@@ -155,21 +155,23 @@ const Note = (props) => {
               </p>
             </div>
             <div style={{ display: "flex" }}>
-              <Button onClick={changeCommentsVisible} className="info-outline">
-                <i className="fa fa-comment-o"></i>
-                <span>{note.comments.length}</span>
+              <Button onClick={changeCommentsVisible} className='inline  mr-1'>
+                <i className="fa fa-comment-o post-action-icon"></i>
+                <span className='post-action'>{note.comments.length}</span>
               </Button>
               <Button 
                 onClick={() => updatePostHandler('likes')} 
-                className={userActions.favorable ? 'info-outline': 'info'}>
-                <i className="fa fa-heart-o"></i>
-                <span>{note.likes.length}</span>
+                className='inline mr-1'
+                >
+                <i className={`post-action-icon ${userActions.favorable ? 'fa fa-heart-o' : 'fa fa-heart'}`}></i>
+                <span className='post-action'>{note.likes.length}</span>
               </Button>
               <Button 
                 onClick={() => updatePostHandler('markings')} 
-                className={userActions.markable ? 'info-outline': 'info'}>
-                <i className="fa fa-bookmark-o"></i>
-                <span>{note.markings.length}</span>
+                className='inline'
+                >
+                <i className={`post-action-icon ${ userActions.markable ? 'fa fa-bookmark-o' : 'fa fa-bookmark'}`}></i>
+                <span className='post-action'>{note.markings.length}</span>
               </Button>
               {note.creator._id === userId && (
                 <Button className="yellow-outline">
@@ -204,9 +206,9 @@ const Note = (props) => {
           <div className="line"></div>
           {worning && <p className={success ? 'success-text' : 'un-success-text'}>{successStatus}</p>}
           <div className="note-comment-container">
-            <p className="note-footer-title">Add comment</p>
+            <p className="note-footer-title">Write comment</p>
             <Input value={comment} onChange={inputHandler} className="comment full" placeholder="write something..." />
-            <Button onClick={()=> updatePostHandler('comments')} className="success">Submit</Button>
+            <Button onClick={()=> updatePostHandler('comments')} className="success box-shadow-hover">Send comment</Button>
           </div>
           {commentsVisible && (
             <Fragment>
