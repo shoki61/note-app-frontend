@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 
 import Image from '../../../../shared/components/Image/Image';
-import Button from '../../../../shared/components/Button/Button';
 import './ProfilePostItem.css';
 
 const ProfilePostItem = props => {

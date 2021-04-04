@@ -101,3 +101,33 @@
     color: #6b6b6b;
     text-align: center;
 }
+
+.profile-new-post a {
+    color: #fff;
+    font-weight: 600;
+    font-family: consolas, sans-serif;
+}
+
+.add-icon{
+    color: #fff !important;
+    font-size: 13px !important;
+}
+
+.user-action-icon{
+    font-size: 20px;
+    color:#5c5c5c
+}
+
+.user-action{
+    font-size: 18px;
+    color:#4d4d4d;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin:0 !important
+}
+
+.user-action+.user-action::before {
+    content: "|";
+    padding: 18px;
+    color: rgb(219, 219, 219);
+}

@@ -48,7 +48,10 @@ const Profile = props => {
         if(props.location.state.id) getUser();
     }, [props.location.state.id]);
 
-    const changeInputVisible = () => setInputVisible(prevVisible => !prevVisible);
+    const changeInputVisible = () => {
+        setSearchingPost('');
+        setInputVisible(prevVisible => !prevVisible);
+    };
 
     const follow = async (followId = null) => {
         let id = props.location.state.id;
@@ -150,16 +153,17 @@ const Profile = props => {
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
                     <p className='profile-notes-title'>Posts</p>
                     <div className='center'>
-                        <Button onClick={() => filterPosts('comments')} className='black-outline inline'><i className="fa fa-comment-o"></i> {user.comments.length}</Button>
-                        <Button onClick={() => filterPosts('markings')} className='black-outline inline'><i className="fa fa-bookmark-o"></i> {user.markings.length}</Button>
-                        <Button onClick={() => filterPosts('likes')} className='black-outline inline'><i className="fa fa-heart-o"></i> {user.likes.length}</Button>
-                        {isLoggedIn && userInfo._id === user._id && <Button><NavLink to='/new-note'><i className='fa fa-plus'></i></NavLink></Button>}
+                        <Button onClick={() => filterPosts('comments')} className='inline user-action'><i className="fa fa-comment-o user-action-icon"></i> {user.comments.length}</Button>
+                        <Button onClick={() => filterPosts('markings')} className='inline user-action'><i className="fa fa-bookmark-o user-action-icon"></i> {user.markings.length}</Button>
+                        <Button onClick={() => filterPosts('likes')} className='inline user-action'><i className="fa fa-heart-o user-action-icon"></i> {user.likes.length}</Button>
+                        {isLoggedIn && userInfo._id === user._id && <Button className='button black profile-new-post box-shadow-hover ml-2'><NavLink to='/new-note'><i className='fa fa-plus add-icon'></i> Add new post</NavLink></Button>}
                         <Input
-                            placeholder='search note...'
+                            placeholder='search post...'
                             className='search-note-input'
                             element='input'
                             value={searchingPost}
                             onChange={searchPost}
+                            
                             style={inputVisible ? {width:250, border:'1px solid grey'}:{width:0, padding:0}}
                         />
                         <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
