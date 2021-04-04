@@ -101,7 +101,7 @@ const Profile = props => {
     };
 
     return (
-        <div style={{display:'flex', justifyContent:'center'}}>
+        <div className='pt-5' style={{display:'flex', justifyContent:'center'}}>
             {showFollow && <Modal closeModal={changeShowFollow}>
                 <PersonsList 
                     follow={follow}
@@ -148,7 +148,7 @@ const Profile = props => {
             <div className='line'></div>
             <div className='profile-notes'>
                 <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
-                <p className='profile-notes-title'>Posts</p>
+                    <p className='profile-notes-title'>Posts</p>
                     <div className='center'>
                         <Button onClick={() => filterPosts('comments')} className='black-outline inline'><i className="fa fa-comment-o"></i> {user.comments.length}</Button>
                         <Button onClick={() => filterPosts('markings')} className='black-outline inline'><i className="fa fa-bookmark-o"></i> {user.markings.length}</Button>
@@ -166,7 +166,7 @@ const Profile = props => {
                     </div>
                 </div>
                 { userNotes.length || notesToRender.length
-                    ? <NotesList data={notesToRender}/> 
+                    ? <NotesList type='profile' data={notesToRender}/> 
                     : (userNotes.length && searchingPost)
                     ? <p className='no-notes-text mt-2'>No matching posts</p> 
                     : <p className='no-notes-text mt-2'>There is no user posts</p> 

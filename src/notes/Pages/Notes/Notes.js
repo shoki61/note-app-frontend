@@ -25,7 +25,7 @@ const Notes = props => {
     }, []);
 
     return  <div className='notes-container'>
-        <NoteList data={notes}/>
+        <NoteList type={props.type} data={notes}/>
     </div>
 };
 
