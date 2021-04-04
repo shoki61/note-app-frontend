@@ -124,10 +124,11 @@ const Profile = props => {
                             }
                         </div>
                         {isLoggedIn && userInfo._id === user._id && <Button>
-                            <NavLink to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job, id: user._id}}}>
-                                <span className='profile-edit'><i className="glyphicon glyphicon-pencil"></i> edit profile</span>
+                            <NavLink className='profile-edit-button center' to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job, id: user._id}}}>
+                                <i className="glyphicon glyphicon-pencil"></i><span className='profile-edit'>edit profile</span>
                             </NavLink>
                         </Button>}
+                        
                     </div>
                     <div>
                         <p className='profile-name'>{user.name}</p>
@@ -140,12 +141,12 @@ const Profile = props => {
                     </div>
                 </div>
                 <div className='profile-links center'>
-                    <Button className='black-outline'><i className='fa fa-facebook'></i></Button>
-                    <Button className='black-outline'><i className='fa fa-instagram'></i></Button>
-                    <Button className='black-outline'><i className='fa fa-twitter'></i></Button>
-                    <Button className='black-outline'><i className='fa fa-link'></i></Button>
+                    <Button className='black-round'><i className='fa fa-facebook'></i></Button>
+                    <Button className='black-round'><i className='fa fa-instagram'></i></Button>
+                    <Button className='black-round'><i className='fa fa-twitter'></i></Button>
+                    <Button className='black-round'><i className='fa fa-link'></i></Button>
                     {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
-                    {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline'>Delete the account</Button>}
+                    {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline delete-acount box-shadow-hover'>Delete the account</Button>}
                 </div>
             </div>
             <div className='line'></div>
@@ -159,7 +160,7 @@ const Profile = props => {
                         {isLoggedIn && userInfo._id === user._id && <Button className='button black profile-new-post box-shadow-hover ml-2'><NavLink to='/new-note'><i className='fa fa-plus add-icon'></i> Add new post</NavLink></Button>}
                         <Input
                             placeholder='search post...'
-                            className='search-note-input'
+                            className='search-note-input ml-1'
                             element='input'
                             value={searchingPost}
                             onChange={searchPost}

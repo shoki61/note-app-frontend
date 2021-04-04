@@ -10,16 +10,16 @@
 }
 
 .profile-name{
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 700;
     color:#4d4d4d;
 }
 
 .profile-job{
-    font-size: 15px;
-    color:rgba(0, 80, 94, .7);
+    font-size: 14px;
+    color:#636363;
     margin-bottom: 10px;
-    font-style: italic;
+    font-family:'Source Sans Pro';
 }
 
 .profile-image{
@@ -31,8 +31,34 @@
 }
 
 .profile-edit{
-    text-decoration: underline;
-    color: grey
+    color: #fff;
+    width: 0;
+    opacity: 0;
+    margin-left: 3px;
+}
+
+.profile-edit-button{
+    background-color: #505050;
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    color:#fff;
+}
+
+.profile-edit-button:hover{
+    width: auto;
+    padding: 5px 10px;
+    color:#fff;
+    border-radius: 4px
+}
+
+.profile-edit-button:hover .profile-edit{
+    width: auto;
+    opacity: 1;
+}
+
+.delete-acount{
+    font-family: consolas, sans-serif;
 }
 
 .profile-image-container{
@@ -49,13 +75,16 @@
 }
 
 .profile-box{
-    padding: 1px 5px;
-    border-radius: 5px;
-    color:#666666;
-    font-size: 14px;
-    border:1px solid #dadada;
-    background-color: #fcfcfc;
-    margin-right:7px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    color:#fff;
+    font-size: 15px;
+    background-color: #505050;
+    margin:0 7px 0 0;
+}
+
+.profile-box:hover{
+    background-color: #363636;
 }
 
 .prodile-links{
@@ -91,8 +120,8 @@
 }
 
 .profile-email{
-    font-size: 14px;
-    color:rgb(59, 87, 88);
+    font-size: 15px;
+    color:black;
     margin-bottom: 10px;
 }
 
