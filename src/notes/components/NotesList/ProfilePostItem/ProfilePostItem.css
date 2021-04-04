@@ -1,0 +1,61 @@
+.profile-post-content{
+    width: 70%;
+    margin:auto;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    padding: 50px 0;
+}
+
+.profile-post-title{
+    font-size: 25px;
+    font-weight: bold;
+    color:#525252
+}
+
+.profile-post-image{
+    width: 100%;
+}
+
+.profile-post-date{
+    font-size: 17px;
+    font-weight: 100;
+    font-family: 'Times New Roman', sans-serif;
+    color:#7e7e7e
+}
+
+.profile-post-description{
+    font-family: 'Times New Roman', sans-serif;
+    color:#414141;
+    font-size: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow:hidden;
+    -webkit-line-clamp: 5;
+}
+
+.profile-post-bottom{
+    justify-content: space-between !important;
+    margin-top: 35px;
+}
+
+.profile-post-detail-button{
+    color: green;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.profile-post-actions{
+    display: flex;
+    align-items: center;
+}
+
+.profile-post-action{
+    font-size: 17px;
+    color: #4b4b4b;
+    margin-left: 30px;
+}
+
+.profile-post-action-icon{
+    margin-right: 7px;
+    font-size: 20px;
+    color:#636363;
+}
