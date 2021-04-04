@@ -13,7 +13,8 @@
 
 .user-item-container{
     width: 100%;
-    padding:5px
+    padding:5px;
+    margin:10px 20px
 }
 
 .user-item-container a{

@@ -1,30 +1,31 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Card from '../../../../shared/components/Card/Card';
 import Image from '../../../../shared/components/Image/Image';
 import './NoteItem.css';
 
 const NoteItem = props => {
     return(
-        <Card className='note-item-card'>
-            <div className='note-item-container'>
-                <NavLink to={{pathname:'/note', state:{id:props.id}}}>
-                    <div className='note-item-content center'>
-                        {props.image && <div className='note-item-image'>
-                            <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.image}`} alt={props.title}/>
-                        </div>}
-                        <div style={{width: props.image ? '70%' : '95%', paddingRight:10, paddingLeft:25}}>
-                            <div className='note-item-title-container center'>
-                                <p className='note-item-title'>{props.title}</p>
-                                <span className='note-item-date'>{new Date(props.createdDate).toLocaleString()}</span>
+        <div  className='note-item-container'>
+            <NavLink to={{pathname:'/note', state:{id:props.id}}}>
+                <div className='note-item-content center'>
+                    <div style={{width: props.image ? '65%' : '100%'}}>
+                        <NavLink to={{pathname:'/profile', state:{id:props.creator._id}}} className='note-item-creator-container center'>
+                            <div className='note-item-creator-img mr-1'>
+                                <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.creator.image}`} alt={props.creator.name}/>
                             </div>
-                            <p className='note-item-description'>{props.description}</p>
-                        </div>
+                            <p className='note-item-creator-name'>{props.creator.name}</p>
+                        </NavLink>
+                        <p className='note-item-title'>{props.title} Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+                        <p className='note-item-description'>{props.description}</p>
+                        <p className='note-item-date'><i className='fa fa-clock-o note-item-icon'></i> {new Date(props.createdDate).toLocaleString()}</p>
                     </div>
-                </NavLink>
-            </div>
-        </Card>
+                    {props.image && <div className='note-item-image ml-1'>
+                        <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.image}`} alt={props.title}/>
+                    </div>}
+                </div>
+            </NavLink>
+        </div>
     );
 };
 

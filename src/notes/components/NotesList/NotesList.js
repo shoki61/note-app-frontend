@@ -14,15 +14,15 @@ const NotesList = props => {
             id={note._id}
             image={note.image}
             title={note.title}
+            creator={note.creator}
             description={note.description}
-            createdDate={note.createdAt}
+            createdDate={note.updatedAt}
         />);
     }else{
         noteItem = <p>Post Not Found</p>
     };
-    return <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+    return <div>
         {noteItem}
     </div>
 };
-
 export default NotesList;
