@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Input from '../../../shared/components/Input/Input';
-import Card from '../../../shared/components/Card/Card';
 import Button from '../../../shared/components/Button/Button';
+import Image from '../../../shared/components/Image/Image';
 import * as actions from '../../../store/actions/index';
 import './Auth.css';
 
@@ -85,63 +85,63 @@ const Auth = props => {
       setMode(prevMode => !prevMode);
     };
     return(
-        <div className='auth'>
-            <Card>
-                <div className='auth-form-container'>
-                    <form onSubmit={authSubmitHandler}>
-                        {!mode && <>
-                            <p className='auth-title'>Your Name</p>
-                            <Input 
-                              id='name'
-                              value={inputs.name}
-                              type='text'
-                              onChange={inputHandler}
-                              placeholder='enter your name...' 
-                              className='input-full' 
-                              element='input'
-                            />
-                        </>}
-                        <p className='auth-title'>E-mail</p>
-                        <Input
-                            id='email'
-                            type='email'
-                            value={inputs.email}
-                            onChange={inputHandler}
-                            placeholder='enter e-mail...'
-                            className='input-full'
-                            element='input'
-                        />
-                        <p className='auth-title'>Password</p>
-                        <Input
-                            id='password'
-                            type='password'
-                            onChange={inputHandler}
-                            value={inputs.password}
-                            placeholder='enter password...'
-                            className='input-full'
-                            element='input'
-                        />
-                        {!mode && <>
-                          <p className='auth-title'>Password Repeat</p>
-                          <Input
-                            id='rePassword'
-                            type='password'
-                            onChange={inputHandler}
-                            value={inputs.rePassword}
-                            placeholder='enter password repeat...'
-                            className='input-full'
-                            element='input'
-                          />
-                        </>}
-                        {error && <p className='error-message'>{error}</p>}
-                        <Button type='submit' className='black auth-button'>{mode ? 'LOGIN' : 'SING UP'}</Button>
-                        <p>
-                            {mode ? "Aren't you a member?" : "Are you already a member?"} 
-                            <span onClick={changeMode} className='switchButton'>{mode ? 'Sign up': 'Login'}</span>
-                        </p>
-                    </form>
-                </div>
-            </Card>
+        <div className='auth center'>
+          <Image className='auth-top-img auth-back-img' src={require('../../../assets/authTop.png').default} alt='top-img'/>
+
+          <div className='auth-form-container center'>
+              <form onSubmit={authSubmitHandler} className='auth-form'>
+                  {!mode && <>
+                      <p className='auth-title white'>Your Name</p>
+                      <Input 
+                        id='name'
+                        value={inputs.name}
+                        type='text'
+                        onChange={inputHandler}
+                        className='auth-input input-full' 
+                        element='input'
+                      />
+                  </>}
+                  <p className='auth-title white'>E-mail</p>
+                  <Input
+                      id='email'
+                      type='email'
+                      value={inputs.email}
+                      onChange={inputHandler}
+                      className='auth-input input-full'
+                      element='input'
+                  />
+                  <p className='auth-title'>Password</p>
+                  <Input
+                      id='password'
+                      type='password'
+                      onChange={inputHandler}
+                      value={inputs.password}
+                      className='auth-input input-full'
+                      element='input'
+                  />
+                  {!mode && <>
+                    <p className='auth-title'>Password Repeat</p>
+                    <Input
+                      id='rePassword'
+                      type='password'
+                      onChange={inputHandler}
+                      value={inputs.rePassword}
+                      className='auth-input input-full'
+                      element='input'
+                    />
+                  </>}
+                  {error && <p className='error-message'>{error}</p>}
+                  <Button type='submit' className='black auth-button mb-2'>{mode ? 'LOGIN' : 'SING UP'}</Button>
+                  <p className='switch-text'>
+                      {mode ? "Aren't you a member?" : "Are you already a member?"} 
+                      <span onClick={changeMode} className='switchButton'>{mode ? 'Sign up': 'Login'}</span>
+                  </p>
+              </form>
+          </div>
+          <div className='vector-icon-container center'>
+            <Image className='auth-vektor animate__animated animate__fadeIn' src={require('../../../assets/authVector.png').default} alt='vector'/>
+          </div>
+          <Image className='auth-bottom-img auth-back-img' src={require('../../../assets/authBottom.png').default} alt='top-img'/>
         </div>
     )
 };

@@ -48,6 +48,7 @@
     -webkit-box-orient: vertical;
     overflow:hidden;
     -webkit-line-clamp: 2;
+    line-height: 30px;
 }
 
 .note-item-description{

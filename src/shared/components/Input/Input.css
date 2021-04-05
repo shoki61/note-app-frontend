@@ -9,11 +9,6 @@
     display: block;
 }
 
-.input:focus{
-    background-color: rgb(245, 250, 255);
-    border:1px solid grey
-}
-
 .search-note-input{
     border-radius: 3;
 }
@@ -29,8 +24,6 @@
 
 .input-full{
     width: 100%;
-    border:1px solid rgb(226, 226, 226);
-    margin:5px 0 20px 0;
 }
 
 .updateLinkInput{
