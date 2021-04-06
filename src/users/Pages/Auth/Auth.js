@@ -88,7 +88,7 @@ const Auth = props => {
         <div className='auth center'>
           <Image className='auth-top-img auth-back-img' src={require('../../../assets/authTop.png').default} alt='top-img'/>
 
-          <div className='auth-form-container center'>
+          <div className='auth-form-container animate__animated animate__slideInLeft center'>
               <form onSubmit={authSubmitHandler} className='auth-form'>
                   {!mode && <>
                       <p className='auth-title white'>Your Name</p>
@@ -130,7 +130,7 @@ const Auth = props => {
                       element='input'
                     />
                   </>}
-                  {error && <p className='error-message'>{error}</p>}
+                  {error && <p className='error-message animate__animated animate__headShake'><i className='fa fa-warning'></i> {error}</p>}
                   <Button type='submit' className='black auth-button mb-2'>{mode ? 'LOGIN' : 'SING UP'}</Button>
                   <p className='switch-text'>
                       {mode ? "Aren't you a member?" : "Are you already a member?"} 
@@ -139,7 +139,7 @@ const Auth = props => {
               </form>
           </div>
           <div className='vector-icon-container center'>
-            <Image className='auth-vektor animate__animated animate__fadeIn' src={require('../../../assets/authVector.png').default} alt='vector'/>
+            <Image className='auth-vektor animate__animated animate__fadeInRight' src={require('../../../assets/authVector.png').default} alt='vector'/>
           </div>
           <Image className='auth-bottom-img auth-back-img' src={require('../../../assets/authBottom.png').default} alt='top-img'/>
         </div>
