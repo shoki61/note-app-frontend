@@ -138,7 +138,7 @@ a{
     border-radius: 100px;
     color: #fff;
     font-size: 20px;
-    position: absolute;
+    position: fixed;
     bottom:40px;
     right: 50px;
     background-color: #ffa41b;
