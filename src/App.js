@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Navigation from './shared/Navigation/Navigation';
 import Spinner from './shared/components/Spinner/Spinner';
 import './App.css';
+import Button from './shared/components/Button/Button';
 
 const Users = React.lazy(() => import('./users/Pages/Users/Users'));
 const Notes = React.lazy(() => import('./notes/Pages/Notes/Notes'));
@@ -41,6 +42,7 @@ const App = props => {
             <Redirect to='/users'/>
           </Switch>
         </Suspense>
+        {props.userInfo.isLoggedIn && <Link to='/new-note'><Button className='new-post-button'><i className='fas fa-feather-alt'></i></Button></Link>}
       </BrowserRouter>
     </div>
   );

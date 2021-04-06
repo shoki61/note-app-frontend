@@ -131,3 +131,21 @@ a{
 .red{
     color: rgb(255, 71, 71)
 }
+
+.new-post-button{
+    width: 55px;
+    height:55px;
+    border-radius: 100px;
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    bottom:40px;
+    right: 50px;
+    background-color: #ffa41b;
+    z-index: 300;
+}
+
+.new-post-button:hover{
+    background-color: #d69915;
+    bottom:43px
+}
