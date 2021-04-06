@@ -96,53 +96,48 @@ const NoteTaker = props => {
 
     return (
         <div className='note-taker-container'>
-            <Card>
-                <div style={{width:'100%'}}>
-                    <p className='note-taker-title'>Title</p>
-                    <Input 
-                        onChange={inputHandler}  
-                        placeholder='enter title...' 
-                        className='input-full' 
-                        element='input'
-                        id='title'
-                        value={inputs.title}
-                    />
-                    <p className='note-taker-title'>Description</p>
-                    <Input 
-                        onChange={inputHandler} 
-                        placeholder='enter description...' 
-                        className='input-full'
-                        id='description'
-                        style={{minHeight:150}}
-                        value={inputs.description}
-                    />
-                    <UploadImage fileHandler={uploadFile} postImg={props.image}/>
-                    <p className='note-taker-title'>Keyword</p>
-                    <Input 
-                        onChange={keywordsHandler} 
-                        value={keyword} 
-                        element='input'
-                        placeholder='add keywords with spaces between them...' 
-                        className='input-full'
-                    />
-                    <div style={{display:'flex',flexWrap:'wrap'}}>
-                        {keywords.map((item, index) => <span key={index} className='note-taker-keyword box'>{item}<i onClick={() => removeKeyword(index)} className='fa fa-close note-taker-close'></i></span>)}
-                    </div>
-                    <div style={{display:'flex',alignItems:'center',margin:'15px 0 30px 0'}}>
-                        <Input 
-                            onChange={hiddenHandler} 
-                            style={{marginRight:7}} 
-                            element='input' 
-                            type='checkbox'
-                            value={inputs.hidden}
-                            id='private'
-                        />
-                        <p className='note-taker-title'>Private</p>
-                        <div title='only those who follow you can see' className='note-taker-detail center'>?</div>
-                    </div>
-                    <Button onClick={() => sendNote(props.type)} className='info full'>SUBMIT</Button>
+            <div style={{width:'100%'}}>
+                <Input 
+                    onChange={inputHandler}  
+                    placeholder='Title' 
+                    className='input-full note-taker-title' 
+                    element='input'
+                    id='title'
+                    value={inputs.title}
+                />
+                <Input 
+                    onChange={inputHandler} 
+                    placeholder='Description' 
+                    className='input-full note-taker-description mt-1'
+                    id='description'
+                    value={inputs.description}
+                />
+                <UploadImage fileHandler={uploadFile} postImg={props.image}/>
+                <p className='note-taker-input-title'>Keyword</p>
+                <Input 
+                    onChange={keywordsHandler} 
+                    value={keyword} 
+                    element='input'
+                    placeholder='add keywords with spaces between them' 
+                    className='input-full keyword-input mt-1'
+                />
+                <div style={{display:'flex',flexWrap:'wrap', marginBottom:45}}>
+                    {keywords.map((item, index) => <span key={index} className='note-taker-keyword-item mt-1 mr-1'>{item}<i onClick={() => removeKeyword(index)} className='fa fa-close note-taker-close'></i></span>)}
                 </div>
-            </Card>
+                <div style={{display:'flex',alignItems:'center',margin:'15px 0 30px 0'}}>
+                    <Input 
+                        onChange={hiddenHandler} 
+                        style={{marginRight:7}} 
+                        element='input' 
+                        type='checkbox'
+                        value={inputs.hidden}
+                        id='private'
+                    />
+                    <p className='note-taker-input-title'>Private</p>
+                    <div title='only those who follow you can see' className='note-taker-detail center'>?</div>
+                </div>
+                <Button onClick={() => sendNote(props.type)} className='info full post-taker-button'>SUBMIT</Button>
+            </div>
         </div>
         
     );
