@@ -1,27 +1,21 @@
-.user-item-card{
+
+.user-item-container{
     transition: all .2s ease-in-out;
     background-color: rgba(0, 0, 0, .4);
-    box-shadow: none;
-    border-radius: 0 !important;
+    width: 100%;
+    padding:15px;
     border-bottom:1px solid rgba(129, 129, 129, 0.4);
 }
 
-.user-item-card:last-child{
+.user-item-container:last-child{
     border-bottom: none;
-}
-
-
-.user-item-container{
-    width: 100%;
-    padding:5px;
-    margin:10px 20px
 }
 
 .user-item-container a{
     text-decoration: none;
 }
 
-.user-item-card:hover{
+.user-item-container:hover{
     background-color: rgba(0, 0, 0, .7);
 }
 

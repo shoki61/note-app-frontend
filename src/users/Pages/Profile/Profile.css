@@ -37,6 +37,13 @@
     margin-left: 3px;
 }
 
+.profile-links{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 70%;
+}
+
 .profile-edit-button{
     background-color: #505050;
     width: 35px;
@@ -159,4 +166,8 @@
     content: "|";
     padding: 18px;
     color: rgb(219, 219, 219);
+}
+
+.black-round a {
+    color: inherit
 }

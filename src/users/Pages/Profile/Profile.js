@@ -124,7 +124,7 @@ const Profile = props => {
                             }
                         </div>
                         {isLoggedIn && userInfo._id === user._id && <Button>
-                            <NavLink className='profile-edit-button center' to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job, id: user._id}}}>
+                            <NavLink className='profile-edit-button center' to={{pathname: '/update-profile', state: {name:user.name, email: user.email, image: user.image, job: user.job,links: user.links, id: user._id}}}>
                                 <i className="glyphicon glyphicon-pencil"></i><span className='profile-edit'>edit profile</span>
                             </NavLink>
                         </Button>}
@@ -140,11 +140,17 @@ const Profile = props => {
                         </div>
                     </div>
                 </div>
-                <div className='profile-links center'>
-                    <Button className='black-round'><i className='fa fa-facebook'></i></Button>
-                    <Button className='black-round'><i className='fa fa-instagram'></i></Button>
-                    <Button className='black-round'><i className='fa fa-twitter'></i></Button>
-                    <Button className='black-round'><i className='fa fa-link'></i></Button>
+                <div style={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
+                    <div className='profile-links mb-1'>
+                        {user.links.linkedin && <Button className='black-round'><a href={user.links.linkedin} target='_blank'><i className='fa fa-linkedin'></i></a></Button>}
+                        {user.links.facebook && <Button className='black-round'><a href={user.links.facebook}><i className='fa fa-facebook'></i></a></Button>}
+                        {user.links.instagram && <Button className='black-round'><a href={user.links.instagram}><i className='fa fa-instagram'></i></a></Button>}
+                        {user.links.twitter && <Button className='black-round'><a href={user.links.twitter}><i className='fa fa-twitter'></i></a></Button>}
+                        {user.links.github && <Button className='black-round'><a href={user.links.github}><i className='fab fa-github'></i></a></Button>}
+                        {user.links.gitlab && <Button className='black-round'><a href={user.links.gitlab}><i className='fab fa-gitlab'></i></a></Button>}
+                        {user.links.medium && <Button className='black-round'><a href={user.links.medium}><i className='fab fa-medium-m'></i></a></Button>}
+                        {user.links.web && <Button className='black-round'><i className='fa fa-link'></i></Button>}
+                    </div>
                     {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
                     {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline delete-acount box-shadow-hover'>Delete the account</Button>}
                 </div>

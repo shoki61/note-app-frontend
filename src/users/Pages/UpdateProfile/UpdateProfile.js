@@ -11,11 +11,12 @@ import './UpdateProfile.css';
 const UpdateProfile = props => {
     const [file, setFile] = useState();
     const { name, email, job, image, links, id } = props.location.state;
+    console.log(links);
     const [userData, setUserData] = useState({
         name,
         email,
         job,
-        links: links || [{
+        links: links || {
             linkedin:'',
             facebook:'',
             medium:'',
@@ -24,7 +25,7 @@ const UpdateProfile = props => {
             github:'',
             gitlab:'',
             web:''
-        }]
+        }
     });
 
     const newImageHandler = file => {
@@ -37,6 +38,7 @@ const UpdateProfile = props => {
         formData.append('name', userData.name);
         formData.append('image', file || image);
         formData.append('job', userData.job);
+        formData.append('links', JSON.stringify(userData.links));
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/update-user/${id}`, {
             method: 'PATCH',
             body: formData
@@ -54,12 +56,12 @@ const UpdateProfile = props => {
     };
 
     const userLinkHanler = event => {
-        let updatedLinks = {...userData.links[0]};
+        let updatedLinks = {...userData.links};
         updatedLinks[event.target.id] = event.target.value;
         setUserData(prevData => {
             return {
                 ...prevData,
-                links: [updatedLinks]
+                links: updatedLinks
             };
         });
     };
@@ -69,7 +71,7 @@ const UpdateProfile = props => {
         <div className='update-profile-container'>
             <Card>
                 <div className='update-profile-form-container'>
-                    <UploadProfileImg imageHandler={newImageHandler} initialValue={image}/>
+                    <UploadProfileImg imageHandler={newImageHandler} userName={userData.name} initialValue={image}/>
                     <p className='update-profile-title mt-2'>Name</p>
                     <Input 
                         value={userData.name} 
@@ -98,15 +100,15 @@ const UpdateProfile = props => {
                         onChange={inputHandler}
                     />
 
-                    <p className='update-profile-title mt-1'>Links</p>
-                    <UpdateLink linkHandler={userLinkHanler} id='linkedin' title='Linkedin' value={userData.links[0].linkedin} iconName='fa fa-linkedin'/>
-                    <UpdateLink linkHandler={userLinkHanler} id='medium' title='Medium' value={userData.links[0].medium} iconName='fab fa-medium-m'/>
-                    <UpdateLink linkHandler={userLinkHanler} id='github' title='Github' value={userData.links[0].github} iconName='fab fa-github'/>
-                    <UpdateLink linkHandler={userLinkHanler} id='gitlab' title='Gitlab' value={userData.links[0].gitlab} iconName='fab fa fa-gitlab'/>
-                    <UpdateLink linkHandler={userLinkHanler} id='facebook' title='Facebook' value={userData.links[0].facebook} iconName='fa fa-facebook'/>
-                    <UpdateLink linkHandler={userLinkHanler} id='instagram' title='Instagram' value={userData.links[0].instagram} iconName='fa fa-instagram'/>
-                    <UpdateLink linkHandler={userLinkHanler} id='twitter' title='Twitter' value={userData.links[0].twitter} iconName='fa fa-twitter'/>
-                    <UpdateLink linkHandler={userLinkHanler} id='web' title='Web' value={userData.links[0].web} iconName='fa fa-link'/>
+                    <p className='update-profile-title'>Links</p>
+                    <UpdateLink placeholder='linkedin account' linkHandler={userLinkHanler} id='linkedin' title='Linkedin' value={userData.links.linkedin} iconName='fa fa-linkedin'/>
+                    <UpdateLink placeholder='medium account' linkHandler={userLinkHanler} id='medium' title='Medium' value={userData.links.medium} iconName='fab fa-medium-m'/>
+                    <UpdateLink placeholder='github account' linkHandler={userLinkHanler} id='github' title='Github' value={userData.links.github} iconName='fab fa-github'/>
+                    <UpdateLink placeholder='gitlab account' linkHandler={userLinkHanler} id='gitlab' title='Gitlab' value={userData.links.gitlab} iconName='fab fa fa-gitlab'/>
+                    <UpdateLink placeholder='facebook account' linkHandler={userLinkHanler} id='facebook' title='Facebook' value={userData.links.facebook} iconName='fa fa-facebook'/>
+                    <UpdateLink placeholder='instagram account' linkHandler={userLinkHanler} id='instagram' title='Instagram' value={userData.links.instagram} iconName='fa fa-instagram'/>
+                    <UpdateLink placeholder='twitter account' linkHandler={userLinkHanler} id='twitter' title='Twitter' value={userData.links.twitter} iconName='fa fa-twitter'/>
+                    <UpdateLink placeholder='web url' linkHandler={userLinkHanler} id='web' title='Web' value={userData.links.web} iconName='fa fa-link'/>
 
                     <div style={{margin:'40px 0 30px 0'}} className='line'></div>
                     <Button onClick={saveNewUserData} className='info full update-profile-button'>Save the change</Button>

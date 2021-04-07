@@ -7,7 +7,7 @@ const UpdateLink = props => {
    return (
        <div className='center update-link-container'>
            <div title={props.title} className='icon-container center'><i className={props.iconName}></i></div>
-           <Input id={props.id} onChange={props.linkHandler} element='input' value={props.value} className='updateLinkInput full'/>
+           <Input placeholder={props.placeholder} id={props.id} onChange={props.linkHandler} element='input' value={props.value} className='updateLinkInput full'/>
        </div>
    );
 };

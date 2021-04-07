@@ -8,7 +8,6 @@ import './UserItem.css';
 
 const UserItem = props => {
     return (
-        <Card className='user-item-card'>
             <div className='user-item-container'>
                 <NavLink to={{pathname:'/profile', state: {id: props.id}}}>
                     <div className='user-item-content center'>
@@ -25,7 +24,6 @@ const UserItem = props => {
                     </div>
                 </NavLink>
             </div>
-        </Card>
     );
 };
 

@@ -40,14 +40,14 @@ const UploadProfileImg = props => {
             accept='.png,.jpg,.jpeg'
             onChange={pickedHandler}
         />
-        <div>
+        <div onClick={pickImageHandler}>
             <div className='profile-image'>
                 {previewUrl
                     ? <Image className='profile-image' src={previewUrl}/>
-                    : <p>Lorem ipsum</p>
+                    : <p className='avatar-name font-50'>{props.userName.charAt().toUpperCase()}</p>
                 }
                 <Opacity>
-                    <Button onClick={pickImageHandler} className='white'><i className='fa fa-camera'></i>Upload image</Button>
+                    <Button className='white'><i className='fa fa-camera'></i>Upload image</Button>
                 </Opacity>
             </div> 
         </div>
