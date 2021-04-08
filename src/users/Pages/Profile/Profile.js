@@ -142,14 +142,15 @@ const Profile = props => {
                 </div>
                 <div style={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
                     <div className='profile-links mb-1'>
-                        {user.links.linkedin && <Button className='black-round'><a href={user.links.linkedin} target='_blank'><i className='fa fa-linkedin'></i></a></Button>}
-                        {user.links.facebook && <Button className='black-round'><a href={user.links.facebook}><i className='fa fa-facebook'></i></a></Button>}
-                        {user.links.instagram && <Button className='black-round'><a href={user.links.instagram}><i className='fa fa-instagram'></i></a></Button>}
-                        {user.links.twitter && <Button className='black-round'><a href={user.links.twitter}><i className='fa fa-twitter'></i></a></Button>}
-                        {user.links.github && <Button className='black-round'><a href={user.links.github}><i className='fab fa-github'></i></a></Button>}
-                        {user.links.gitlab && <Button className='black-round'><a href={user.links.gitlab}><i className='fab fa-gitlab'></i></a></Button>}
-                        {user.links.medium && <Button className='black-round'><a href={user.links.medium}><i className='fab fa-medium-m'></i></a></Button>}
-                        {user.links.web && <Button className='black-round'><i className='fa fa-link'></i></Button>}
+                        {<p>{user.links.linkedin.search(/http/gi)}</p>}
+                        {user.links.linkedin && <Button className='black-round'><a href={user.links.linkedin.search(/http/gi) < 0 ? `https://${user.links.linkedin}`: user.links.linkedin} target='_blank'><i className='fa fa-linkedin'></i></a></Button>}
+                        {user.links.facebook && <Button className='black-round'><a href={user.links.facebook.search(/http/gi) < 0 ? `https://${user.links.facebook}`: user.links.facebook} target='_blank'><i className='fa fa-facebook'></i></a></Button>}
+                        {user.links.instagram && <Button className='black-round'><a href={user.links.instagram.search(/http/gi) < 0 ? `https://${user.links.instagram}`: user.links.instagram} target='_blank'><i className='fa fa-instagram'></i></a></Button>}
+                        {user.links.twitter && <Button className='black-round'><a href={user.links.twitter.search(/http/gi) < 0 ? `https://${user.links.twitter}`: user.links.twitter} target='_blank'><i className='fa fa-twitter'></i></a></Button>}
+                        {user.links.github && <Button className='black-round'><a href={user.links.github.search(/http/gi) < 0 ? `https://${user.links.github}`: user.links.github} target='_blank'><i className='fab fa-github'></i></a></Button>}
+                        {user.links.gitlab && <Button className='black-round'><a href={user.links.gitlab.search(/http/gi) < 0 ? `https://${user.links.gitlab}`: user.links.gitlab} target='_blank'><i className='fab fa-gitlab'></i></a></Button>}
+                        {user.links.medium && <Button className='black-round'><a href={user.links.medium.search(/http/gi) < 0 ? `https://${user.links.medium}`: user.links.medium} target='_blank'><i className='fab fa-medium-m'></i></a></Button>}
+                        {user.links.web && <Button className='black-round'><a href={user.links.medium.search(/http/gi) < 0 ? `https://${user.links.web}`: user.links.web} target='_blank'><i className='fa fa-link'></i></a></Button>}
                     </div>
                     {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
                     {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline delete-acount box-shadow-hover'>Delete the account</Button>}
