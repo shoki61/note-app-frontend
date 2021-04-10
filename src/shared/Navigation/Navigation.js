@@ -1,19 +1,33 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useSelector } from 'react-redux';
 
 import NavigationItem from './NavigationItem/NavigationItem';
 import Button from '../components/Button/Button';
-import Image from '../components/Image/Image';
-import Logo from '../../assets/logo.png';
+import Logo from './Logo/Logo';
 import * as actions from '../../store/actions/index';
 import './Navigation.css';
 
 const Navigation = props => {
   const { userInfo, isLoggedIn } = props.userRdcr;
-  
+  const [shrink, setShrink] = useState(' ');
+  const [logoSize, setLogoSize] = useState();
+
+  window.onscroll = function() {scrollFunction()};
+
+const scrollFunction = () => {
+  if (document.documentElement.scrollTop > 30) {
+    setShrink('shrink');
+    setLogoSize(30)
+  } else {
+    setShrink(' ');
+    setLogoSize()
+  };
+};
+
+
   return(
-    <header className='navigation box'>
-      <Image className='logo' src={Logo}/>
+    <header className={`navigation box ${shrink}`}>
+      <Logo size={logoSize} name='MY BLOG'/>
       <nav>
         <ul className='center'>
           <NavigationItem
