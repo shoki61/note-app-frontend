@@ -1,0 +1,45 @@
+.logo{
+  user-select: none;
+  justify-content: flex-start !important;
+  width: 15% !important;
+}
+
+.logo-icon{
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.logo-icon-back{
+    border-radius: 15px;
+    background-color: rgb(255, 113, 19);
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    animation: logo infinite 5s linear;
+}
+
+@keyframes logo {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+.logo-icon-text{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: monospace, sans-serif;
+    z-index: 100;
+}
+
+.logo-name{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 5px;
+    display: block;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
