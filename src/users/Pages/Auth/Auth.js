@@ -51,7 +51,7 @@ const Auth = props => {
             const responseData = await response.json();
             if(responseData.user){
               props.onLogin(responseData.user);
-              history.push('/users');
+              history.push('/');
             }else{
               setError(responseData.message);
             };

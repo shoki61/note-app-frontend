@@ -174,14 +174,14 @@ const Note = (props) => {
                 <span className='post-action'>{note.markings.length}</span>
               </Button>
               {note.creator._id === userId && (
-                <Button className="yellow-outline">
+                <Button className="yellow-outline  box-shadow-hover">
                   <NavLink className="nav-update" to={{pathname:'/update-note', state:{note}}}>
                     Update
                   </NavLink>
                 </Button>
               )}
               {note.creator._id === userId && (
-                <Button onClick={deletePost} className="danger-outline">Delete</Button>
+                <Button onClick={deletePost} className="danger-outline box-shadow-hover">Delete</Button>
               )}
             </div>
           </div>

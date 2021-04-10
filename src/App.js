@@ -7,7 +7,7 @@ import Spinner from './shared/components/Spinner/Spinner';
 import './App.css';
 import Button from './shared/components/Button/Button';
 
-const Home = React.lazy(() => import('./shared/Home/Home'));
+const Home = React.lazy(() => import('./shared/Pages/Home/Home'));
 const Users = React.lazy(() => import('./users/Pages/Users/Users'));
 const Notes = React.lazy(() => import('./notes/Pages/Notes/Notes'));
 const Note = React.lazy(() => import('./notes/Pages/Note/Note'));
@@ -16,7 +16,7 @@ const UpdateNote = React.lazy(() => import('./notes/Pages/UpdateNote/UpdateNote'
 const Profile = React.lazy(() => import('./users/Pages/Profile/Profile'));
 const UpdateProfile = React.lazy(() => import('./users/Pages/UpdateProfile/UpdateProfile'));
 const Auth = React.lazy(() => import('./users/Pages/Auth/Auth'));
-const Page404 = React.lazy(() => import('./shared/Page/Page404/Page404'));
+const Page404 = React.lazy(() => import('./shared/Pages/Page404/Page404'));
 
 const App = props => {
   return (

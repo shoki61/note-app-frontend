@@ -1,0 +1,30 @@
+.page404{
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.page404-code{
+    font-size: 150px;
+    color: rgb(189, 189, 189);
+    font-weight: bold;
+}
+
+.page404-error-message{
+    color: #585858
+}
+
+.page404-button{
+    width: 150px;
+    height: 50px;
+    margin-top: 25px;
+    border:2px solid rgb(209, 209, 209);
+    color:#797979;
+    font-weight: 600;
+}
+
+.page404-button:hover{
+    background-color: #414141;
+    border:2px solid #414141;
+    color: #fff
+}

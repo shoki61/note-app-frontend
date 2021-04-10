@@ -3,7 +3,7 @@
     height: 100vh;
     flex-direction: column;
     position: relative;
-    background-image: url("../../assets/homeBack.jpg");
+    background-image: url("../../../assets/homeBack.jpg");
     background-size: cover;
     background-repeat: no-repeat
 }
@@ -21,13 +21,14 @@
     width: 175px;
     height: 175px;
     position: relative;
+    user-select: none;
 }
 
 .home-logo-back{
     width: inherit;
     height: inherit;
     background-color: rgb(255, 113, 19);
-    border-radius: 60px;
+    border-radius: 65px;
     position: absolute;
     animation: logo infinite 6s linear;
 }

@@ -141,11 +141,11 @@ a{
     position: fixed;
     bottom:40px;
     right: 50px;
-    background-color: #ffa41b;
+    background-color: rgb(235, 94, 0);
     z-index: 300;
 }
 
 .new-post-button:hover{
-    background-color: #d69915;
-    bottom:43px
+    width: 60px;
+    height: 60px;
 }
