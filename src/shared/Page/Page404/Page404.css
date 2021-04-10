@@ -1,0 +1,15 @@
+.page404{
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.error-code{
+    font-size: 150px;
+    color: rgb(189, 189, 189);
+    font-weight: bold;
+}
+
+.error-message{
+    color: #585858
+}

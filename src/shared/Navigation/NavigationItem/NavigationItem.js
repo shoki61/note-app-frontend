@@ -6,7 +6,7 @@ import './NavigationItem.css';
 const NavigationItem = props => {
     return (
         <li className='nav-item'>
-            <NavLink to={{pathname: props.path, state:{id: props.userId}}}>
+            <NavLink exact={props.exact} to={{pathname: props.path, state:{id: props.userId}}}>
                 {props.title}
             </NavLink>
         </li>

@@ -16,6 +16,7 @@ const UpdateNote = React.lazy(() => import('./notes/Pages/UpdateNote/UpdateNote'
 const Profile = React.lazy(() => import('./users/Pages/Profile/Profile'));
 const UpdateProfile = React.lazy(() => import('./users/Pages/UpdateProfile/UpdateProfile'));
 const Auth = React.lazy(() => import('./users/Pages/Auth/Auth'));
+const Page404 = React.lazy(() => import('./shared/Page/Page404/Page404'));
 
 const App = props => {
   return (
@@ -23,26 +24,29 @@ const App = props => {
         <Navigation/>
         <Suspense fallback={<div className='center'><Spinner/></div>}>
           <Switch>
+            <Route path='/users' >
+              <Users/>
+            </Route>
+            <Route path='/notes' >
+              <Notes/>
+            </Route>
+            <Route path='/note' render={props => <Note {...props}/>} />
+            <Route path='/profile' render={props => <Profile {...props}/>} />
+            <Route path='/auth' >
+              <Auth/>
+            </Route>
+            <Route path={props.userInfo.isLoggedIn ? '/new-note': '/users'} >
+              <NewNote/>
+            </Route>
+            <Route path={props.userInfo.isLoggedIn ? '/update-note': '/users'} render={props => <UpdateNote {...props}/>} />
+            <Route path={props.userInfo.isLoggedIn ? '/update-profile': '/users'} render={(props) => <UpdateProfile {...props}/>} />
             <Route path='/' exact>
               <Home/>
             </Route>
-            <Route path='/users'>
-              <Users/>
+            <Route path='/404'>
+              <Page404/>
             </Route>
-            <Route path='/notes'>
-              <Notes/>
-            </Route>
-            <Route path='/note' render={props => <Note {...props}/>}/>
-            <Route path='/profile' render={props => <Profile {...props}/>}/>
-            <Route path='/auth'>
-              <Auth/>
-            </Route>
-            <Route path={props.userInfo.isLoggedIn ? '/new-note': '/users'}>
-              <NewNote/>
-            </Route>
-            <Route path={props.userInfo.isLoggedIn ? '/update-note': '/users'} render={props => <UpdateNote {...props}/>}/>
-            <Route path={props.userInfo.isLoggedIn ? '/update-profile': '/users'} render={(props) => <UpdateProfile {...props}/>}/>
-            <Redirect to='/'/>
+            <Redirect to='/404'/>
           </Switch>
         </Suspense>
         {props.userInfo.isLoggedIn && <Link to='/new-note'><Button className='new-post-button'><i className='fas fa-feather-alt'></i></Button></Link>}

@@ -30,6 +30,11 @@ const scrollFunction = () => {
       <Logo size={logoSize} name='MY BLOG'/>
       <nav>
         <ul className='center'>
+        <NavigationItem
+            title='Home'
+            path='/'
+            exact
+          />
           <NavigationItem
             title='Users'
             path='/users'
