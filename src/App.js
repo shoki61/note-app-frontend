@@ -7,6 +7,7 @@ import Spinner from './shared/components/Spinner/Spinner';
 import './App.css';
 import Button from './shared/components/Button/Button';
 
+const Home = React.lazy(() => import('./shared/Home/Home'));
 const Users = React.lazy(() => import('./users/Pages/Users/Users'));
 const Notes = React.lazy(() => import('./notes/Pages/Notes/Notes'));
 const Note = React.lazy(() => import('./notes/Pages/Note/Note'));
@@ -18,12 +19,14 @@ const Auth = React.lazy(() => import('./users/Pages/Auth/Auth'));
 
 const App = props => {
   return (
-    <div>
       <BrowserRouter>
         <Navigation/>
         <Suspense fallback={<div className='center'><Spinner/></div>}>
           <Switch>
-            <Route path='/users' exact>
+            <Route path='/' exact>
+              <Home/>
+            </Route>
+            <Route path='/users'>
               <Users/>
             </Route>
             <Route path='/notes'>
@@ -39,12 +42,11 @@ const App = props => {
             </Route>
             <Route path={props.userInfo.isLoggedIn ? '/update-note': '/users'} render={props => <UpdateNote {...props}/>}/>
             <Route path={props.userInfo.isLoggedIn ? '/update-profile': '/users'} render={(props) => <UpdateProfile {...props}/>}/>
-            <Redirect to='/users'/>
+            <Redirect to='/'/>
           </Switch>
         </Suspense>
         {props.userInfo.isLoggedIn && <Link to='/new-note'><Button className='new-post-button'><i className='fas fa-feather-alt'></i></Button></Link>}
       </BrowserRouter>
-    </div>
   );
 };
 

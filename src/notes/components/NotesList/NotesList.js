@@ -10,7 +10,6 @@ const NotesList = props => {
 
     let noteItem = <Spinner/>;
     if(props.data){
-        console.log(props.data)
         noteItem = props.type === 'profile'
             ? props.data.map(post => <ProfilePostItem
                 key={post._id}

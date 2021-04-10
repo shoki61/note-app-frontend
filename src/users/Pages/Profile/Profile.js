@@ -15,6 +15,7 @@ import './Profile.css';
 
 
 const Profile = props => {
+
     const history = useHistory();
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();
@@ -25,8 +26,7 @@ const Profile = props => {
     const [ followData, setFollowData ] = useState();
     const [ searchingPost, setSearchingPost ] = useState('');
 
-    const { userInfo, isLoggedIn } = props.userRdcr;
-
+    const { userInfo, isLoggedIn } = props.userRdcr;    
 
     useEffect(()=>{
         const getUser = async() => {
@@ -104,7 +104,7 @@ const Profile = props => {
     };
 
     return (
-        <div className='pt-5' style={{display:'flex', justifyContent:'center'}}>
+        <div className='pt-5 center'>
             {showFollow && <Modal closeModal={changeShowFollow}>
                 <PersonsList 
                     follow={follow}
@@ -113,7 +113,7 @@ const Profile = props => {
                     closeModal={changeShowFollow}
                 />
             </Modal>}
-            { user ? <div className='profile-container'>
+            { user ? <div id='profile-container' className='profile-container'>
             <div className='profile-info center'>
                 <div className='center'>
                     <div className='profile-image-container center'>
@@ -142,7 +142,6 @@ const Profile = props => {
                 </div>
                 <div style={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
                     <div className='profile-links mb-1'>
-                        {<p>{user.links.linkedin.search(/http/gi)}</p>}
                         {user.links.linkedin && <Button className='black-round'><a href={user.links.linkedin.search(/http/gi) < 0 ? `https://${user.links.linkedin}`: user.links.linkedin} target='_blank'><i className='fa fa-linkedin'></i></a></Button>}
                         {user.links.facebook && <Button className='black-round'><a href={user.links.facebook.search(/http/gi) < 0 ? `https://${user.links.facebook}`: user.links.facebook} target='_blank'><i className='fa fa-facebook'></i></a></Button>}
                         {user.links.instagram && <Button className='black-round'><a href={user.links.instagram.search(/http/gi) < 0 ? `https://${user.links.instagram}`: user.links.instagram} target='_blank'><i className='fa fa-instagram'></i></a></Button>}
@@ -184,7 +183,7 @@ const Profile = props => {
                     : <p className='no-notes-text mt-2'>There is no user posts</p> 
                 }
             </div>
-        </div>: <Spinner/> }
+            </div>: <Spinner/> }
         </div>
     );
 };

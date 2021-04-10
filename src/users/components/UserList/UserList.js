@@ -7,13 +7,12 @@ import './UserList.css';
 
 const UserList = props => {
     const [showBlur, setShowBlur] = useState(0);
-    let scrollValue; document.querySelector('.user-list');
+    let scrollValue;
 
     const handleScroll = () => setShowBlur( scrollValue.scrollTop);
 
-    useEffect(()=> scrollValue = document.querySelector('.user-list'), []);
-
     useEffect(()=>{
+        scrollValue = document.querySelector('.user-list')
         if (scrollValue) scrollValue.addEventListener('scroll',handleScroll)
     },[showBlur])
 

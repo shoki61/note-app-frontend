@@ -19,7 +19,6 @@ const Notes = props => {
                 publicNotes = responseData.notes.filter(item => item.hidden === false);
             };
             setNotes(publicNotes);
-            console.log(responseData)
         };
         getNotes();
     }, []);

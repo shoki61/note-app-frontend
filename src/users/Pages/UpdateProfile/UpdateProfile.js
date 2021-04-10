@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 import Card from '../../../shared/components/Card/Card';
@@ -9,9 +10,9 @@ import UpdateLink from '../../components/UpdateLink/UpdateLink';
 import './UpdateProfile.css';
 
 const UpdateProfile = props => {
+    const history = useHistory();
     const [file, setFile] = useState();
     const { name, email, job, image, links, id } = props.location.state;
-    console.log(links);
     const [userData, setUserData] = useState({
         name,
         email,
@@ -44,6 +45,7 @@ const UpdateProfile = props => {
             body: formData
         })
         const responseData = await response.json();
+        if(responseData.user) history.goBack();
     };
 
     const inputHandler = event => {
