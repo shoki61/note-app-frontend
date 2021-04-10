@@ -1,0 +1,43 @@
+.side-drawer-container{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 300;
+}
+
+
+.side-drawer{
+    width: 65%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    right:0;
+    z-index: 400;
+    background-color: #242424;
+    padding: 50px 10px;
+}
+
+@media (min-width:500px) {
+    .side-drawer {
+        display: none;
+    }
+}
+
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateX(100%);
+}
+
+.side-drawer header, ul{
+    padding: 0;
+    height: auto;
+}
+
+.side-drawer li {
+    margin: 25px 0;
+}

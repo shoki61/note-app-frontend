@@ -26,10 +26,10 @@ const scrollFunction = () => {
 
 
   return(
-    <header className={`navigation box ${shrink}`}>
-      <Logo size={logoSize} name='MY BLOG'/>
+    <header className={`navigation ${shrink}`}>
+      {!props.sideDrawer &&<Logo size={logoSize} name='MY BLOG'/>}
       <nav>
-        <ul className='center'>
+        <ul className={!props.sideDrawer && 'center'}>
         <NavigationItem
             title='Home'
             path='/'

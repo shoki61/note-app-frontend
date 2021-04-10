@@ -1,11 +1,13 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 import Navigation from './shared/Navigation/Navigation';
 import Spinner from './shared/components/Spinner/Spinner';
-import './App.css';
 import Button from './shared/components/Button/Button';
+import SideDrawer from './shared/components/SideDrawer/SideDrawer';
+import Backdrop from './shared/components/Backdrop/Backdrop';
+import './App.css';
 
 const Home = React.lazy(() => import('./shared/Pages/Home/Home'));
 const Users = React.lazy(() => import('./users/Pages/Users/Users'));
@@ -19,6 +21,11 @@ const Auth = React.lazy(() => import('./users/Pages/Auth/Auth'));
 const Page404 = React.lazy(() => import('./shared/Pages/Page404/Page404'));
 
 const App = props => {
+
+  const [ open, setOpen ] = useState(true);
+
+  const sideDrawerHandler = () => setOpen(!open);
+
   return (
       <BrowserRouter>
         <Navigation/>
@@ -49,6 +56,8 @@ const App = props => {
             <Redirect to='/404'/>
           </Switch>
         </Suspense>
+        {open && <Backdrop onClose={sideDrawerHandler}/>}
+        <SideDrawer clicked={sideDrawerHandler} open={open}/>
         {props.userInfo.isLoggedIn && <Link to='/new-note'><Button className='new-post-button'><i className='fas fa-feather-alt'></i></Button></Link>}
       </BrowserRouter>
   );
