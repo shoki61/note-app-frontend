@@ -86,12 +86,13 @@ const Auth = props => {
     };
     return(
         <div className='auth center'>
-          <Image className='auth-top-img auth-back-img' src={require('../../../assets/authTop.png').default} alt='top-img'/>
-
+          <div className='auth-top-img-container'>
+            <Image className='auth-top-img auth-back-img' src={require('../../../assets/authTop.png').default} alt='top-img'/>
+          </div>
           <div className='auth-form-container animate__animated animate__slideInLeft center'>
               <form onSubmit={authSubmitHandler} className='auth-form'>
                   {!mode && <>
-                      <p className='auth-title white'>Your Name</p>
+                      <p className='auth-title'>Your Name</p>
                       <Input 
                         id='name'
                         value={inputs.name}
@@ -101,7 +102,7 @@ const Auth = props => {
                         element='input'
                       />
                   </>}
-                  <p className='auth-title white'>E-mail</p>
+                  <p className='auth-title'>E-mail</p>
                   <Input
                       id='email'
                       type='email'
@@ -141,7 +142,9 @@ const Auth = props => {
           <div className='vector-icon-container center'>
             <Image className='auth-vektor animate__animated animate__fadeInRight' src={require('../../../assets/authVector.png').default} alt='vector'/>
           </div>
-          <Image className='auth-bottom-img auth-back-img' src={require('../../../assets/authBottom.png').default} alt='top-img'/>
+          <div className='auth-bottom-img-container'>
+            <Image className='auth-bottom-img auth-back-img' src={require('../../../assets/authBottom.png').default} alt='top-img'/>
+          </div>
         </div>
     )
 };
