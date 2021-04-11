@@ -28,7 +28,7 @@ const App = props => {
 
   return (
       <BrowserRouter>
-        <Navigation/>
+        <Navigation clicked={sideDrawerHandler}/>
         <Suspense fallback={<div className='center'><Spinner/></div>}>
           <Switch>
             <Route path='/users' >

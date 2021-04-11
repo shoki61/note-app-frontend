@@ -30,3 +30,32 @@ ul{
     margin-left: 2rem;
     color: #fff
 }
+
+.header-menu-button{
+    width: 40px;
+    height: 25px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.header-menu-button span{
+    height: 4px;
+    width: 100%;
+    display: block;
+    border-radius: 100px;
+    background-color: rgb(255, 129, 70);
+}
+
+@media (max-width:600px) {
+    .header-nav {
+        display: none;
+    }
+    .header-menu-button{
+        display: flex;
+    }
+    .navigation{
+        padding: 0 30px;
+    }
+}

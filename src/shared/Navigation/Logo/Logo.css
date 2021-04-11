@@ -19,6 +19,22 @@
     animation: logo infinite 5s linear;
 }
 
+.logo-icon-text{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: monospace, sans-serif;
+  z-index: 100;
+}
+
+.logo-name{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 5px;
+  display: block;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 @keyframes logo {
     from {
       transform: rotate(0deg);
@@ -28,18 +44,8 @@
     }
   }
 
-.logo-icon-text{
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    font-family: monospace, sans-serif;
-    z-index: 100;
-}
-
-.logo-name{
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 5px;
-    display: block;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+@media (max-width:600px) {
+  .logo-icon {
+      margin-right: 15px;
+  }
 }

@@ -23,28 +23,34 @@ const scrollFunction = () => {
     setLogoSize()
   };
 };
-
-
   return(
     <header className={`navigation ${shrink}`}>
       {!props.sideDrawer &&<Logo size={logoSize} name='MY BLOG'/>}
-      <nav>
+      <nav className='header-nav'>
         <ul className={!props.sideDrawer && 'center'}>
         <NavigationItem
+            slideDrawer={props.sideDrawer}
+            icon='home'
             title='Home'
             path='/'
             exact
           />
           <NavigationItem
+            slideDrawer={props.sideDrawer}
+            icon='user-friends'
             title='Users'
             path='/users'
           />
           <NavigationItem
+            slideDrawer={props.sideDrawer}
+            icon='feather-alt'
             title='Posts'
             path='/notes'
           />
           {
             isLoggedIn && <NavigationItem
+            slideDrawer={props.sideDrawer}
+            icon='user'
             title='Profile'
             path='/profile'
             userId={userInfo ? userInfo._id : null}
@@ -52,6 +58,8 @@ const scrollFunction = () => {
           }
           {
             !isLoggedIn && <NavigationItem
+            slideDrawer={props.sideDrawer}
+            icon='sign-in-alt'
             title='Login'
             path='/auth'
           />
@@ -63,6 +71,11 @@ const scrollFunction = () => {
           }
         </ul>
       </nav>
+      <div className='header-menu-button' onClick={props.clicked}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </header>
   );  
 };
