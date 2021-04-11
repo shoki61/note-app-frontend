@@ -6,7 +6,7 @@
     justify-content: space-between;
     padding: 0 50px;
     position: fixed;
-    z-index: 100;
+    z-index: 300;
 }
 
 .shrink{

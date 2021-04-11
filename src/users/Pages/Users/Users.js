@@ -9,7 +9,6 @@ import './Users.css';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [homeMessage, setHomeMessage] = useState('Welcome to "MYbLOG" site.');
 
   useEffect(() => {
     const getUsers = async() => {
@@ -21,18 +20,11 @@ const Users = () => {
   }, [])
 
   return (
-    <div 
-      style={{
-        backgroundImage: `url('${backImg}')`,
-        backgroundSize: 'cover', 
-        backgroundRepeat:'no-repeat'
-      }} 
-      className='users-container'
-    >
+    <div className='users-container' >
       <div className='linear-gradient'></div>
       <div style={{zIndex:200}} className='home-content'>
-        <div style={{width:'50%'}}>
-          <h1 className='home-text'>{homeMessage}</h1>
+        <div className='home-left-text'>
+          <h1 className='home-text'>Welcome to "MY BLOG" site.</h1>
           <p className='home-description'>Freely share your own ideas, follow people and read their posts, like, mark for later reading and comment on posts.</p>
         </div>
         <div className='user-list-container'>
