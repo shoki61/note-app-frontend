@@ -58,9 +58,9 @@
     }
 }
 
-@media (max-width:600px) {
+@media (min-width:300px) and (max-width:600px) {
     .home-title {
-        font-size: 65px;
+        font-size: 55px;
     }
     .home{
         flex-direction: column-reverse;
