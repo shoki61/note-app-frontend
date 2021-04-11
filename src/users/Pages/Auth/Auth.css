@@ -125,3 +125,32 @@ textarea{
         margin: 15px 0 15px 0
     }
 }
+
+@media (min-width:600px) and (max-width:775px) {
+    .auth{
+        flex-direction: column-reverse;
+        align-items: center;
+        height: auto;
+        padding: 100px 0 30px 0 ;
+    }
+    .auth-form-container{
+        width: 100%;
+    }
+    .auth-form{
+        margin:auto;
+        width: 60%;
+    }
+    .vector-icon-container{
+        width: 45%;
+    }
+    .auth-vektor{
+        width: 100%;
+    }
+
+    .auth-title{
+        margin: 15px 0 3px 0;
+    }
+    .auth-button{
+        margin: 15px 0 15px 0
+    }
+}
