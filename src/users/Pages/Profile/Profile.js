@@ -115,7 +115,7 @@ const Profile = props => {
             </Modal>}
             { user ? <div id='profile-container' className='profile-container'>
             <div className='profile-info center'>
-                <div className='center'>
+                <div className='center profile-info-left'>
                     <div className='profile-image-container center'>
                         <div className='profile-image'>
                             {user.image
@@ -134,13 +134,13 @@ const Profile = props => {
                         <p className='profile-name'>{user.name}</p>
                         <p className='profile-job'>{user.job}</p>
                         <p className='profile-email'><i className='fa fa-envelope-o'></i>{user.email}</p>
-                        <div>
+                        <div className='profile-box-container'>
                             <Button onClick={() => changeShowFollow(user.following)} className='profile-box inline'>Following: {user.following.length}</Button>
                             <Button onClick={() => changeShowFollow(user.follower)} className='profile-box inline'>Followers: {user.follower.length}</Button>
                         </div>
                     </div>
                 </div>
-                <div style={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
+                <div className='profile-info-right'>
                     <div className='profile-links mb-1'>
                         {user.links.linkedin && <Button className='black-round'><a href={user.links.linkedin.search(/http/gi) < 0 ? `https://${user.links.linkedin}`: user.links.linkedin} target='_blank'><i className='fa fa-linkedin'></i></a></Button>}
                         {user.links.facebook && <Button className='black-round'><a href={user.links.facebook.search(/http/gi) < 0 ? `https://${user.links.facebook}`: user.links.facebook} target='_blank'><i className='fa fa-facebook'></i></a></Button>}
@@ -151,29 +151,35 @@ const Profile = props => {
                         {user.links.medium && <Button className='black-round'><a href={user.links.medium.search(/http/gi) < 0 ? `https://${user.links.medium}`: user.links.medium} target='_blank'><i className='fab fa-medium-m'></i></a></Button>}
                         {user.links.web && <Button className='black-round'><a href={user.links.medium.search(/http/gi) < 0 ? `https://${user.links.web}`: user.links.web} target='_blank'><i className='fa fa-link'></i></a></Button>}
                     </div>
-                    {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
-                    {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline delete-acount box-shadow-hover'>Delete the account</Button>}
+                    <div className='mt-1'>
+                        {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
+                        {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline delete-acount box-shadow-hover'>Delete the account</Button>}
+                    </div>
                 </div>
             </div>
             <div className='line'></div>
             <div className='profile-notes'>
-                <div style={{display:'flex', alignItems:'center',marginBottom:15,justifyContent:'space-between'}}>
+                <div className='profile-posts-container'>
                     <p className='profile-notes-title'>Posts</p>
-                    <div className='center'>
-                        <Button onClick={() => filterPosts('comments')} className='inline user-action'><i className="fa fa-comment-o user-action-icon"></i> {user.comments.length}</Button>
-                        <Button onClick={() => filterPosts('markings')} className='inline user-action'><i className="fa fa-bookmark-o user-action-icon"></i> {user.markings.length}</Button>
-                        <Button onClick={() => filterPosts('likes')} className='inline user-action'><i className="fa fa-heart-o user-action-icon"></i> {user.likes.length}</Button>
+                    <div className='center profile-posts-top'>
+                        <div className='center profile-actions-container'>
+                            <Button onClick={() => filterPosts('comments')} className='inline user-action'><i className="fa fa-comment-o user-action-icon"></i> {user.comments.length}</Button>
+                            <Button onClick={() => filterPosts('markings')} className='inline user-action'><i className="fa fa-bookmark-o user-action-icon"></i> {user.markings.length}</Button>
+                            <Button onClick={() => filterPosts('likes')} className='inline user-action'><i className="fa fa-heart-o user-action-icon"></i> {user.likes.length}</Button>
+                        </div>
                         {isLoggedIn && userInfo._id === user._id && <Button className='button black profile-new-post box-shadow-hover ml-2'><NavLink to='/new-note'><i className='fa fa-plus add-icon'></i> Add new post</NavLink></Button>}
-                        <Input
-                            placeholder='search post...'
-                            className='search-note-input ml-1'
-                            element='input'
-                            value={searchingPost}
-                            onChange={searchPost}
-                            
-                            style={inputVisible ? {width:250, border:'1px solid grey'}:{width:0, padding:0}}
-                        />
-                        <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
+                        <div className='center search-post-container'>
+                            <Input
+                                placeholder='search post...'
+                                className='search-note-input ml-1'
+                                element='input'
+                                value={searchingPost}
+                                onChange={searchPost}
+
+                                style={inputVisible ? {width:250, border:'1px solid grey'}:{width:0, padding:0}}
+                            />
+                            <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
+                        </div>
                     </div>
                 </div>
                 { userNotes.length || notesToRender.length

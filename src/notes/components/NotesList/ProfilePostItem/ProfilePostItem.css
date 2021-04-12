@@ -59,3 +59,30 @@
     font-size: 20px;
     color:#636363;
 }
+
+@media (min-width:300px) and (max-width:600px) {
+    .profile-post-content{
+        width: 100%;
+        padding: 30px 0;
+    }
+    .profile-post-action{
+        margin-left: 15px;
+        white-space: nowrap;
+    }
+    .profile-post-action-icon{
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .profile-post-action{
+        font-size: 15px;
+        font-weight: 600;
+        color:#6e6e6e
+    }
+}
+
+@media (min-width:600px) and (max-width:800px) {
+    .profile-post-content{
+        width: 80%;
+        padding: 30px 0;
+    }
+}
