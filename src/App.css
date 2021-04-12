@@ -149,3 +149,13 @@ a{
     width: 60px;
     height: 60px;
 }
+
+@media (min-width:300px) and (max-width:600px){
+    .new-post-button{
+        width: 45px;
+        height:45px;
+        font-size: 15px;
+        bottom:10px;
+        right: 10px;
+    }
+}

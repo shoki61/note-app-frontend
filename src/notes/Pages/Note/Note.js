@@ -149,40 +149,46 @@ const Note = (props) => {
                 )}
               </div>
               </NavLink>
-              <p className="note-creator-name">
-                {note.creator.name}
+              <div>
+                <p className="note-creator-name">
+                  {note.creator.name}
+                </p>
                 <span className="note-created-date">{new Date(note.createdAt).toLocaleString()}</span>
-              </p>
+              </div>
             </div>
-            <div style={{ display: "flex" }}>
-              <Button onClick={changeCommentsVisible} className='inline  mr-1'>
-                <i className="fa fa-comment-o post-action-icon"></i>
-                <span className='post-action'>{note.comments.length}</span>
-              </Button>
-              <Button 
-                onClick={() => updatePostHandler('likes')} 
-                className='inline mr-1'
-                >
-                <i className={`post-action-icon ${userActions.favorable ? 'fa fa-heart-o' : 'fa fa-heart red'}`}></i>
-                <span className='post-action'>{note.likes.length}</span>
-              </Button>
-              <Button 
-                onClick={() => updatePostHandler('markings')} 
-                className='inline'
-                >
-                <i className={`post-action-icon ${ userActions.markable ? 'fa fa-bookmark-o' : 'fa fa-bookmark'}`}></i>
-                <span className='post-action'>{note.markings.length}</span>
-              </Button>
-              {note.creator._id === userId && (
-                <Button className="yellow-outline  box-shadow-hover">
-                  <NavLink className="nav-update" to={{pathname:'/update-note', state:{note}}}>
-                    Update
-                  </NavLink>
+            <div className='post-actions'>
+              <div>
+                <Button onClick={changeCommentsVisible} className='inline  mr-1'>
+                  <i className="fa fa-comment-o post-action-icon"></i>
+                  <span className='post-action'>{note.comments.length}</span>
                 </Button>
-              )}
-              {note.creator._id === userId && (
-                <Button onClick={deletePost} className="danger-outline box-shadow-hover">Delete</Button>
-              )}
+                <Button 
+                  onClick={() => updatePostHandler('likes')} 
+                  className='inline mr-1'
+                  >
+                  <i className={`post-action-icon ${userActions.favorable ? 'fa fa-heart-o' : 'fa fa-heart red'}`}></i>
+                  <span className='post-action'>{note.likes.length}</span>
+                </Button>
+                <Button 
+                  onClick={() => updatePostHandler('markings')} 
+                  className='inline'
+                  >
+                  <i className={`post-action-icon ${ userActions.markable ? 'fa fa-bookmark-o' : 'fa fa-bookmark'}`}></i>
+                  <span className='post-action'>{note.markings.length}</span>
+                </Button>
+              </div>
+              <div className='center'>
+                {note.creator._id === userId && (
+                  <Button className="yellow-outline  box-shadow-hover">
+                    <NavLink className="nav-update" to={{pathname:'/update-note', state:{note}}}>
+                      Update
+                    </NavLink>
+                  </Button>
+                )}
+                {note.creator._id === userId && (
+                  <Button onClick={deletePost} className="danger-outline box-shadow-hover">Delete</Button>
+                )}
+              </div>
             </div>
           </div>
           <div className="note-content">
