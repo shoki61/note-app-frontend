@@ -3,3 +3,17 @@
     margin:auto;
     padding:75px 0 50px 0;
 }
+
+@media (min-width:300px) and (max-width:600px) {
+    .notes-container {
+        width: 90%;
+        padding-top: 90px;
+    }
+}
+
+@media (min-width:600px) and (max-width:800px) {
+    .notes-container {
+        width: 80%;
+        padding-top: 100px;
+    }
+}

@@ -9,7 +9,7 @@ const NoteItem = props => {
         <div  className='note-item-container'>
             <NavLink to={{pathname:'/note', state:{id:props.id}}}>
                 <div className='note-item-content center'>
-                    <div style={{width: props.image ? '65%' : '100%'}}>
+                    <div className='post-item-left' style={{width: !props.image && '100%'}}>
                         <NavLink to={{pathname:'/profile', state:{id:props.creator._id}}} className='note-item-creator-container center'>
                             <div className='note-item-creator-img mr-1'>
                                 <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.creator.image}`} alt={props.creator.name}/>

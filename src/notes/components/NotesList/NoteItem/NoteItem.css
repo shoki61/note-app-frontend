@@ -1,5 +1,6 @@
 .note-item-container{
     width: 100%;
+    min-width: 275px;
     margin: 50px 0
 }
 
@@ -28,14 +29,17 @@
     transition: all .2s ease-in-out;
 }
 
+.post-item-left{
+    width: 60%;
+}
+
 .note-item-content{
     width: 100%;
-    min-width: 250px;
     justify-content: space-between !important;
 }
 
 .note-item-image{
-    width: 225px;
+    width: 250px;
     height: 200px;
 }
 
@@ -71,4 +75,31 @@
 
 .note-item-icon{
     font-size: 15px;
+}
+
+@media (min-width:300px) and (max-width:600px) {
+    .note-item-description{
+        display: none;
+    }
+    .note-item-title{
+        font-size: 20px;
+    }
+    .note-item-image{
+        width: 120px;
+        height: 110px;
+    }
+    .post-item-left{
+        width: 65%;
+    }
+    .note-item-creator-img{
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+    }
+    .note-item-creator-name{
+        font-size: 13px;
+    }
+    .note-item-container{
+        margin: 25px 0
+    }
 }
