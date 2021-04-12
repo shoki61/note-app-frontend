@@ -25,10 +25,26 @@
 
 .person-item-name{
     font-size: 17px;
-    color:#333333
+    color:#2c2c2c
 }
 
 .person-item-job{
     font-size: 13px;
     color:#6e6e6e;
+}
+
+@media (min-width:300px) and (max-width:600px){
+    .person-item-container{
+        padding: 10px 0;
+    }
+    .person-item-avatar{
+        width: 35px;
+        height: 35px;
+    }
+    .person-item-name{
+        font-size: 13px;
+    }
+    .person-item-job{
+        font-size: 11px;
+    }
 }
