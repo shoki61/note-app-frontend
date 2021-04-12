@@ -50,7 +50,7 @@
     font-weight: 600;
 }
 
-.note-taker-close{
+.note-taker-item-remove{
     margin-left: 10px;
     background-color: rgb(92, 92, 92);
     border-radius: 3px;
@@ -58,7 +58,7 @@
     color:#fff;
 }
 
-.note-taker-close:hover{
+.note-taker-item-remove:hover{
     background-color: rgb(255, 27, 27);
     transform: rotate(180deg);
 }
@@ -84,4 +84,43 @@
 .post-taker-button{
     padding: 10px;
     font-weight: 600;
+}
+
+@media (min-width:300px) and (max-width:600px){
+    .note-taker-container{
+        width: 90%;
+        padding-top: 100px;
+    }
+    .note-taker-title{
+        font-size: 20px;
+    }
+    .note-taker-description{
+        font-size: 17px;
+    }
+    .note-taker-input-title{
+        font-size: 18px;
+    }
+    .keyword-input{
+        font-size: 15px;
+        padding: 5px 7px;
+    }
+    .note-taker-keyword-item{
+        font-size: 14px;
+        padding: 3px 7px;
+    }
+    .note-taker-item-remove{
+        padding: 3px 5px;
+    }
+    .keyword-input::placeholder{
+        font-size: 12px;
+    }
+}
+
+@media (min-width:600px) and (max-width:800px){
+    .note-taker-container{
+        width: 70%;
+    }
+    .note-taker-description{
+        font-size: 20px;
+    }
 }

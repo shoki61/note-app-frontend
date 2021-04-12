@@ -122,7 +122,7 @@ const NoteTaker = props => {
                     className='input-full keyword-input mt-1'
                 />
                 <div style={{display:'flex',flexWrap:'wrap', marginBottom:45}}>
-                    {keywords.map((item, index) => <span key={index} className='note-taker-keyword-item mt-1 mr-1'>{item}<i onClick={() => removeKeyword(index)} className='fa fa-close note-taker-close'></i></span>)}
+                    {keywords.map((item, index) => <span key={index} className='note-taker-keyword-item mt-1 mr-1'>{item}<i onClick={() => removeKeyword(index)} className='fa fa-close note-taker-item-remove'></i></span>)}
                 </div>
                 <div style={{display:'flex',alignItems:'center',margin:'15px 0 30px 0'}}>
                     <Input 
