@@ -22,7 +22,7 @@ const Page404 = React.lazy(() => import('./shared/Pages/Page404/Page404'));
 
 const App = props => {
 
-  const [ open, setOpen ] = useState(true);
+  const [ open, setOpen ] = useState(false);
 
   const sideDrawerHandler = () => setOpen(!open);
 

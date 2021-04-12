@@ -28,3 +28,20 @@
     border:2px solid #414141;
     color: #fff
 }
+
+@media (min-width:300px) and (max-width:600px){
+    .page404-code{
+        font-size: 100px;
+    }
+    .page404{
+        padding: 0 30px;
+    }
+    .page404-error-message{
+        font-size: 20px
+    }
+    .page404-button{
+        background-color: #575757;
+        border:none;
+        color:#fff
+    }
+}
