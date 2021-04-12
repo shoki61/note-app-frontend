@@ -176,3 +176,44 @@ a,a:hover{
         height: 100px;
     }
 }
+
+@media (min-width:600px) and (max-width:800px){
+    .note-container{
+        width: 75%;
+    }
+    .note-creator{
+        margin-bottom: 10px;
+        align-items: center;
+    }
+    .note-create-avatar{
+        width: 35px;
+        height: 35px;
+    }
+    .note-creator-name{
+        font-size: 13px;
+    }
+    .note-created-date{
+        font-size: 12px;
+    }
+    .post-actions{
+        align-items: center;
+    }
+    .post-action-icon{
+        font-size: 18px;
+    }
+    .note-image{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .note-description{
+        font-size: 18px;
+        color: #414141;
+
+    }
+    .note-footer-title{
+        font-size: 16px;
+    }
+    .comment{
+        height: 100px;
+    }
+}

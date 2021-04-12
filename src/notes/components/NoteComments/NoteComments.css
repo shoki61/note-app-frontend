@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     padding: 25px;
-    z-index: 200;
+    z-index: 500;
     flex-direction: column;
     overflow: auto;
 }
@@ -33,4 +33,19 @@
     font-size: 16px;
     font-weight: 600;
     color:#6d6d6d
+}
+
+@media (min-width:300px) and (max-width:600px){
+    .note-comments-container{
+        width: 80%;
+        padding: 18px;
+    }
+    .note-comment-title{
+        margin: 10px 0 5px 0;
+        font-size: 20px;
+    }
+    .note-comments-close{
+        top:5px;
+        left:5px
+    }
 }

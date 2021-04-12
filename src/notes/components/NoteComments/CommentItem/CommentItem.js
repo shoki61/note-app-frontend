@@ -16,17 +16,6 @@ const CommentItem = (props) => {
         <div>
             <div className='user-name-container'>
               <p className='comment-item-name'>{props.user ? props.user.name : props.userName}</p>
-              <div className='user-info-container'>
-                <div className='user-info'>
-                  <div className='user-info-avatar mr-1'>
-                    {props.userImage 
-                      ? <Image src={props.userImage} alt={props.userName} /> 
-                      : <p className='avatar-name font-15'>{props.userName.charAt(0).toUpperCase()}</p>
-                    }
-                  </div>
-                  <p style={{fontWeight:500}} className='comment-item-name font-20'>{props.userName}</p>
-                </div>
-              </div>
             </div>
             <p className='comment-item-date'>{props.date}</p>
         </div>
