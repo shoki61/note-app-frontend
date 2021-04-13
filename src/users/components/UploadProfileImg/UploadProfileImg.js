@@ -17,15 +17,16 @@ const UploadProfileImg = props => {
 
     const pickedHandler = async event => {
         let pickedFile;
+        if(event.target.files && event.target.files.length !== 0){
+            pickedFile = event.target.files[0];
 
-        pickedFile = event.target.files[0];
-
-        const fileReader = new FileReader();
-        fileReader.onload = () => {
-            setPreviewUrl(fileReader.result);
-            props.imageHandler(pickedFile);
-        };
-        fileReader.readAsDataURL(pickedFile);        
+            const fileReader = new FileReader();
+            fileReader.onload = () => {
+                setPreviewUrl(fileReader.result);
+                props.imageHandler(pickedFile);
+            };
+            fileReader.readAsDataURL(pickedFile);     
+        }        
     };
 
     const pickImageHandler = () => {

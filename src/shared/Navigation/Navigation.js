@@ -15,7 +15,7 @@ const Navigation = props => {
   window.onscroll = function() {scrollFunction()};
 
 const scrollFunction = () => {
-  if (document.documentElement.scrollTop > 30) {
+  if (document.documentElement.scrollTop > 30 || document.body.scrollTop > 50) {
     setShrink('shrink');
     setLogoSize(30)
   } else {
