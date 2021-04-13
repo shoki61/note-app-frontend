@@ -21,7 +21,7 @@
     color:rgb(233, 233, 233);
     z-index: 100;
     padding-left: 50px;
-    font-family: consolas;
+    font-family: consolas, monospace, sans-serif;
     font-weight: bold;
 }
 
