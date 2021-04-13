@@ -1,5 +1,6 @@
 .update-profile-container{
     width: 45%;
+    min-width: 300px;
     margin:auto;
     padding:100px 0 50px 0;
 }
@@ -23,4 +24,28 @@
 
 .update-profile-button{
     padding: 10px;
+}
+
+@media (min-width:300px) and (max-width:600px){
+    .update-profile-container{
+        width: 95%;
+    }
+    .update-profile-form-container{
+        width: 100%;
+    }
+    .update-profile-form-card{
+        padding: 15px;
+    }
+}
+
+@media (min-width:600px) and (max-width:800px){
+    .update-profile-container{
+        width: 70%;
+    }
+    .update-profile-form-container{
+        width: 85%;
+    }
+    .update-profile-form-card{
+        padding: 15px;
+    }
 }

@@ -71,7 +71,7 @@ const UpdateProfile = props => {
 
     return(
         <div className='update-profile-container'>
-            <Card>
+            <Card className='update-profile-form-card'>
                 <div className='update-profile-form-container'>
                     <UploadProfileImg imageHandler={newImageHandler} userName={userData.name} initialValue={image}/>
                     <p className='update-profile-title mt-2'>Name</p>
