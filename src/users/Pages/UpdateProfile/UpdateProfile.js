@@ -10,6 +10,7 @@ import UpdateLink from '../../components/UpdateLink/UpdateLink';
 import './UpdateProfile.css';
 
 const UpdateProfile = props => {
+    document.title = 'Update Profile';
     const history = useHistory();
     const [file, setFile] = useState();
     const { name, email, job, image, links, id } = props.location.state;

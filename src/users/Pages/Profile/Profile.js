@@ -15,7 +15,7 @@ import './Profile.css';
 
 
 const Profile = props => {
-
+    document.title = 'Profile';
     const history = useHistory();
     const [ inputVisible, setInputVisible ] = useState(false);
     const [ user, setUser ] = useState();

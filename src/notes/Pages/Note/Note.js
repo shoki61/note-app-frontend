@@ -48,6 +48,7 @@ const Note = (props) => {
           return {...prevActions, markable:false}
         });
       }
+      document.title = responseData.note.creator.name + ' Post';
     };
     getNote();
   }, []);

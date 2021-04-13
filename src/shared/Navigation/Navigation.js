@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import NavigationItem from './NavigationItem/NavigationItem';
 import Button from '../components/Button/Button';
@@ -8,21 +9,28 @@ import * as actions from '../../store/actions/index';
 import './Navigation.css';
 
 const Navigation = props => {
+  const history = useHistory();
   const { userInfo, isLoggedIn } = props.userRdcr;
   const [shrink, setShrink] = useState(' ');
   const [logoSize, setLogoSize] = useState();
 
   window.onscroll = function() {scrollFunction()};
 
-const scrollFunction = () => {
-  if (document.documentElement.scrollTop > 30 || document.body.scrollTop > 50) {
-    setShrink('shrink');
-    setLogoSize(30)
-  } else {
-    setShrink(' ');
-    setLogoSize()
+  const scrollFunction = () => {
+    if (document.documentElement.scrollTop > 30 || document.body.scrollTop > 50) {
+      setShrink('shrink');
+      setLogoSize(30)
+    } else {
+      setShrink(' ');
+      setLogoSize()
+    };
   };
-};
+
+  const logout = () => {
+    props.onLogout();
+    history.push('/')
+
+  }
   return(
     <header className={`navigation ${shrink}`}>
       {!props.sideDrawer &&<Logo size={logoSize} name='MY BLOG'/>}
@@ -65,7 +73,7 @@ const scrollFunction = () => {
           />
           }
           {
-            isLoggedIn && <Button className='nav-auth-button' onClick={props.onLogout}>
+            isLoggedIn && <Button className='nav-auth-button' onClick={logout}>
               Logout
           </Button>
           }

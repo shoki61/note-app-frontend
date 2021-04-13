@@ -11,6 +11,7 @@ import './Auth.css';
 
 
 const Auth = props => {
+    document.title = 'Auth';
     const [mode, setMode] = useState(true);
     const [error, setError] = useState(false);
     const [inputs, setInputs] = useState({

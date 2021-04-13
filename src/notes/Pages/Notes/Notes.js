@@ -7,7 +7,7 @@ import './Notes.css';
 
 const Notes = props => {
     const [ notes, setNotes ] = useState([]);
-
+    document.title = 'Posts';
     useEffect(() => {
         const getNotes = async() => {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes`);

@@ -8,6 +8,7 @@ import './Users.css';
 
 
 const Users = () => {
+  document.title = 'Users';
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

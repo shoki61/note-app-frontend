@@ -6,6 +6,7 @@ import './UpdateNote.css';
 
 const UpdateNote = props => {
     const note = props.location.state.note;
+    document.title = 'Update Post';
     return <NoteTaker
         type='update'
         id={note._id}

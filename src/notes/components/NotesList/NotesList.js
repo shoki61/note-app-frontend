@@ -32,7 +32,7 @@ const NotesList = props => {
                 createdDate={post.updatedAt}
         />);
     }else{
-        noteItem = <p>Post Not Found</p>
+        noteItem = <p className='posts-not-found'>Posts Not Found</p>
     };
     return <div>
         {noteItem}
