@@ -11,29 +11,30 @@ import './Navigation.css';
 const Navigation = props => {
   const history = useHistory();
   const { userInfo, isLoggedIn } = props.userRdcr;
-  const [shrink, setShrink] = useState(' ');
-  const [logoSize, setLogoSize] = useState();
 
   window.onscroll = function() {scrollFunction()};
 
   const scrollFunction = () => {
-    if (document.documentElement.scrollTop > 30 || document.body.scrollTop > 50) {
-      setShrink('shrink');
-      setLogoSize(30)
+    if (document.documentElement.scrollTop > 30 || document.body.scrollTop > 30) {
+      document.getElementById('header').className = 'navigation shrink';
+      document.getElementById('logo').className = 'center logo-s';
+      document.getElementById('logo-icon-back').style.borderRadius = '12px';
+      document.getElementById('logo-name').style = 'color:#fff; font-size: 15px';
     } else {
-      setShrink(' ');
-      setLogoSize()
+      document.getElementById('header').className = 'navigation';
+      document.getElementById('logo').className = 'center logo-l';
+      document.getElementById('logo-icon-back').style.borderRadius = '17px';
+      document.getElementById('logo-name').style = 'color:#ffa66b; font-size: 20px';
     };
   };
 
   const logout = () => {
     props.onLogout();
     history.push('/')
-
   }
   return(
-    <header className={`navigation ${shrink}`}>
-      {!props.sideDrawer &&<Logo size={logoSize} name='MY BLOG'/>}
+    <header id='header' className='navigation'>
+      {!props.sideDrawer &&<Logo name='MY BLOG'/>}
       <nav className='header-nav'>
         <ul className={!props.sideDrawer && 'center'}>
         <NavigationItem

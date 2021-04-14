@@ -4,14 +4,18 @@
   width: 15% !important;
 }
 
-.logo-icon{
-    width: 40px;
-    height: 40px;
-    position: relative;
+.logo-l{
+  width: 40px;
+  height: 40px;
+}
+
+.logo-s{
+  width: 30px;
+  height: 30px;
 }
 
 .logo-icon-back{
-    border-radius: 15px;
+    border-radius: 17px;
     background-color: rgb(255, 113, 19);
     position: absolute;
     width: inherit;
@@ -32,6 +36,7 @@
   font-size: 20px;
   margin-top: 5px;
   display: block;
+  color:#ffa66b;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
