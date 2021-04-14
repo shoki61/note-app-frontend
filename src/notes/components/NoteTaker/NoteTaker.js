@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import Card from '../../../shared/components/Card/Card';
 import Button from '../../../shared/components/Button/Button';
 import Input from '../../../shared/components/Input/Input';
 import UploadImage from '../../../shared/components/UploadImage/UploadImage';
+import SpinnerButton from '../../../shared/components/Spinner/SpinnerButton';
 import './NoteTaker.css';
 
 const NoteTaker = props => {
     const { userInfo } = props.userRdcr;
     const history = useHistory();
     const [file, setFile] = useState();
+    const [ clicked, setClicked ] = useState(false);
     const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : '');
     const [keywords, setKeywords] = useState(props.keywords || []);
     const [inputs, setInputs] = useState({
@@ -49,7 +50,7 @@ const NoteTaker = props => {
     const sendNote = async(value) => {
         const {title, description, keywords, hidden, creator} = inputs;
 
-
+        setClicked(true);
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
@@ -65,7 +66,10 @@ const NoteTaker = props => {
             method: value === 'update' ? 'PATCH' : 'POST',
             body: formData
         });
-        if(response.status === 201 || 200) history.push('/notes');
+        if(response.status === 201 || 200) {
+            history.push('/notes');
+            setClicked(false)
+        }else setClicked(false);
     };
 
     const hiddenHandler = () => {
@@ -136,7 +140,7 @@ const NoteTaker = props => {
                     <p className='note-taker-input-title'>Private</p>
                     <div title='only those who follow you can see' className='note-taker-detail center'>?</div>
                 </div>
-                <Button onClick={() => sendNote(props.type)} className='info full post-taker-button'>SUBMIT</Button>
+                <Button onClick={() => sendNote(props.type)} className='info full post-taker-button'>{clicked ? <SpinnerButton size={20}/> : 'SUBMIT'}</Button>
             </div>
         </div>
         
