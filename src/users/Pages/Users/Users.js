@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 
 import UserList from '../../components/UserList/UserList';
 import Spinner from '../../../shared/components/Spinner/Spinner';
-import backImg from '../../../assets/home.jfif';
 import './Users.css';
 
 

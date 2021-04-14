@@ -7,7 +7,7 @@ const NavigationItem = props => {
     return (
         <li className='nav-item'>
             {props.slideDrawer && <i className={`fas fa-${props.icon} nav-icon`}></i>}
-            <NavLink exact={props.exact} to={{pathname: props.path, state:{id: props.userId}}}>
+            <NavLink className='nav-item-link' exact={props.exact} to={{pathname: props.path, state:{id: props.userId}}}>
                 {props.title}
             </NavLink>
         </li>

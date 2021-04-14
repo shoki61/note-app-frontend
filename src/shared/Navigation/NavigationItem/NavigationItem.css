@@ -6,6 +6,7 @@
   font-weight: 600;
   padding:3px 0px;
   margin:0 15px;
+  width: 100%;
   transition: all .3s ease-in-out;
 }
   
@@ -15,7 +16,6 @@
   color: #af7373;
   border-bottom: 3px solid #af7373;
 }
-
 
 .nav-icon{
   color: rgb(255, 113, 19);

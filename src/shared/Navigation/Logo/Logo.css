@@ -49,8 +49,8 @@
     }
   }
 
-@media (max-width:600px) {
-  .logo-icon {
-      margin-right: 15px;
+@media (max-width:800px) {
+  .logo-name{
+    margin-left: 20px !important;
   }
 }

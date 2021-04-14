@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 
 import Image from '../../../../shared/components/Image/Image';
-import Card from '../../../../shared/components/Card/Card';
 import './UserItem.css';
 
 const UserItem = props => {
