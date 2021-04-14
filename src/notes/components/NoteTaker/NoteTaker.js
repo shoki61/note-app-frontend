@@ -58,7 +58,7 @@ const NoteTaker = props => {
         formData.append('keywords', keywords);
         formData.append('hidden', hidden);
         formData.append('userId', creator);
-
+        console.log(file);
 
         let url = `${process.env.REACT_APP_BACKEND_URL}/notes/create-note`;
         if(value === 'update') url = `${process.env.REACT_APP_BACKEND_URL}/notes/update-note/${props.id}`;

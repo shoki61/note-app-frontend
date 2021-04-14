@@ -8,11 +8,13 @@ import Input from "../../../shared/components/Input/Input";
 import NoteComments from "../../components/NoteComments/NoteComments";
 import Backdrop from "../../../shared/components/Backdrop/Backdrop";
 import Spinner from "../../../shared/components/Spinner/Spinner";
+import SpinnerButton from '../../../shared/components/Spinner/SpinnerButton';
 import "./Note.css";
 import { NavLink } from "react-router-dom";
 
 const Note = (props) => {
   const history = useHistory();
+  const [clicked, setClicked] = useState(false);
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [note, setNote] = useState();
   const [comment, setComment] = useState('');
@@ -129,10 +131,14 @@ const Note = (props) => {
   };
 
   const deletePost = async() => {
+    setClicked(true);
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/delete-note/${props.location.state.id}`,{
       method:'DELETE'
     });
-    if(response.status === 200) history.push('/notes');
+    if(response.status === 200) {
+      history.push('/notes');
+      setClicked(false);
+    }else setClicked(false);
   };
 
   return (
@@ -187,7 +193,7 @@ const Note = (props) => {
                   </Button>
                 )}
                 {note.creator._id === userId && (
-                  <Button onClick={deletePost} className="danger-outline box-shadow-hover">Delete</Button>
+                  <Button onClick={deletePost} className="danger-outline box-shadow-hover">{clicked ? <SpinnerButton size={20}/> : 'Delete'}</Button>
                 )}
               </div>
             </div>
