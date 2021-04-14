@@ -178,7 +178,7 @@ const Profile = props => {
 
                                 style={inputVisible ? {width:250, border:'1px solid grey'}:{width:0, padding:0}}
                             />
-                            <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'}`}></i></Button>
+                            <Button onClick={changeInputVisible}><i className={`fa ${inputVisible ? 'fa-close' : 'fa-search'} profile-input-button`}></i></Button>
                         </div>
                     </div>
                 </div>

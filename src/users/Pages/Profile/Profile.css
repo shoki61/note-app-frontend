@@ -106,7 +106,7 @@
     margin-right: 15px;
 }
 
-.profile-notes .fa-plus, .fa-search, .fa-close{
+.profile-input-button{
     color:rgba(0, 80, 94, .7);
     font-size: 18px;
     font-weight: 100;

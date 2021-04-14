@@ -7,6 +7,7 @@ import Input from '../../../shared/components/Input/Input';
 import Button from '../../../shared/components/Button/Button';
 import Image from '../../../shared/components/Image/Image';
 import * as actions from '../../../store/actions/index';
+import SpinnerButton from '../../../shared/components/Spinner/SpinnerButton';
 import './Auth.css';
 
 
@@ -14,6 +15,7 @@ const Auth = props => {
     document.title = 'Auth';
     const [mode, setMode] = useState(true);
     const [error, setError] = useState(false);
+    const [clicked, setClicked] = useState(false);
     const [inputs, setInputs] = useState({
       name:'',
       email:'',
@@ -35,9 +37,10 @@ const Auth = props => {
     const authSubmitHandler = async event => {
         event.preventDefault();
         const { name, email, password, rePassword} = inputs;
-
+        setClicked(true);
         if(mode){
           if(!validator.isEmail(email) || !validator.isLength(password,{min:6})){
+            setClicked(false);
             return setError('Please enter valid email.');
           };
           try{
@@ -52,15 +55,19 @@ const Auth = props => {
             const responseData = await response.json();
             if(responseData.user){
               props.onLogin(responseData.user);
+              setClicked(false);
               history.push('/');
             }else{
+              setClicked(false);
               setError(responseData.message);
             };
           } catch(e){
+            setClicked(false);
             setError(e);
           };
         }else{
           if(!validator.isLength(name) || !validator.isEmail(email) || !validator.isLength(password,{min:6}) || password !== rePassword){
+            setClicked(false);
             return setError('Error. Please check valid inputs');
           };
           try {
@@ -73,9 +80,13 @@ const Auth = props => {
               body: data
             });
             const responseData = await response.json();
-            props.onSignUp(responseData.user);
-            history.push('/users');
+            if(responseData.user){
+              props.onSignUp(responseData.user);
+              setClicked(false);
+              history.push('/users');
+            }
           } catch(e){
+            setClicked(false);
             throw setError('Unknown error. Please try again');
           };
         };
@@ -133,7 +144,7 @@ const Auth = props => {
                     />
                   </>}
                   {error && <p className='error-message animate__animated animate__headShake'><i className='fa fa-warning'></i> {error}</p>}
-                  <Button type='submit' className='black auth-button mb-2'>{mode ? 'LOGIN' : 'SING UP'}</Button>
+                  <Button type='submit' className='black auth-button mb-2'>{clicked ? <SpinnerButton size={25}/> : mode ? 'LOGIN' : 'SING UP'}</Button>
                   <p className='switch-text'>
                       {mode ? "Aren't you a member?" : "Are you already a member?"} 
                       <span onClick={changeMode} className='switchButton'>{mode ? 'Sign up': 'Login'}</span>
