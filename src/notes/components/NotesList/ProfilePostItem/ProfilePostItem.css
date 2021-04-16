@@ -3,6 +3,7 @@
     margin:auto;
     border-bottom: 1px solid rgb(230, 230, 230);
     padding: 50px 0;
+    position: relative;
 }
 
 .profile-post-title{
@@ -60,6 +61,12 @@
     color:#636363;
 }
 
+.fa-lock{
+    color: #424242;
+    font-size: 17px;
+    cursor: pointer;
+}
+
 @media (min-width:300px) and (max-width:600px) {
     .profile-post-content{
         width: 100%;
@@ -77,6 +84,9 @@
         font-size: 15px;
         font-weight: 600;
         color:#6e6e6e
+    }
+    .fa-lock{
+        font-size: 14px;
     }
 }
 

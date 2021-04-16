@@ -1,5 +1,6 @@
 .note-container{
     width: 55%;
+    min-width: 250px;
     margin: auto;
     padding-top: 100px;
     padding-bottom: 50px;
@@ -135,7 +136,7 @@ a,a:hover{
     display: flex
 }
 
-@media (min-width:300px) and (max-width:600px){
+@media (max-width:600px){
     .note-container{
         width: 85%;
     }

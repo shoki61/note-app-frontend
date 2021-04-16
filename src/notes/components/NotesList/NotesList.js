@@ -14,6 +14,7 @@ const NotesList = props => {
             ? props.data.map(post => <ProfilePostItem
                 key={post._id}
                 id={post._id}
+                hidden={post.hidden}
                 image={post.image}
                 title={post.title}
                 description={post.description}

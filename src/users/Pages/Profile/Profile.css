@@ -83,17 +83,12 @@
 
 .profile-box{
     padding: 3px 10px;
-    border-radius: 3px;
+    border-radius: 4px;
     color:#fff;
     font-size: 15px;
     background-color: #505050;
     margin:0 7px 0 0;
 }
-
-.profile-box:hover{
-    background-color: #363636;
-}
-
 
 .profile-notes{
     margin-top: 25px;

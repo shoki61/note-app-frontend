@@ -137,7 +137,7 @@ const NoteTaker = props => {
                         id='private'
                     />
                     <p className='note-taker-input-title'>Private</p>
-                    <div title='only those who follow you can see' className='note-taker-detail center'>?</div>
+                    <div title='This post cannot be seen by other users.' className='note-taker-detail center'>?</div>
                 </div>
                 <Button onClick={() => sendNote(props.type)} className='info full post-taker-button'>{clicked ? <SpinnerButton size={20}/> : 'SUBMIT'}</Button>
             </div>

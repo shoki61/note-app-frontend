@@ -13,11 +13,9 @@ const Notes = props => {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes`);
             const responseData = await response.json();
             let publicNotes;
-            if(props.userRdcr.userInfo && responseData.notes){
-                publicNotes = responseData.notes.filter(item => item.creator === props.userRdcr.userInfo._id ? item : item.hidden === false);
-            }else if(responseData.notes){
+            if(responseData.notes){
                 publicNotes = responseData.notes.filter(item => item.hidden === false);
-            };
+            }
             setNotes(publicNotes);
         };
         getNotes();

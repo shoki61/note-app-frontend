@@ -139,8 +139,8 @@ const Profile = props => {
                         <p className='profile-job'>{user.job}</p>
                         <p className='profile-email'><i className='fa fa-envelope-o'></i>{user.email}</p>
                         <div className='profile-box-container'>
-                            <Button onClick={() => changeShowFollow(user.following)} className='profile-box inline'>Following: {user.following.length}</Button>
-                            <Button onClick={() => changeShowFollow(user.follower)} className='profile-box inline'>Followers: {user.follower.length}</Button>
+                            <Button onClick={() => changeShowFollow(user.following)} className='profile-box box-shadow-hover inline'>Following: {user.following.length}</Button>
+                            <Button onClick={() => changeShowFollow(user.follower)} className='profile-box box-shadow-hover inline'>Followers: {user.follower.length}</Button>
                         </div>
                     </div>
                 </div>

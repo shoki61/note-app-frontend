@@ -19,7 +19,8 @@ const ProfilePostItem = props => {
                     Read the full post
                 </NavLink>
                 <div className='profile-post-actions'>
-                    <p className='profile-post-action'><i className='fa fa-heart-o profile-post-action-icon'></i>{props.likes.length}</p>
+                    {props.hidden && <i title='Private post' class="fas fa-lock"></i>}
+                    <p style={{marginLeft:20}} className='profile-post-action'><i className='fa fa-heart-o profile-post-action-icon'></i>{props.likes.length}</p>
                     <p className='profile-post-action'><i className='fa fa-comment-o profile-post-action-icon'></i>{props.comments.length}</p>
                     <p className='profile-post-action'><i className='fa fa-bookmark-o profile-post-action-icon'></i>{props.markings.length}</p>
                 </div>
