@@ -50,7 +50,6 @@ const NoteTaker = props => {
     const sendNote = async(value) => {
         const {title, description, keywords, hidden, image, creator} = inputs;
         setClicked(true);
-        console.log(image === 'null');
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);

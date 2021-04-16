@@ -19,7 +19,7 @@ const NoteItem = props => {
                             </div> 
                             <p className='note-item-creator-name'>{props.creator.name}</p>
                         </NavLink>
-                        <p className='note-item-title'>{props.title} Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+                        <p className='note-item-title'>{props.title}</p>
                         <p className='note-item-description'>{props.description}</p>
                         <p className='note-item-date'><i className='fa fa-clock-o note-item-icon'></i> {new Date(props.createdDate).toLocaleString()}</p>
                     </div>

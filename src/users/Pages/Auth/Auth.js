@@ -56,7 +56,7 @@ const Auth = props => {
             if(responseData.user){
               props.onLogin(responseData.user);
               setClicked(false);
-              history.push('/');
+              history.push('/users');
             }else{
               setClicked(false);
               setError(responseData.message);
@@ -66,7 +66,7 @@ const Auth = props => {
             setError(e);
           };
         }else{
-          if(!validator.isLength(name) || !validator.isEmail(email) || !validator.isLength(password,{min:6}) || password !== rePassword){
+          if(!validator.isLength(name,{min:2}) || !validator.isEmail(email) || !validator.isLength(password,{min:6}) || password !== rePassword){
             setClicked(false);
             return setError('Error. Please check valid inputs');
           };
@@ -84,6 +84,9 @@ const Auth = props => {
               props.onSignUp(responseData.user);
               setClicked(false);
               history.push('/users');
+            }else{
+              setClicked(false);
+              setError(responseData.message)
             }
           } catch(e){
             setClicked(false);
@@ -118,6 +121,7 @@ const Auth = props => {
                   <Input
                       id='email'
                       type='email'
+                      required
                       value={inputs.email}
                       onChange={inputHandler}
                       className='auth-input input-full'

@@ -7,6 +7,7 @@ const Input = props => {
         return  <input 
                     checked={props.value}
                     id={props.id}
+                    required={props.required}
                     onChange={props.onChange}
                     value={props.value}
                     type={props.type}

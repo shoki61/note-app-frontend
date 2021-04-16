@@ -16,8 +16,6 @@ const UserList = props => {
         if (scrollValue) scrollValue.addEventListener('scroll',handleScroll)
     },[showBlur])
 
-    console.log(props.data)
-
     let userList = <Spinner/>;
     if(props.data.length) userList = props.data.map(user => <UserItem
         key={user._id}
