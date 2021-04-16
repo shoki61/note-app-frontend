@@ -7,10 +7,12 @@ import Input from '../../../shared/components/Input/Input';
 import Button from '../../../shared/components/Button/Button';
 import UploadProfileImg from '../../../users/components/UploadProfileImg/UploadProfileImg';
 import UpdateLink from '../../components/UpdateLink/UpdateLink';
+import SpinnerButton from '../../../shared/components/Spinner/SpinnerButton';
 import './UpdateProfile.css';
 
 const UpdateProfile = props => {
     document.title = 'Update Profile';
+    const [clicked, setClicked] = useState(false);
     const history = useHistory();
     const [file, setFile] = useState();
     const { name, email, job, image, links, id } = props.location.state;
@@ -35,6 +37,7 @@ const UpdateProfile = props => {
     };
 
     const saveNewUserData = async () => {
+        setClicked(true);
         const formData = new FormData();
         formData.append('email', userData.email);
         formData.append('name', userData.name);
@@ -46,7 +49,10 @@ const UpdateProfile = props => {
             body: formData
         })
         const responseData = await response.json();
-        if(responseData.user) history.goBack();
+        if(responseData.user) {
+            setClicked(false)
+            history.goBack()
+        }else setClicked(false);
     };
 
     const inputHandler = event => {
@@ -114,7 +120,7 @@ const UpdateProfile = props => {
                     <UpdateLink placeholder='web url' linkHandler={userLinkHanler} id='web' title='Web' value={userData.links.web} iconName='fa fa-link'/>
 
                     <div style={{margin:'40px 0 30px 0'}} className='line'></div>
-                    <Button onClick={saveNewUserData} className='info full update-profile-button'>Save the change</Button>
+                    <Button onClick={saveNewUserData} className='info full update-profile-button'>{clicked ? <SpinnerButton size={20}/> : 'Save the change'}</Button>
                 </div>
             </Card>
         </div>

@@ -10,6 +10,7 @@ import Input from '../../../shared/components/Input/Input';
 import Spinner from '../../../shared/components/Spinner/Spinner';
 import Modal from '../../../shared/components/Modal/Modal';
 import PersonsList from '../../components/PersonsList/PersonsList';
+import SpinnerButton from '../../../shared/components/Spinner/SpinnerButton';
 import * as actions from '../../../store/actions/index';
 import './Profile.css';
 
@@ -25,6 +26,7 @@ const Profile = props => {
     const [ showFollow, setShowFollow ] = useState(false);
     const [ followData, setFollowData ] = useState();
     const [ searchingPost, setSearchingPost ] = useState('');
+    const [ clicked, setClicked ] = useState(false);
 
     const { userInfo, isLoggedIn } = props.userRdcr;    
 
@@ -71,13 +73,15 @@ const Profile = props => {
     };
 
     const deleteAccount = async () => {
+        setClicked(true);
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/delete-user/${userInfo._id}`,{
                 method: 'DELETE',
         });
         if(response.status === 200) {
+            setClicked(false)
             props.isLogout();
             history.push('/users');
-        };
+        }else setClicked(false);
     };
 
     const changeShowFollow = value => {
@@ -153,7 +157,7 @@ const Profile = props => {
                     </div>
                     <div className='mt-1'>
                         {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
-                        {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline delete-acount box-shadow-hover'>Delete the account</Button>}
+                        {isLoggedIn && userInfo._id === user._id && <Button onClick={deleteAccount}  className='danger-outline delete-acount box-shadow-hover'>{clicked ? <SpinnerButton size={20}/> : 'Delete the account'}</Button>}
                     </div>
                 </div>
             </div>

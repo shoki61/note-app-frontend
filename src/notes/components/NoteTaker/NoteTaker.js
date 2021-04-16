@@ -13,16 +13,16 @@ const NoteTaker = props => {
     const history = useHistory();
     const [file, setFile] = useState();
     const [ clicked, setClicked ] = useState(false);
-    const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : '');
+    const [keyword, setKeyword] = useState(props.keywords ? props.keywords.join(' ') : null);
     const [keywords, setKeywords] = useState(props.keywords || []);
     const [inputs, setInputs] = useState({
         title: props.title || '',
         description: props.description || '',
         keywords: props.keywords || [],
         hidden: props.hidden || false,
+        image: props.image || null,
         creator: userInfo._id
     });
-
 
     const inputHandler = event => {
         setInputs(prevInputs => {
@@ -48,17 +48,16 @@ const NoteTaker = props => {
     };
 
     const sendNote = async(value) => {
-        const {title, description, keywords, hidden, creator} = inputs;
-
+        const {title, description, keywords, hidden, image, creator} = inputs;
         setClicked(true);
+        console.log(image === 'null');
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
-        formData.append('image', file || props.image);
+        formData.append('image', file || image);
         formData.append('keywords', keywords);
         formData.append('hidden', hidden);
         formData.append('userId', creator);
-        console.log(file);
 
         let url = `${process.env.REACT_APP_BACKEND_URL}/notes/create-note`;
         if(value === 'update') url = `${process.env.REACT_APP_BACKEND_URL}/notes/update-note/${props.id}`;
@@ -66,7 +65,7 @@ const NoteTaker = props => {
             method: value === 'update' ? 'PATCH' : 'POST',
             body: formData
         });
-        if(response.status === 201 || 200) {
+        if(response.status === 201 || response.status === 200) {
             history.push('/notes');
             setClicked(false)
         }else setClicked(false);
