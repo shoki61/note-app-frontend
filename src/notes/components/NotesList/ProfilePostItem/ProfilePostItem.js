@@ -8,7 +8,7 @@ import './ProfilePostItem.css';
 const ProfilePostItem = props => {
     return(
         <div className='profile-post-content'>
-            <p className='profile-post-title'>{props.title} Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+            <p className='profile-post-title'>{props.title}</p>
             <p className='profile-post-date mt-1 mb-1'><i className='fa fa-clock-o note-item-icon'></i> {new Date(props.createdDate).toLocaleString()}</p>
             {props.image && <div className='profile-post-image mb-2'>
                 <Image src={`${process.env.REACT_APP_ASSETS_URL}/${props.image}`} alt={props.title}/>

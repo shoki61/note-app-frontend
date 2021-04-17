@@ -14,7 +14,7 @@ const Users = () => {
     const getUsers = async() => {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`);
       const responseData = await response.json();
-      setUsers(responseData.users)
+      setUsers(responseData.users.reverse())
     };
     getUsers();
   }, [])

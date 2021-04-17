@@ -16,7 +16,7 @@ const Notes = props => {
             if(responseData.notes){
                 publicNotes = responseData.notes.filter(item => item.hidden === false);
             }
-            setNotes(publicNotes);
+            setNotes(publicNotes.reverse());
         };
         getNotes();
     }, []);

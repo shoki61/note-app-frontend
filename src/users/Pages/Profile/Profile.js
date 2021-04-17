@@ -43,7 +43,7 @@ const Profile = props => {
             }else{
                 publicUserNotes = responseUserNotes.notes.filter(item => !item.hidden);
             };
-            setUserNotes(publicUserNotes);
+            setUserNotes(publicUserNotes.reverse());
             setNotesToRender(publicUserNotes);
             if(isLoggedIn) setIsFollowed(responseData.follower.find(item => item._id === userInfo._id));
         };
