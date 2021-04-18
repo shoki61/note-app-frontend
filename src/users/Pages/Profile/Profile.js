@@ -153,7 +153,7 @@ const Profile = props => {
                         {user.links.github && <Button className='black-round'><a href={user.links.github.search(/http/gi) < 0 ? `https://${user.links.github}`: user.links.github} target='_blank'><i className='fab fa-github'></i></a></Button>}
                         {user.links.gitlab && <Button className='black-round'><a href={user.links.gitlab.search(/http/gi) < 0 ? `https://${user.links.gitlab}`: user.links.gitlab} target='_blank'><i className='fab fa-gitlab'></i></a></Button>}
                         {user.links.medium && <Button className='black-round'><a href={user.links.medium.search(/http/gi) < 0 ? `https://${user.links.medium}`: user.links.medium} target='_blank'><i className='fab fa-medium-m'></i></a></Button>}
-                        {user.links.web && <Button className='black-round'><a href={user.links.medium.search(/http/gi) < 0 ? `https://${user.links.web}`: user.links.web} target='_blank'><i className='fa fa-link'></i></a></Button>}
+                        {user.links.web && <Button className='black-round'><a href={user.links.web.search(/http/gi) < 0 ? `https://${user.links.web}`: user.links.web} target='_blank'><i className='fa fa-link'></i></a></Button>}
                     </div>
                     <div className='mt-1'>
                         {isLoggedIn && userInfo._id !== user._id && <Button onClick={() => follow()} className={isLoggedIn && isFollowed ? 'black' : 'black-outline'}>{isLoggedIn && isFollowed ? 'Following' : 'Follow'}</Button>}
