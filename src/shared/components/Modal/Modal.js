@@ -9,7 +9,9 @@ const Modal = props => (
     <div className='modal'>
         <div className='modal-content'>
             <Button onClick={props.closeModal} className='modal-close-button'><i className='fa fa-close'></i></Button>
-            {props.children}
+            <div className='chilren-container center'>
+                {props.children}
+            </div>
         </div>
         <Backdrop onClose={props.closeModal} />
     </div>

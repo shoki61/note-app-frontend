@@ -5,9 +5,10 @@
 }
 
 .auth-form-container{
-    width: 35%;
-    justify-content: flex-end;
+    width: 23%;
+    justify-content: flex-start;
     z-index: 100;
+    margin-right: 200px;
 }
 
 .auth-title{
@@ -46,13 +47,8 @@ textarea{
     border: 1px solid rgb(98, 216, 98);
 }
 
-.vector-icon-container{
-    width: 45%;
-}
-
 .auth-form{
-    width: 70%;
-    margin-right: 70px;
+    width: 100%;
 }
 
 .auth-button{
@@ -64,8 +60,11 @@ textarea{
     padding: 10px 15px;
 }
 
+.vector-icon-container{
+    width: 20vw;
+}
+
 .auth-vektor{
-    width: 45%;
     z-index: 1;
 }
 
@@ -77,13 +76,14 @@ textarea{
 }
 
 .auth-top-img-container{
-    width: 100%;
+    width: 25vw;
     position: fixed;
-    top:0
+    top:0;
+    left:0
 }
 
 .auth-top-img{
-    width: 30%;
+    width: 100%;
 }
 
 .auth-bottom-img{
@@ -106,18 +106,21 @@ textarea{
     }
     .auth-form-container{
         width: 100%;
+        margin-right: 0;
     }
     .auth-form{
         margin:auto;
         width: 80%;
     }
     .vector-icon-container{
-        width: 55%;
+        width: 55vw;
+    }
+    .auth-top-img-container{
+        width: 70vw;
     }
     .auth-vektor{
         width: 100%;
     }
-
     .auth-title{
         margin: 15px 0 3px 0;
     }
@@ -135,13 +138,17 @@ textarea{
     }
     .auth-form-container{
         width: 100%;
+        margin-right: 0;
+    }
+    .auth-top-img-container{
+        width: 50vw;
     }
     .auth-form{
         margin:auto;
         width: 60%;
     }
     .vector-icon-container{
-        width: 45%;
+        width: 45vw;
     }
     .auth-vektor{
         width: 100%;

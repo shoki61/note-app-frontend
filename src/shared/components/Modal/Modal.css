@@ -14,8 +14,18 @@
     z-index: 400;
     width: 65vw;
     margin-top: 150px;
-    padding: 50px 10px;
+    padding: 50px 10px 5px 10px;
     min-height: 60%;
+    max-height: 70vh;
+}
+
+.chilren-container{
+    width: 100%;
+    margin:auto;
+    align-items: flex-start !important;
+    height: 100%;
+    padding-top: 20px;
+    overflow: auto;
 }
 
 .modal-close-button{
@@ -29,7 +39,6 @@
         width: 90%;
         min-height: 50%;
         margin-top: 100px;
-        padding: 40px 0;
     }
     .modal-close-button{
         top:5px;
